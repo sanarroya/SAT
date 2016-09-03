@@ -10,11 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
+require('rxjs/add/operator/map');
 require('rxjs/add/operator/toPromise');
 var HeroService = (function () {
     function HeroService(http) {
         this.http = http;
         this.heroesUrl = 'app/heroes';
+        this.postsUrl = 'https://jsonplaceholder.typicode.com/posts';
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     HeroService.prototype.handleError = function (error) {
@@ -45,6 +47,15 @@ var HeroService = (function () {
             .toPromise()
             .then(function () { return hero; })
             .catch(this.handleError);
+    };
+    HeroService.prototype.getPosts = function () {
+        alert("getPosts");
+        return this.http.get(this.postsUrl)
+            .map(function (res) { return res.json(); });
+    };
+    HeroService.prototype.createPost = function (post) {
+        return this.http.post(this.postsUrl, JSON.stringify(post))
+            .map(function (res) { return res.json(); });
     };
     HeroService = __decorate([
         core_1.Injectable(), 

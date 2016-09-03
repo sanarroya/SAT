@@ -4,10 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MdButtonModule } from '@angular2-material/button';
 import { MdCardModule } from '@angular2-material/card';
-
-// Imports for loading & configuring the in-memory web api
-import { InMemoryWebApiModule } from 'angular2-in-memory-web-api';
-import { InMemoryDataService }  from './in-memory-data.service';
+import { MdInputModule } from '@angular2-material/input';
 
 import { AppComponent } from './app.component';
 import { HeroDetailComponent } from './hero-detail.component';
@@ -22,9 +19,9 @@ import { routing } from './app.routing';
     BrowserModule,
     FormsModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
     MdButtonModule,
     MdCardModule,
+    MdInputModule,
     routing 
   ],
   declarations: [ 

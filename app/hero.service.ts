@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core'
 import { Headers, Http } from '@angular/http'
 
-import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/toPromise'
 
 import { Hero } from './hero'
 
@@ -9,6 +10,7 @@ import { Hero } from './hero'
 export class HeroService {
 
     private heroesUrl = 'app/heroes'
+    private postsUrl = 'https://jsonplaceholder.typicode.com/posts'
     private headers = new Headers({'Content-Type': 'application/json'})
     private handleError(error: any): Promise<any> {
         console.error('An error ocurred', error)
@@ -44,5 +46,16 @@ export class HeroService {
             .toPromise()
             .then(() => hero)
             .catch(this.handleError);
-    } 
+    }
+
+    getPosts() {
+        alert("getPosts")
+        return this.http.get(this.postsUrl)
+            .map(res => res.json())
+    }
+
+    createPost(post) {
+        return this.http.post(this.postsUrl, JSON.stringify(post))
+            .map(res => res.json())
+    }
 }

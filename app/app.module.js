@@ -14,9 +14,10 @@ var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
 var button_1 = require('@angular2-material/button');
 var card_1 = require('@angular2-material/card');
+var input_1 = require('@angular2-material/input');
 // Imports for loading & configuring the in-memory web api
-var angular2_in_memory_web_api_1 = require('angular2-in-memory-web-api');
-var in_memory_data_service_1 = require('./in-memory-data.service');
+// import { InMemoryWebApiModule } from 'angular2-in-memory-web-api';
+// import { InMemoryDataService }  from './in-memory-data.service';
 var app_component_1 = require('./app.component');
 var hero_detail_component_1 = require('./hero-detail.component');
 var heroes_component_1 = require('./heroes.component');
@@ -32,9 +33,9 @@ var AppModule = (function () {
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
                 http_1.HttpModule,
-                angular2_in_memory_web_api_1.InMemoryWebApiModule.forRoot(in_memory_data_service_1.InMemoryDataService),
                 button_1.MdButtonModule,
                 card_1.MdCardModule,
+                input_1.MdInputModule,
                 app_routing_1.routing
             ],
             declarations: [

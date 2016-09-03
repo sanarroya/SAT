@@ -15,6 +15,8 @@ var HeroesComponent = (function () {
     function HeroesComponent(heroService, router) {
         this.heroService = heroService;
         this.router = router;
+        this.heroService.getPosts()
+            .subscribe(function (posts) { return console.log(posts); });
     }
     HeroesComponent.prototype.ngOnInit = function () {
         this.getHeroes();
@@ -31,16 +33,6 @@ var HeroesComponent = (function () {
         this.router.navigate(link);
     };
     HeroesComponent.prototype.add = function (name) {
-        var _this = this;
-        name = name.trim();
-        if (!name) {
-            return;
-        }
-        this.heroService.create(name)
-            .then(function (hero) {
-            _this.heroes.push(hero);
-            _this.selectedHero = null;
-        });
     };
     HeroesComponent = __decorate([
         core_1.Component({
