@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MdButtonModule } from '@angular2-material/button';
+import { MdIconModule } from '@angular2-material/icon';
 import { MdCardModule } from '@angular2-material/card';
 import { MdInputModule } from '@angular2-material/input';
 import { MdToolbarModule } from '@angular2-material/toolbar';
@@ -27,6 +28,7 @@ import { routing } from './app.routing';
     MdButtonModule,
     MdCardModule,
     MdInputModule,
+    MdIconModule,
     MdToolbarModule,
     routing 
   ],

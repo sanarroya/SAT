@@ -15,6 +15,7 @@ import { User } from '../user'
 export class SignInComponent {
 
     constructor(
+        private router: Router,
         private authService: AuthenticationService
     ) { }
 
@@ -28,9 +29,11 @@ export class SignInComponent {
                 localStorage.setItem('id_token', response.token);
                 localStorage.setItem('name', response.usuario.nombre);
                 localStorage.setItem('type_user', response.usuario.tipo);
+                this.router.navigate(['/editProfile']);
             }, error => {
                 alert(error.text());
                 console.log(error.text());
+
             })
     }    
 }
