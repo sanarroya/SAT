@@ -32,3 +32,12 @@ div.container {
     width: 400;
     margin-bottom: 100;
 }
+
+.separtor-container {
+    display: inline-block;
+    width: 400;
+}
+
+.separator {
+    width: 190;
+}

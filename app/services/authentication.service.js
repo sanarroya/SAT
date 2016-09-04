@@ -18,18 +18,26 @@ var AuthenticationService = (function () {
         this.singInEndpoint = '/userResource/login';
         this.singUpEndpoint = '/userResource/registerCitizen';
         this.recoverPasswordEndpoint = '/userResource/recoverPassword';
+        this.userInfoEndpoint = '';
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     AuthenticationService.prototype.signIn = function (user) {
         return this.http.post(this.baseUrl + this.singInEndpoint, JSON.stringify(user), this.headers)
             .map(function (res) { return res.json(); });
     };
+    //TODO - Cambiar el tipo del observador
     AuthenticationService.prototype.signUp = function (user) {
         return this.http.post(this.baseUrl + this.singUpEndpoint, JSON.stringify(user), this.headers)
             .map(function (res) { return res.json(); });
     };
+    //TODO - Cambiar el tipo del observador
     AuthenticationService.prototype.recoverPassword = function (email) {
         return this.http.post(this.baseUrl + this.recoverPassword, JSON.stringify({ email: email }), this.headers)
+            .map(function (res) { return res.json(); });
+    };
+    //TODO - Cambiar el tipo del observador
+    AuthenticationService.prototype.getUserProfile = function (cedula) {
+        return this.http.get(this.baseUrl + this.userInfoEndpoint)
             .map(function (res) { return res.json(); });
     };
     AuthenticationService = __decorate([
