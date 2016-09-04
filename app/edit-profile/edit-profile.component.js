@@ -11,30 +11,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var authentication_service_1 = require('../services/authentication.service');
 var user_1 = require('../user');
-var SignUpComponent = (function () {
-    function SignUpComponent(authService) {
+var EditProfileComponent = (function () {
+    function EditProfileComponent(authService) {
         this.authService = authService;
+        this.user = user_1.User;
     }
-    SignUpComponent.prototype.onSignUp = function (cedula, nombre, email, password, confirmPassword, telefono, tipo) {
-        var user = new user_1.User();
-        user.cedula = cedula;
-        user.nombre = nombre;
-        user.email = email;
-        user.password = password;
-        user.confirmPassword = confirmPassword;
-        user.telefono = telefono;
-        user.tipo = tipo;
-        //Execute http request to create user
+    EditProfileComponent.prototype.ngOnInit = function () {
+        //TODO - Consumir el servicio que trae la informacion del usuario
     };
-    SignUpComponent = __decorate([
+    EditProfileComponent = __decorate([
         core_1.Component({
-            selector: 'sign-up',
-            templateUrl: '/app/signup/signup.component.html',
-            styleUrls: ['./app/signin/signin.component.css', './app/signup/signup.component.css']
+            selector: 'edit-profile',
+            templateUrl: './app/edit-profile/edit-profile.component.html',
+            styleUrls: ['./app/signin/signin.component.css', './app/edit-profile/edit-profile.component.css'],
+            providers: [
+                authentication_service_1.AuthenticationService
+            ]
         }), 
         __metadata('design:paramtypes', [authentication_service_1.AuthenticationService])
-    ], SignUpComponent);
-    return SignUpComponent;
+    ], EditProfileComponent);
+    return EditProfileComponent;
 }());
-exports.SignUpComponent = SignUpComponent;
-//# sourceMappingURL=signup.component.js.map
+exports.EditProfileComponent = EditProfileComponent;
+//# sourceMappingURL=edit-profile.component.js.map

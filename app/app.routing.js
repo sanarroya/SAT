@@ -3,7 +3,7 @@ var router_1 = require('@angular/router');
 var heroes_component_1 = require('./heroes.component');
 var signin_component_1 = require('./signin/signin.component');
 var signup_component_1 = require('./signup/signup.component');
-var hero_detail_component_1 = require('./hero-detail.component');
+var edit_profile_component_1 = require('./edit-profile/edit-profile.component');
 var appRoutes = [
     {
         path: '',
@@ -23,8 +23,8 @@ var appRoutes = [
         component: signup_component_1.SignUpComponent
     },
     {
-        path: 'detail/:id',
-        component: hero_detail_component_1.HeroDetailComponent
+        path: 'editProfile',
+        component: edit_profile_component_1.EditProfileComponent
     }
 ];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);

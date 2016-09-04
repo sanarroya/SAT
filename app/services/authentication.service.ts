@@ -4,8 +4,8 @@ import { Headers, Http } from '@angular/http'
 import { Observable }     from 'rxjs/Observable'
 import 'rxjs/add/operator/map'
 
-import { User } from './user'
-import { Login } from './login'
+import { User } from '../user'
+import { Login } from '../login'
 
 @Injectable()
 export class AuthenticationService {
@@ -13,6 +13,7 @@ export class AuthenticationService {
     private singInEndpoint = '/userResource/login'
     private singUpEndpoint = '/userResource/registerCitizen'
     private recoverPasswordEndpoint = '/userResource/recoverPassword'
+    private userInfoEndpoint = ''
     private headers = new Headers({'Content-Type': 'application/json'})
 
     constructor(private http: Http) {
@@ -24,13 +25,21 @@ export class AuthenticationService {
             .map(res => res.json())
     }
 
-    signUp(user: User) {
+    //TODO - Cambiar el tipo del observador
+    signUp(user: User): Observable<any> {
         return this.http.post(this.baseUrl + this.singUpEndpoint, JSON.stringify(user), this.headers)
             .map(res => res.json())
     }
 
-    recoverPassword(email: String) {
+    //TODO - Cambiar el tipo del observador
+    recoverPassword(email: string): Observable<any> {
         return this.http.post(this.baseUrl + this.recoverPassword, JSON.stringify({email: email}), this.headers)
+            .map(res => res.json())
+    }
+
+    //TODO - Cambiar el tipo del observador
+    getUserProfile(cedula: string): Observable<any> {
+        return this.http.get(this.baseUrl + this.userInfoEndpoint)
             .map(res => res.json())
     }
 }
