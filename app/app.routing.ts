@@ -2,13 +2,13 @@ import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HeroesComponent } from './heroes.component';
-import { DashboardComponent } from './dashboard.component';
+import { LoginComponent } from './login.component';
 import { HeroDetailComponent } from './hero-detail.component';
 
 const appRoutes: Routes = [
     {
         path: '',
-        redirectTo: '/dashboard',
+        redirectTo: '/login',
         pathMatch: 'full'
     },
     {
@@ -16,8 +16,8 @@ const appRoutes: Routes = [
         component: HeroesComponent
     },
     {
-        path: 'dashboard',
-        component: DashboardComponent
+        path: 'login',
+        component: LoginComponent
     },
     {
         path: 'detail/:id',

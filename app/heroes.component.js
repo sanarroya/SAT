@@ -16,7 +16,9 @@ var HeroesComponent = (function () {
         this.heroService = heroService;
         this.router = router;
         this.heroService.getPosts()
-            .subscribe(function (posts) { return console.log(posts); });
+            .subscribe(function (posts) {
+            return console.log(posts);
+        });
     }
     HeroesComponent.prototype.ngOnInit = function () {
         this.getHeroes();

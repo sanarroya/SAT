@@ -11,7 +11,8 @@ import { HeroDetailComponent } from './hero-detail.component';
 import { HeroesComponent } from './heroes.component';
 import { DashboardComponent } from './dashboard.component';
 import { HeroService } from './hero.service';
-
+import { LoginComponent } from './login.component'
+import { AuthenticationService } from './authentication.service'
 import { routing } from './app.routing';
 
 @NgModule({
@@ -22,6 +23,7 @@ import { routing } from './app.routing';
     MdButtonModule,
     MdCardModule,
     MdInputModule,
+    LoginComponent,
     routing 
   ],
   declarations: [ 
@@ -31,7 +33,8 @@ import { routing } from './app.routing';
     DashboardComponent 
   ],
   providers: [
-    HeroService
+    HeroService,
+    AuthenticationService
   ],
   bootstrap: [ AppComponent ] 
 })

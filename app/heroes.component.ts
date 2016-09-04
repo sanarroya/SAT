@@ -90,8 +90,7 @@ export class HeroesComponent implements OnInit {
     private router: Router) {
       this.heroService.getPosts()
         .subscribe(posts => 
-          console.log(posts)
-        )
+          console.log(posts))
   }
 
   ngOnInit(): void {
