@@ -9,13 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
 var authentication_service_1 = require('../services/authentication.service');
 var user_1 = require('../user');
 var SignInComponent = (function () {
-    function SignInComponent(authService) {
+    function SignInComponent(router, authService) {
+        this.router = router;
         this.authService = authService;
     }
     SignInComponent.prototype.onSignIn = function (cedula, password) {
+        var _this = this;
         var user = new user_1.User();
         user.cedula = cedula;
         user.password = password;
@@ -24,6 +27,7 @@ var SignInComponent = (function () {
             localStorage.setItem('id_token', response.token);
             localStorage.setItem('name', response.usuario.nombre);
             localStorage.setItem('type_user', response.usuario.tipo);
+            _this.router.navigate(['/editProfile']);
         }, function (error) {
             alert(error.text());
             console.log(error.text());
@@ -38,7 +42,7 @@ var SignInComponent = (function () {
                 authentication_service_1.AuthenticationService
             ]
         }), 
-        __metadata('design:paramtypes', [authentication_service_1.AuthenticationService])
+        __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService])
     ], SignInComponent);
     return SignInComponent;
 }());

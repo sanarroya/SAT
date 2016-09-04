@@ -13,6 +13,7 @@ var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
 var button_1 = require('@angular2-material/button');
+var icon_1 = require('@angular2-material/icon');
 var card_1 = require('@angular2-material/card');
 var input_1 = require('@angular2-material/input');
 var toolbar_1 = require('@angular2-material/toolbar');
@@ -38,6 +39,7 @@ var AppModule = (function () {
                 button_1.MdButtonModule,
                 card_1.MdCardModule,
                 input_1.MdInputModule,
+                icon_1.MdIconModule,
                 toolbar_1.MdToolbarModule,
                 app_routing_1.routing
             ],
