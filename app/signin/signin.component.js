@@ -32,8 +32,8 @@ var SignInComponent = (function () {
     SignInComponent = __decorate([
         core_1.Component({
             selector: 'sing-in',
-            templateUrl: '/app/signin/signin.component.html',
-            styleUrls: ['/app/signin/signin.component.css'],
+            templateUrl: './app/signin/signin.component.html',
+            styleUrls: ['./app/signin/signin.component.css'],
             providers: [
                 authentication_service_1.AuthenticationService
             ]

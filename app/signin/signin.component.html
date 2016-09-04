@@ -2,17 +2,17 @@
     <button class="app-icon-button" (click)="sidenav.toggle()">
         <i class="material-icons app-toolbar-menu">menu</i>
     </button>
-    <h1>SAT - SISTEMA DE AUTOMATIZACION DE TRAMITES</h1>
+    <h1 class="toolbar-title" >SAT - SISTEMA DE AUTOMATIZACION DE TRAMITES</h1>
     <span class="app-toolbar-filler"></span>
 </md-toolbar>
 <div class="container">
     <div class="form-element">
-        <md-input #nickname type="number" placeholder="Cedula"></md-input>
+        <md-input #nickname type="number" placeholder="Cedula" class="auth-input"></md-input>
     </div>
     <div class="form-element">
-        <md-input #password type="password" placeholder="Contraseña"></md-input>
+        <md-input #password type="password" placeholder="Contraseña" class="auth-input"></md-input>
     </div>
     <div>
-        <button md-raised-button color="primary">INICIAR SESIÓN</button>
+        <button md-raised-button class="auth-button ">INICIAR SESIÓN</button>
     </div>
 </div>

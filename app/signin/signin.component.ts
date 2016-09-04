@@ -5,8 +5,8 @@ import { User } from '../user'
 
 @Component({
     selector: 'sing-in',
-    templateUrl: '/app/signin/signin.component.html',
-    styleUrls: ['/app/signin/signin.component.css'],
+    templateUrl: './app/signin/signin.component.html',
+    styleUrls: ['./app/signin/signin.component.css'],
     providers: [
         AuthenticationService
     ]

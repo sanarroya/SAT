@@ -1,7 +1,22 @@
 div.container {
-    text-align: center;
+    position: relative;
+    margin: auto;
+    display: block;
+    width: 400;
 }
 
-div.form-element {
-    display: inline-block;
+.auth-input {
+    width: 400;
+}
+
+.auth-button {
+    width: 400;
+    background-color: #05AFA8;
+    color: #fff;
+}
+
+.toolbar-title {
+    position: relative;
+    margin: auto;
+    display: block;
 }
