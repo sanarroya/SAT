@@ -1,18 +1,18 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
-import { AuthenticationService } from './authentication.service'
-import { User } from './user'
+import { AuthenticationService } from '../services/authentication.service'
+import { User } from '../user'
 
 @Component({
     selector: 'sing-in',
-    templateUrl: '/app/login.component.html',
-    styleUrls: ['/app/login.component.css'],
+    templateUrl: '/app/signin/signin.component.html',
+    styleUrls: ['/app/signin/signin.component.css'],
     providers: [
         AuthenticationService
     ]
 })
 
-export class LoginComponent {
+export class SignInComponent {
 
     constructor(
         private authService: AuthenticationService

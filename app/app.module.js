@@ -15,13 +15,15 @@ var http_1 = require('@angular/http');
 var button_1 = require('@angular2-material/button');
 var card_1 = require('@angular2-material/card');
 var input_1 = require('@angular2-material/input');
+var toolbar_1 = require('@angular2-material/toolbar');
 var app_component_1 = require('./app.component');
 var hero_detail_component_1 = require('./hero-detail.component');
 var heroes_component_1 = require('./heroes.component');
 var dashboard_component_1 = require('./dashboard.component');
 var hero_service_1 = require('./hero.service');
-var login_component_1 = require('./login.component');
-var authentication_service_1 = require('./authentication.service');
+var signin_component_1 = require('./signin/signin.component');
+var signup_component_1 = require('./signup/signup.component');
+var authentication_service_1 = require('./services/authentication.service');
 var app_routing_1 = require('./app.routing');
 var AppModule = (function () {
     function AppModule() {
@@ -35,13 +37,15 @@ var AppModule = (function () {
                 button_1.MdButtonModule,
                 card_1.MdCardModule,
                 input_1.MdInputModule,
-                login_component_1.LoginComponent,
+                toolbar_1.MdToolbarModule,
                 app_routing_1.routing
             ],
             declarations: [
                 app_component_1.AppComponent,
                 hero_detail_component_1.HeroDetailComponent,
                 heroes_component_1.HeroesComponent,
+                signin_component_1.SignInComponent,
+                signup_component_1.SignUpComponent,
                 dashboard_component_1.DashboardComponent
             ],
             providers: [

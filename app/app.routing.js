@@ -1,12 +1,13 @@
 "use strict";
 var router_1 = require('@angular/router');
 var heroes_component_1 = require('./heroes.component');
-var login_component_1 = require('./login.component');
+var signin_component_1 = require('./signin/signin.component');
+var signup_component_1 = require('./signup/signup.component');
 var hero_detail_component_1 = require('./hero-detail.component');
 var appRoutes = [
     {
         path: '',
-        redirectTo: '/login',
+        redirectTo: '/signin',
         pathMatch: 'full'
     },
     {
@@ -14,8 +15,12 @@ var appRoutes = [
         component: heroes_component_1.HeroesComponent
     },
     {
-        path: 'login',
-        component: login_component_1.LoginComponent
+        path: 'signin',
+        component: signin_component_1.SignInComponent
+    },
+    {
+        path: 'signup',
+        component: signup_component_1.SignUpComponent
     },
     {
         path: 'detail/:id',

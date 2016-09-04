@@ -9,38 +9,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var authentication_service_1 = require('./authentication.service');
-var user_1 = require('./user');
-var LoginComponent = (function () {
-    function LoginComponent(authService) {
+var authentication_service_1 = require('../services/authentication.service');
+var user_1 = require('../user');
+var SignUpComponent = (function () {
+    function SignUpComponent(authService) {
         this.authService = authService;
     }
-    LoginComponent.prototype.onSignIn = function (cedula, password) {
+    SignUpComponent.prototype.onSignUp = function (cedula, nombre, email, password, confirmPassword, telefono, tipo) {
         var user = new user_1.User();
         user.cedula = cedula;
+        user.nombre = nombre;
+        user.email = email;
         user.password = password;
-        this.authService.signIn(user)
-            .subscribe(function (response) {
-            localStorage.setItem('id_token', response.token);
-            localStorage.setItem('name', response.usuario.nombre);
-            localStorage.setItem('type_user', response.usuario.tipo);
-        }, function (error) {
-            alert(error.text());
-            console.log(error.text());
-        });
+        user.confirmPassword = confirmPassword;
+        user.telefono = telefono;
+        user.tipo = tipo;
+        //Execute http request to create user
     };
-    LoginComponent = __decorate([
+    SignUpComponent = __decorate([
         core_1.Component({
-            selector: 'sing-in',
-            templateUrl: '/app/login.component.html',
-            styleUrls: ['/app/login.component.css'],
-            providers: [
-                authentication_service_1.AuthenticationService
-            ]
+            selector: 'sign-up',
+            templateUrl: '/app/signup/signup.component.html',
+            styleUrls: ['/app/signup/signup.component.css']
         }), 
         __metadata('design:paramtypes', [authentication_service_1.AuthenticationService])
-    ], LoginComponent);
-    return LoginComponent;
+    ], SignUpComponent);
+    return SignUpComponent;
 }());
-exports.LoginComponent = LoginComponent;
-//# sourceMappingURL=login.component.js.map
+exports.SignUpComponent = SignUpComponent;
+//# sourceMappingURL=signup.component.js.map

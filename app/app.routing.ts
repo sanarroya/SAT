@@ -2,13 +2,14 @@ import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HeroesComponent } from './heroes.component';
-import { LoginComponent } from './login.component';
+import { SignInComponent } from './signin/signin.component';
+import { SignUpComponent } from './signup/signup.component';
 import { HeroDetailComponent } from './hero-detail.component';
 
 const appRoutes: Routes = [
     {
         path: '',
-        redirectTo: '/login',
+        redirectTo: '/signin',
         pathMatch: 'full'
     },
     {
@@ -16,8 +17,12 @@ const appRoutes: Routes = [
         component: HeroesComponent
     },
     {
-        path: 'login',
-        component: LoginComponent
+        path: 'signin',
+        component: SignInComponent
+    },
+    {
+        path: 'signup',
+        component: SignUpComponent
     },
     {
         path: 'detail/:id',
