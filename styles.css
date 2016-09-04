@@ -29,6 +29,11 @@ input[type=number] {
     -moz-appearance:textfield;
 }
 
+md-toolbar.md-default-theme:not(.md-menu-toolbar).md-accent, md-toolbar:not(.md-menu-toolbar).md-accent {
+    background-color: #05AFA8;
+    color: rgb(255,255,255);
+}
+
 /* . . . */
 /* everywhere else */
 * {
