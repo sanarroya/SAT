@@ -4,6 +4,7 @@ var heroes_component_1 = require('./heroes.component');
 var signin_component_1 = require('./signin/signin.component');
 var signup_component_1 = require('./signup/signup.component');
 var edit_profile_component_1 = require('./edit-profile/edit-profile.component');
+var recover_password_component_1 = require('./recover-password/recover-password.component');
 var appRoutes = [
     {
         path: '',
@@ -25,6 +26,10 @@ var appRoutes = [
     {
         path: 'editProfile',
         component: edit_profile_component_1.EditProfileComponent
+    },
+    {
+        path: 'recoverPassword',
+        component: recover_password_component_1.RecoverPasswordComponent
     }
 ];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);

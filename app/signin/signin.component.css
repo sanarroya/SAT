@@ -82,3 +82,8 @@ div.container {
     align-content: center;
     text-align: center;
 }
+
+.forgot-button {
+    float: right;
+    color: #05AFA8;
+}

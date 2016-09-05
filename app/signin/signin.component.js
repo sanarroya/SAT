@@ -33,6 +33,9 @@ var SignInComponent = (function () {
             console.log(error.text());
         });
     };
+    SignInComponent.prototype.onRecoverPassword = function () {
+        this.router.navigate(['/recoverPassword']);
+    };
     SignInComponent.prototype.onSingup = function () {
         this.router.navigate(['/signup']);
     };
