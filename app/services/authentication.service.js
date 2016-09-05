@@ -18,7 +18,8 @@ var AuthenticationService = (function () {
         this.singInEndpoint = '/userResource/login';
         this.singUpEndpoint = '/userResource/registerCitizen';
         this.recoverPasswordEndpoint = '/userResource/recoverPassword';
-        this.userInfoEndpoint = '';
+        this.userInfoEndpoint = '/userResource/getRegisteredUsers';
+        this.updateUser = '/userResource/updateUser';
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     AuthenticationService.prototype.signIn = function (user) {
@@ -37,7 +38,12 @@ var AuthenticationService = (function () {
     };
     //TODO - Cambiar el tipo del observador
     AuthenticationService.prototype.getUserProfile = function (cedula) {
-        return this.http.get(this.baseUrl + this.userInfoEndpoint)
+        var url = (this.baseUrl + this.userInfoEndpoint) + "/" + cedula;
+        return this.http.get(url)
+            .map(function (res) { return res.json(); });
+    };
+    AuthenticationService.prototype.updateUser = function (user) {
+        return this.http.put(this.baseUrl + this.updateUser, JSON.stringify(user), this.headers)
             .map(function (res) { return res.json(); });
     };
     AuthenticationService = __decorate([

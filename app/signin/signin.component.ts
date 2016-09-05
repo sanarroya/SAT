@@ -26,6 +26,7 @@ export class SignInComponent {
 
         this.authService.signIn(user)
             .subscribe( response => {
+                localStorage.setItem('cedula_user',<string>response.usuario.cedula);
                 localStorage.setItem('id_token', response.token);
                 localStorage.setItem('name', response.usuario.nombre);
                 localStorage.setItem('type_user', response.usuario.tipo);

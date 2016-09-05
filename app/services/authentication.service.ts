@@ -13,7 +13,8 @@ export class AuthenticationService {
     private singInEndpoint = '/userResource/login'
     private singUpEndpoint = '/userResource/registerCitizen'
     private recoverPasswordEndpoint = '/userResource/recoverPassword'
-    private userInfoEndpoint = ''
+    private userInfoEndpoint = '/userResource/getRegisteredUsers'
+    private updateUser='/userResource/updateUser';
     private headers = new Headers({'Content-Type': 'application/json'})
 
     constructor(private http: Http) {
@@ -38,8 +39,14 @@ export class AuthenticationService {
     }
 
     //TODO - Cambiar el tipo del observador
-    getUserProfile(cedula: string): Observable<any> {
-        return this.http.get(this.baseUrl + this.userInfoEndpoint)
+    getUserProfile(cedula: string): Observable<User> {
+        const url =  `${this.baseUrl + this.userInfoEndpoint}/${cedula}`;
+        return this.http.get(url)
+            .map(res => res.json())
+    }
+
+    updateUser(user: User): Observable<any> {
+        return this.http.put(this.baseUrl + this.updateUser, JSON.stringify(user), this.headers)
             .map(res => res.json())
     }
 }

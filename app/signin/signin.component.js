@@ -24,6 +24,7 @@ var SignInComponent = (function () {
         user.password = password;
         this.authService.signIn(user)
             .subscribe(function (response) {
+            localStorage.setItem('cedula_user', response.usuario.cedula);
             localStorage.setItem('id_token', response.token);
             localStorage.setItem('name', response.usuario.nombre);
             localStorage.setItem('type_user', response.usuario.tipo);
