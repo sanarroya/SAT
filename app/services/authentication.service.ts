@@ -9,12 +9,12 @@ import { Login } from '../login'
 
 @Injectable()
 export class AuthenticationService {
-    private baseUrl = 'http://54.175.197.35:44111'
+    private baseUrl = 'http://localhost:44111'
     private singInEndpoint = '/userResource/login'
     private singUpEndpoint = '/userResource/registerCitizen'
     private recoverPasswordEndpoint = '/userResource/recoverPassword'
     private userInfoEndpoint = '/userResource/getRegisteredUsers'
-    private updateUser='/userResource/updateUser';
+    private updateUserEndpoint='/userResource/updateUser';
     private headers = new Headers({'Content-Type': 'application/json'})
 
     constructor(private http: Http) {
@@ -46,7 +46,7 @@ export class AuthenticationService {
     }
 
     updateUser(user: User): Observable<any> {
-        return this.http.put(this.baseUrl + this.updateUser, JSON.stringify(user), this.headers)
+        return this.http.put(this.baseUrl + this.updateUserEndpoint, JSON.stringify(user), this.headers)
             .map(res => res.json())
     }
 }
