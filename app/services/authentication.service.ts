@@ -9,7 +9,7 @@ import { Login } from '../login'
 
 @Injectable()
 export class AuthenticationService {
-    private baseUrl = ''
+    private baseUrl = 'http://54.175.197.35:44111'
     private singInEndpoint = '/userResource/login'
     private singUpEndpoint = '/userResource/registerCitizen'
     private recoverPasswordEndpoint = '/userResource/recoverPassword'

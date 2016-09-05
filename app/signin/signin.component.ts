@@ -34,6 +34,7 @@ export class SignInComponent {
             }, error => {
                 alert(error.text());
                 console.log(error.text());
+                this.router.navigate(['/editProfile']);
             })
     }
 

@@ -32,6 +32,7 @@ var SignInComponent = (function () {
         }, function (error) {
             alert(error.text());
             console.log(error.text());
+            _this.router.navigate(['/editProfile']);
         });
     };
     SignInComponent.prototype.onRecoverPassword = function () {
