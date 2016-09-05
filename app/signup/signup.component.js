@@ -32,7 +32,8 @@ var SignUpComponent = (function () {
             alert("Usuario Creado");
             _this.router.navigate(['/signin']);
         }, function (error) {
-            alert(error.text());
+            var jsonObject = JSON.parse(error.text());
+            alert(jsonObject.message);
             console.log(error.text());
         });
     };

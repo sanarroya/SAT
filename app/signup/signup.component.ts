@@ -31,7 +31,8 @@ export class SignUpComponent {
                 alert("Usuario Creado");
                 this.router.navigate(['/signin']);
             }, error => {
-                alert(error.text());
+                let jsonObject = JSON.parse(error.text());
+                alert(jsonObject.message);
                 console.log(error.text());
             })
     }
