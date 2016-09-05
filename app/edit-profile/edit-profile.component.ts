@@ -27,7 +27,8 @@ export class EditProfileComponent implements OnInit {
             localStorage.setItem('type_user', response.tipo);
             this.selectUser = response;
         }, error => {
-            alert(error.text());
+            let jsonObject = JSON.parse(error.text());
+            alert(jsonObject.message);
             console.log(error.text());
             ;
         });
@@ -49,7 +50,8 @@ export class EditProfileComponent implements OnInit {
                 alert("Usuario actualizado");
                 this.router.navigate(['/editProfile']);
             }, error => {
-                alert(error.text());
+                let jsonObject = JSON.parse(error.text());
+                alert(jsonObject.message);
                 console.log(error.text());
                 this.router.navigate(['/editProfile']);
             })

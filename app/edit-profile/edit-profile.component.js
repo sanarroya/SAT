@@ -26,7 +26,8 @@ var EditProfileComponent = (function () {
             localStorage.setItem('type_user', response.tipo);
             _this.selectUser = response;
         }, function (error) {
-            alert(error.text());
+            var jsonObject = JSON.parse(error.text());
+            alert(jsonObject.message);
             console.log(error.text());
             ;
         });
@@ -46,7 +47,8 @@ var EditProfileComponent = (function () {
             alert("Usuario actualizado");
             _this.router.navigate(['/editProfile']);
         }, function (error) {
-            alert(error.text());
+            var jsonObject = JSON.parse(error.text());
+            alert(jsonObject.message);
             console.log(error.text());
             _this.router.navigate(['/editProfile']);
         });

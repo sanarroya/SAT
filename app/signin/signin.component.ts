@@ -32,9 +32,9 @@ export class SignInComponent {
                 localStorage.setItem('type_user', response.usuario.tipo);
                 this.router.navigate(['/editProfile']);
             }, error => {
-                alert(error.text());
+                let jsonObject = JSON.parse(error.text());
+                alert(jsonObject.message);
                 console.log(error.text());
-                this.router.navigate(['/editProfile']);
             })
     }
 
