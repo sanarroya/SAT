@@ -39,6 +39,17 @@ div.container {
     width: 400;
 }
 
+.icon-sect {
+    display: flex;
+    flex-basis: 100%;
+    align-items: center;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.icon-space{
+    margin-right: 15px;
+}
 
 .hr-sect {
     display: flex;
