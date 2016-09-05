@@ -33,6 +33,9 @@ var SignInComponent = (function () {
             console.log(error.text());
         });
     };
+    SignInComponent.prototype.onSingup = function () {
+        this.router.navigate(['/signup']);
+    };
     SignInComponent = __decorate([
         core_1.Component({
             selector: 'sing-in',

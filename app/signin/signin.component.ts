@@ -33,7 +33,11 @@ export class SignInComponent {
             }, error => {
                 alert(error.text());
                 console.log(error.text());
-
             })
-    }    
+    }
+
+
+    onSingup(){
+        this.router.navigate(['/signup']);
+    }
 }
