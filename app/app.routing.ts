@@ -5,6 +5,7 @@ import { HeroesComponent } from './heroes.component';
 import { SignInComponent } from './signin/signin.component';
 import { SignUpComponent } from './signup/signup.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { RecoverPasswordComponent } from './recover-password/recover-password.component';
 import { HeroDetailComponent } from './hero-detail.component';
 
 const appRoutes: Routes = [
@@ -28,6 +29,10 @@ const appRoutes: Routes = [
     {
         path: 'editProfile',
         component: EditProfileComponent
+    },
+    {
+        path: 'recoverPassword',
+        component: RecoverPasswordComponent
     }
 ];
 

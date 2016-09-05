@@ -20,6 +20,9 @@
             <md-input required #password type="password" placeholder="Contraseña" class="auth-input"></md-input>
         </div>
         <div>
+            <button md-button disableRipple="true" class="forgot-button" (click)="onRecoverPassword()">Olvide mi contraseña</button>
+        </div>
+        <div>
             <button md-raised-button disableRipple="true" class="auth-button" type="submit">INICIAR SESIÓN
             </button>
         </div>

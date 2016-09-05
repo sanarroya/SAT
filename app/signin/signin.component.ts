@@ -37,6 +37,9 @@ export class SignInComponent {
             })
     }
 
+    onRecoverPassword() {
+        this.router.navigate(['/recoverPassword'])
+    }
 
     onSingup(){
         this.router.navigate(['/signup']);
