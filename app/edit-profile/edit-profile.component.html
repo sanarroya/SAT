@@ -11,7 +11,7 @@
                 <i class="material-icons app-input-icon icon-space">chrome_reader_mode</i>
             </span>
             <md-input #ced type="number" placeholder="Cedula" class="auth-input" required  >
-                <span placeholder="Cedula">{{selectUser.cedula}}</span>
+                <span *ngIf="selectUser" placeholder="Cedula">{{selectUser.cedula}}</span>
             </md-input>
         </div>
         <div class="icon-sect">
@@ -19,7 +19,7 @@
                 <i class="material-icons app-input-icon icon-space">assignment_ind</i>
             </span>
             <md-input #nickname type="text" placeholder="Nombre" class="auth-input"  val required>
-                <span placeholder="Nombre">{{selectUser.nombre}}</span>
+                <span *ngIf="selectUser" placeholder="Nombre">{{selectUser.nombre}}</span>
             </md-input>
         </div>
         <div class="icon-sect">
@@ -27,7 +27,7 @@
                 <i class="material-icons app-input-icon icon-space">email</i>
             </span>
             <md-input #email type="email" placeholder="Email" class="auth-input" required>
-                <span placeholder="Email">{{selectUser.email}}</span>
+                <span *ngIf="selectUser" placeholder="Email">{{selectUser.email}}</span>
             </md-input>
         </div>
         <div class="icon-sect">
@@ -35,7 +35,7 @@
                 <i class="material-icons app-input-icon icon-space">vpn_key</i>
             </span>
             <md-input #password type="password" placeholder="Contraseña" class="auth-input" required>
-                <span placeholder="Contraseña">{{selectUser.password}}</span>
+                <span *ngIf="selectUser" placeholder="Contraseña">{{selectUser.password}}</span>
             </md-input>
         </div>
         <div class="icon-sect">
@@ -43,7 +43,7 @@
                 <i class="material-icons app-input-icon icon-space">vpn_key</i>
             </span>
             <md-input #confirmpassword type="password" placeholder="Confirmar contraseña" class="auth-input" required>
-                 <span placeholder="Confirmar contraseña" >{{selectUser.confirmPassword}}</span>
+                 <span *ngIf="selectUser" placeholder="Confirmar contraseña" >{{selectUser.confirmPassword}}</span>
             </md-input>
         </div>
         <div class="icon-sect">
@@ -51,7 +51,7 @@
                 <i class="material-icons app-input-icon icon-space">phone</i>
             </span>
             <md-input #phone type="phone" placeholder="Telefono" class="auth-input" required>
-                <span placeholder="Telefono">{{selectUser.telefono}}</span>
+                <span *ngIf="selectUser" placeholder="Telefono">{{selectUser.telefono}}</span>
             </md-input>
         </div>
         <div>
