@@ -26,7 +26,7 @@ export class AuthenticationService {
     }
 
     //TODO - Cambiar el tipo del observador
-    signUp(user: User): Observable<any> {
+    signUp(user: User): Observable<User> {
         return this.http.post(this.baseUrl + this.singUpEndpoint, JSON.stringify(user), this.headers)
             .map(res => res.json())
     }

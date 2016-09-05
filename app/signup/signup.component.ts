@@ -12,10 +12,11 @@ import { User } from '../user'
 export class SignUpComponent {
 
     constructor(
+        private router: Router,
         private authService: AuthenticationService
     ) { }
 
-    onSignUp(cedula, nombre, email, password, confirmPassword, telefono, tipo) {
+    onSignUp(cedula, nombre, email, password, confirmPassword, telefono) {
         let user = new User()
         user.cedula = cedula
         user.nombre = nombre
@@ -23,8 +24,15 @@ export class SignUpComponent {
         user.password = password
         user.confirmPassword = confirmPassword
         user.telefono = telefono
-        user.tipo = tipo
+        user.tipo = <string>2
 
-        //Execute http request to create user
+        this.authService.signUp(user)
+            .subscribe( response => {
+                alert("Usuario Creado");
+                this.router.navigate(['/signin']);
+            }, error => {
+                alert(error.text());
+                console.log(error.text());
+            })
     }
 }

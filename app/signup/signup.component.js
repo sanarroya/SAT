@@ -9,13 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
 var authentication_service_1 = require('../services/authentication.service');
 var user_1 = require('../user');
 var SignUpComponent = (function () {
-    function SignUpComponent(authService) {
+    function SignUpComponent(router, authService) {
+        this.router = router;
         this.authService = authService;
     }
-    SignUpComponent.prototype.onSignUp = function (cedula, nombre, email, password, confirmPassword, telefono, tipo) {
+    SignUpComponent.prototype.onSignUp = function (cedula, nombre, email, password, confirmPassword, telefono) {
+        var _this = this;
         var user = new user_1.User();
         user.cedula = cedula;
         user.nombre = nombre;
@@ -23,8 +26,15 @@ var SignUpComponent = (function () {
         user.password = password;
         user.confirmPassword = confirmPassword;
         user.telefono = telefono;
-        user.tipo = tipo;
-        //Execute http request to create user
+        user.tipo = 2;
+        this.authService.signUp(user)
+            .subscribe(function (response) {
+            alert("Usuario Creado");
+            _this.router.navigate(['/signin']);
+        }, function (error) {
+            alert(error.text());
+            console.log(error.text());
+        });
     };
     SignUpComponent = __decorate([
         core_1.Component({
@@ -32,7 +42,7 @@ var SignUpComponent = (function () {
             templateUrl: '/app/signup/signup.component.html',
             styleUrls: ['./app/signin/signin.component.css', './app/signup/signup.component.css']
         }), 
-        __metadata('design:paramtypes', [authentication_service_1.AuthenticationService])
+        __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService])
     ], SignUpComponent);
     return SignUpComponent;
 }());

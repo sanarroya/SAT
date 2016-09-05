@@ -7,10 +7,16 @@
 <div class="container">
     <div><img class="form-logo" src="assets/satlogo2.png"></div>
     <form name="userForm" (submit)="onSignIn(nickname.value,password.value); nickname.value=''; password.value=''">
-        <div class="form-element">
+        <div class="icon-sect" >
+             <span md-prefix >
+                <i class="material-icons app-input-icon icon-space">chrome_reader_mode</i>
+            </span>
             <md-input required #nickname type="number" placeholder="Cedula" class="auth-input"></md-input>
         </div>
-        <div class="form-element">
+        <div class="icon-sect">
+            <span md-prefix >
+                <i class="material-icons app-input-icon icon-space">vpn_key</i>
+            </span>
             <md-input required #password type="password" placeholder="Contraseña" class="auth-input"></md-input>
         </div>
         <div>
