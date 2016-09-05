@@ -1,30 +1,33 @@
 <md-toolbar class="md-accent">
     <img class="toolbar-logo" src="assets/satlogo.png"/>
-    <h1 class="toolbar-title" >SAT - SISTEMA DE AUTOMATIZACION DE TRAMITES</h1>
+    <h1 class="toolbar-title">SAT - Sistema de Automatizacion de Tramites</h1>
     <span class="app-toolbar-filler"></span>
 </md-toolbar>
+
 <div class="container">
     <div><img class="form-logo" src="assets/satlogo2.png"></div>
-    <div class="form-element">
-        <md-input required  #nickname type="number" placeholder="Cedula" class="auth-input">
-            <span md-prefix>
+    <form name="userForm" (submit)="onSignIn(nickname.value,password.value); nickname.value=''; password.value=''">
+        <div class="form-element">
+            <md-input required #nickname type="number" placeholder="Cedula" class="auth-input"><span md-prefix>
                 <i class="material-icons app-input-icon">motorcycle</i>
                 &nbsp;
-            </span>
-        </md-input>
-    </div>
-    <div class="form-element">
-        <md-input required  #password type="password" class="auth-input">
-            <md-placeholder>
+            </span></md-input>
+        </div>
+        <div class="form-element">
+            <md-input required #password type="password" placeholder="Contraseña" class="auth-input"><md-placeholder>
                 <i class="material-icons app-input-icon">android</i> Contraseña
-            </md-placeholder>
-        </md-input>
-    </div>
-    <div>
-        <button md-raised-button disableRipple="false" class="auth-button" type="submit"  (click)="onSignIn(nickname.value,password.value); nickname.value=''; password.value=''" >INICIAR SESIÓN</button>
-    </div>
+            </md-placeholder></md-input>
+        </div>
+        <div>
+            <button md-raised-button disableRipple="true" class="auth-button" type="submit">INICIAR SESIÓN
+            </button>
+        </div>
+    </form>
     <div class="hr-sect">O</div>
     <div>
-        <button md-raised-button disableRipple="false" class="auth-button">CREAR CUENTA</button>
+        <button md-raised-button disableRipple="true" class="auth-button" (click)="onSingup()">CREAR CUENTA</button>
     </div>
+    <br/>
+    <br/>
+    <br/>
 </div>
