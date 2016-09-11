@@ -14,15 +14,17 @@ import { AuthenticationService } from '../services/authentication.service'
 export class RecoverPasswordComponent {
 
     constructor(
-        private authService: AuthenticationService
+        private authService: AuthenticationService,
+        private router: Router
     ) { }
 
-    onForgotPassword(email) {
-        this.authService.recoverPassword(email)
+    onForgotPassword(cedula : string) {
+        this.authService.recoverPassword(cedula)
             .subscribe( response => {
-
+                alert(response.message)
+                this.router.navigate(['/signin']);
             }, error => {
-                alert(error.text());
+                alert(error.json().message);
                 console.log(error.text());
             })
     }

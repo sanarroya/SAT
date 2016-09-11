@@ -9,16 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
 var authentication_service_1 = require('../services/authentication.service');
 var RecoverPasswordComponent = (function () {
-    function RecoverPasswordComponent(authService) {
+    function RecoverPasswordComponent(authService, router) {
         this.authService = authService;
+        this.router = router;
     }
-    RecoverPasswordComponent.prototype.onForgotPassword = function (email) {
-        this.authService.recoverPassword(email)
+    RecoverPasswordComponent.prototype.onForgotPassword = function (cedula) {
+        var _this = this;
+        this.authService.recoverPassword(cedula)
             .subscribe(function (response) {
+            alert(response.message);
+            _this.router.navigate(['/signin']);
         }, function (error) {
-            alert(error.text());
+            alert(error.json().message);
             console.log(error.text());
         });
     };
@@ -31,7 +36,7 @@ var RecoverPasswordComponent = (function () {
                 authentication_service_1.AuthenticationService
             ]
         }), 
-        __metadata('design:paramtypes', [authentication_service_1.AuthenticationService])
+        __metadata('design:paramtypes', [authentication_service_1.AuthenticationService, router_1.Router])
     ], RecoverPasswordComponent);
     return RecoverPasswordComponent;
 }());

@@ -14,12 +14,12 @@ require('rxjs/add/operator/map');
 var AuthenticationService = (function () {
     function AuthenticationService(http) {
         this.http = http;
-        this.baseUrl = 'http://54.175.197.35:44111';
+        this.baseUrl = 'http://localhost:44111';
         this.singInEndpoint = '/userResource/login';
         this.singUpEndpoint = '/userResource/registerCitizen';
         this.recoverPasswordEndpoint = '/userResource/recoverPassword';
         this.userInfoEndpoint = '/userResource/getRegisteredUsers';
-        this.updateUser = '/userResource/updateUser';
+        this.updateUserEndpoint = '/userResource/updateUser';
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     AuthenticationService.prototype.signIn = function (user) {
@@ -32,8 +32,8 @@ var AuthenticationService = (function () {
             .map(function (res) { return res.json(); });
     };
     //TODO - Cambiar el tipo del observador
-    AuthenticationService.prototype.recoverPassword = function (email) {
-        return this.http.post(this.baseUrl + this.recoverPassword, JSON.stringify({ email: email }), this.headers)
+    AuthenticationService.prototype.recoverPassword = function (cedula) {
+        return this.http.post(this.baseUrl + this.recoverPasswordEndpoint, JSON.stringify({ cedula: cedula }), this.headers)
             .map(function (res) { return res.json(); });
     };
     //TODO - Cambiar el tipo del observador
@@ -43,7 +43,7 @@ var AuthenticationService = (function () {
             .map(function (res) { return res.json(); });
     };
     AuthenticationService.prototype.updateUser = function (user) {
-        return this.http.put(this.baseUrl + this.updateUser, JSON.stringify(user), this.headers)
+        return this.http.put(this.baseUrl + this.updateUserEndpoint, JSON.stringify(user), this.headers)
             .map(function (res) { return res.json(); });
     };
     AuthenticationService = __decorate([

@@ -33,8 +33,8 @@ export class AuthenticationService {
     }
 
     //TODO - Cambiar el tipo del observador
-    recoverPassword(email: string): Observable<any> {
-        return this.http.post(this.baseUrl + this.recoverPassword, JSON.stringify({email: email}), this.headers)
+    recoverPassword(cedula: string): Observable<any> {
+        return this.http.post(this.baseUrl + this.recoverPasswordEndpoint, JSON.stringify({cedula: cedula}), this.headers)
             .map(res => res.json())
     }
 
