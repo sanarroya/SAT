@@ -5,6 +5,8 @@ var signin_component_1 = require('./signin/signin.component');
 var signup_component_1 = require('./signup/signup.component');
 var edit_profile_component_1 = require('./edit-profile/edit-profile.component');
 var recover_password_component_1 = require('./recover-password/recover-password.component');
+var inbox_component_1 = require('./tramite/inbox.component');
+var editTramite_component_1 = require('./edit-tramite/editTramite.component');
 var appRoutes = [
     {
         path: '',
@@ -30,6 +32,14 @@ var appRoutes = [
     {
         path: 'recoverPassword',
         component: recover_password_component_1.RecoverPasswordComponent
+    },
+    {
+        path: 'inboxTramite',
+        component: inbox_component_1.InboxTramiteComponent
+    },
+    {
+        path: 'editTramite/:idTramite',
+        component: editTramite_component_1.EditTramite
     }
 ];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);

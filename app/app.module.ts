@@ -17,6 +17,8 @@ import { SignInComponent } from './signin/signin.component'
 import { SignUpComponent } from './signup/signup.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { RecoverPasswordComponent } from './recover-password/recover-password.component';
+import { InboxTramiteComponent } from './tramite/inbox.component';
+import { EditTramite } from './edit-tramite/editTramite.component';
 
 import { AuthenticationService } from './services/authentication.service'
 import { routing } from './app.routing';
@@ -41,7 +43,9 @@ import { routing } from './app.routing';
     SignUpComponent,
     EditProfileComponent,
     RecoverPasswordComponent,
-    DashboardComponent 
+    DashboardComponent,
+    InboxTramiteComponent,
+    EditTramite
   ],
   providers: [
     HeroService,

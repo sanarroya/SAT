@@ -14,7 +14,8 @@ export class AuthenticationService {
     private singUpEndpoint = '/userResource/registerCitizen'
     private recoverPasswordEndpoint = '/userResource/recoverPassword'
     private userInfoEndpoint = '/userResource/getRegisteredUsers'
-    private updateUserEndpoint='/userResource/updateUser';
+    private updateUserEndpoint = '/userResource/updateUser'
+    private tramitesEndpoint = '/procedureResource/getAllProcedures';
     private headers = new Headers({'Content-Type': 'application/json'})
 
     constructor(private http: Http) {
@@ -47,6 +48,12 @@ export class AuthenticationService {
 
     updateUser(user: User): Observable<any> {
         return this.http.put(this.baseUrl + this.updateUserEndpoint, JSON.stringify(user), this.headers)
+            .map(res => res.json())
+    }
+
+    getTramites(): Observable<any> {
+        const url = `${this.baseUrl + this.tramitesEndpoint}`;
+        return this.http.get(url)
             .map(res => res.json())
     }
 }

@@ -1,0 +1,51 @@
+﻿<md-toolbar class="md-accent">
+    <img class="toolbar-logo" src="../assets/satlogo.png" />
+    <h1 class="toolbar-title">SAT - Sistema de Automatizacion de Tramites</h1>
+    <span class="app-toolbar-filler"></span>
+</md-toolbar>
+
+<div class="container">
+
+    <h2>
+        Bandeja Trámites
+    </h2>
+
+     <table>
+          
+        <tr *ngFor="let tramite of selectTramite">
+             <td>
+                 <div>
+                     {{tramite.id}} |                    
+                     {{tramite.nombre}} .
+                     {{tramite.descripcion}}<div class="fixed-action-btn horizontal" style="bottom: 45px; right: 24px;">
+    <a class="btn-floating btn-large red" (click)="editItem(tramite)">
+        <i class="large material-icons">
+            mode_edit
+        </i>
+    </a>
+</div><div class="fixed-action-btn horizontal" style="bottom: 45px; right: 24px;">
+    <a class="btn-floating btn-large red" (click)="removeItem(tramite)">
+        <i class="large material-icons">
+            delete
+        </i>
+    </a>
+</div>
+                 </div>
+             </td>
+             
+         </tr>
+    </table>
+    
+    <br />
+    <div style="grid-column-align:center;">
+        <button md-raised-button disableripple="true" class="auth-button" (click)="newItem()">Nuevo</button>
+    </div>
+
+    <br />
+    <br />
+     
+     
+  
+     
+</div>
+

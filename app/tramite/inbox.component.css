@@ -1,0 +1,107 @@
+div.container {
+    padding-top: 100;
+    position: relative;
+    margin: auto;
+    display: block;
+    width: 500;
+}
+
+.auth-input {
+    width: 400;
+}
+
+.auth-button {
+    margin-top: 20;
+    width: 200;
+    background-color: #05AFA8;
+    color: #fff;
+}
+
+.toolbar-title {
+    position: relative;
+    margin: auto;
+    font-size: x-large;
+    display: block;
+}
+
+.toolbar-logo {
+    width: 100;
+    margin-top: -5;
+}
+
+.form-logo {
+    width: 400;
+    margin-bottom: 100;
+}
+
+.separtor-container {
+    display:inline-block;
+    width: 400;
+}
+
+.icon-sect {
+    display: flex;
+    flex-basis: 100%;
+    align-items: center;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.icon-space{
+    margin-right: 15px;
+}
+
+.hr-sect {
+    display: flex;
+    flex-basis: 100%;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.35);
+    font-size: 12px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+.hr-sect::before,
+.hr-sect::after {
+    content: "";
+    flex-grow: 1;
+    background: rgba(0, 0, 0, 0.35);
+    height: 1px;
+    font-size: 0px;
+    line-height: 0px;
+    margin: 0px 2px;
+}
+
+
+.separator {
+    width: 100;
+}
+
+.md-accent{
+    height: 74;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
+.forgot-button {
+    float: right;
+    color: #05AFA8;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    align-content:center;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #05AFA8;
+    color: white;
+}

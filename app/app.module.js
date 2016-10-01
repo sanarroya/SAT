@@ -26,6 +26,8 @@ var signin_component_1 = require('./signin/signin.component');
 var signup_component_1 = require('./signup/signup.component');
 var edit_profile_component_1 = require('./edit-profile/edit-profile.component');
 var recover_password_component_1 = require('./recover-password/recover-password.component');
+var inbox_component_1 = require('./tramite/inbox.component');
+var editTramite_component_1 = require('./edit-tramite/editTramite.component');
 var authentication_service_1 = require('./services/authentication.service');
 var app_routing_1 = require('./app.routing');
 var AppModule = (function () {
@@ -52,7 +54,9 @@ var AppModule = (function () {
                 signup_component_1.SignUpComponent,
                 edit_profile_component_1.EditProfileComponent,
                 recover_password_component_1.RecoverPasswordComponent,
-                dashboard_component_1.DashboardComponent
+                dashboard_component_1.DashboardComponent,
+                inbox_component_1.InboxTramiteComponent,
+                editTramite_component_1.EditTramite
             ],
             providers: [
                 hero_service_1.HeroService,

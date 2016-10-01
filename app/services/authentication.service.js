@@ -20,6 +20,7 @@ var AuthenticationService = (function () {
         this.recoverPasswordEndpoint = '/userResource/recoverPassword';
         this.userInfoEndpoint = '/userResource/getRegisteredUsers';
         this.updateUserEndpoint = '/userResource/updateUser';
+        this.tramitesEndpoint = '/procedureResource/getAllProcedures';
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     AuthenticationService.prototype.signIn = function (user) {
@@ -44,6 +45,11 @@ var AuthenticationService = (function () {
     };
     AuthenticationService.prototype.updateUser = function (user) {
         return this.http.put(this.baseUrl + this.updateUserEndpoint, JSON.stringify(user), this.headers)
+            .map(function (res) { return res.json(); });
+    };
+    AuthenticationService.prototype.getTramites = function () {
+        var url = "" + (this.baseUrl + this.tramitesEndpoint);
+        return this.http.get(url)
             .map(function (res) { return res.json(); });
     };
     AuthenticationService = __decorate([
