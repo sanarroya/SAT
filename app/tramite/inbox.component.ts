@@ -7,34 +7,21 @@ import { Tramite } from '../tramite'
 @Component({
     selector: 'tramite',
     templateUrl: './app/tramite/inbox.component.html',
-    styleUrls: ['./app/tramite/inbox.component.css'],
+    styleUrls: ['./app/tramite/inbox.component.css','./app/tramite/button-floating.css'],
     providers: [AuthenticationService]
 })
 
 
 export class InboxTramiteComponent implements OnInit {
 
-   public selectTramite: any[];    
+    public selectTramite: Tramite[];  
+    public username;
 
     constructor(
         private router: Router,
         private authService: AuthenticationService
     ) { }
     
-    getTramite(): void {
-        this.authService.getTramites().subscribe(response => {
-            localStorage.setItem('cedula_user', <string>response.cedula);
-            localStorage.setItem('name', response.nombre);
-            localStorage.setItem('type_user', response.tipo);
-            this.selectTramite = response;
-        }, error => {
-            let jsonObject = JSON.parse(error.text());
-            alert(jsonObject.message);
-            console.log(error.text());
-            ;
-            });
-    }
-
     private sortByWordLength = (a: any) => {
         return a.name.length;
     }
@@ -52,22 +39,38 @@ export class InboxTramiteComponent implements OnInit {
     }
 
     public newItem() {
-        alert("Nuevo Trámite");
-        let link = ['/newTramite'];
+        alert("Nuevo Trámite"); 
+        let link = ['/editTramite', 0];
         this.router.navigate(link);
         console.log("Nuevo Trámite: ");
     }
     
     ngOnInit(): void {
-        alert("Bandeja Trámites");
-        //this.getTramite();
-        this.selectTramite = [
+        //alert("Bandeja Trámites");
+        /*this.selectTramite = [
             { descripcion: 'descripicion del tramite1', nombre: 'tramite1', id: 1 },
             { descripcion: 'descripicion del tramite2', nombre: 'tramite2', id: 2 },
             { descripcion: 'descripicion del tramite3', nombre: 'tramite3', id: 3 },
             { descripcion: 'descripicion del tramite4', nombre: 'tramite4', id: 4 }
-        ];       
+        ];*/
+
+       this.username= "Administrador";
+        this.getAllTramites();
 
     }
 
+    getAllTramites() {
+        this.authService.getAllTramites()
+            .subscribe(
+            response => {
+                this.selectTramite = response;
+            },
+            error => {
+                alert('hay un error');
+                alert(error.text());
+                console.log(error.text());
+            } 
+            );
+    }
+    
 }

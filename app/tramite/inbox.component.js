@@ -19,20 +19,6 @@ var InboxTramiteComponent = (function () {
             return a.name.length;
         };
     }
-    InboxTramiteComponent.prototype.getTramite = function () {
-        var _this = this;
-        this.authService.getTramites().subscribe(function (response) {
-            localStorage.setItem('cedula_user', response.cedula);
-            localStorage.setItem('name', response.nombre);
-            localStorage.setItem('type_user', response.tipo);
-            _this.selectTramite = response;
-        }, function (error) {
-            var jsonObject = JSON.parse(error.text());
-            alert(jsonObject.message);
-            console.log(error.text());
-            ;
-        });
-    };
     InboxTramiteComponent.prototype.removeItem = function (item) {
         alert("eliminar: " + item.id);
         console.log("Remove: ", item.id);
@@ -45,25 +31,37 @@ var InboxTramiteComponent = (function () {
     };
     InboxTramiteComponent.prototype.newItem = function () {
         alert("Nuevo Trámite");
-        var link = ['/newTramite'];
+        var link = ['/editTramite', 0];
         this.router.navigate(link);
         console.log("Nuevo Trámite: ");
     };
     InboxTramiteComponent.prototype.ngOnInit = function () {
-        alert("Bandeja Trámites");
-        //this.getTramite();
-        this.selectTramite = [
+        //alert("Bandeja Trámites");
+        /*this.selectTramite = [
             { descripcion: 'descripicion del tramite1', nombre: 'tramite1', id: 1 },
             { descripcion: 'descripicion del tramite2', nombre: 'tramite2', id: 2 },
             { descripcion: 'descripicion del tramite3', nombre: 'tramite3', id: 3 },
             { descripcion: 'descripicion del tramite4', nombre: 'tramite4', id: 4 }
-        ];
+        ];*/
+        this.username = "Administrador";
+        this.getAllTramites();
+    };
+    InboxTramiteComponent.prototype.getAllTramites = function () {
+        var _this = this;
+        this.authService.getAllTramites()
+            .subscribe(function (response) {
+            _this.selectTramite = response;
+        }, function (error) {
+            alert('hay un error');
+            alert(error.text());
+            console.log(error.text());
+        });
     };
     InboxTramiteComponent = __decorate([
         core_1.Component({
             selector: 'tramite',
             templateUrl: './app/tramite/inbox.component.html',
-            styleUrls: ['./app/tramite/inbox.component.css'],
+            styleUrls: ['./app/tramite/inbox.component.css', './app/tramite/button-floating.css'],
             providers: [authentication_service_1.AuthenticationService]
         }), 
         __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService])

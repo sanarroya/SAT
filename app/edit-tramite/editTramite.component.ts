@@ -50,10 +50,10 @@ export class EditTramite implements OnInit {
     ngOnInit(): void {
 
         this.param = this.router.url.split('/');
-        if (this.param[2].length>0)
+        /*if (this.param[2].length>0)
             alert("Detalle Trámite: " + this.param[2]);
         else
-            alert("Nuevo Trámite: " + this.param[2]);
+            alert("Nuevo Trámite: " + this.param[2]);*/
 
         //this.getInfoTramite();
 

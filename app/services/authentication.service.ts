@@ -1,12 +1,13 @@
 import { Component } from '@angular/core'
 import { Injectable } from '@angular/core'
-import { Headers, Http } from '@angular/http'
+import { Headers, Http, Response } from '@angular/http'
 import { Observable }     from 'rxjs/Observable'
 import 'rxjs/add/operator/map'
 
 import { User } from '../user'
 import { Login } from '../login'
-
+import { Tramite } from '../tramite' 
+ 
 @Injectable()
 export class AuthenticationService {
     private baseUrl = 'http://localhost:44111'
@@ -51,9 +52,50 @@ export class AuthenticationService {
             .map(res => res.json())
     }
 
-    getTramites(): Observable<any> {
-        const url = `${this.baseUrl + this.tramitesEndpoint}`;
-        return this.http.get(url)
-            .map(res => res.json())
+    getTramites(): Observable<Tramite[]> {
+        var authHeader = new Headers();
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.get(this.baseUrl + this.tramitesEndpoint,headers)
+        .map(this.extractData)
+            .catch(this.handleError);
+    }     
+
+
+    //Metodo para traer todos los usuarios registrados
+    getAllTramites(): Observable<Tramite[]> {
+        var authHeader = new Headers();
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.get('http://localhost:44111/procedureResource/getAllProcedures/', {
+            headers
+        }).map(this.extractData)
+            .catch(this.handleError);
     }
+
+
+    //Metodo to manipulate data
+    private extractData(res: Response) {
+        let body = res.json();
+        return body.tramites || {};
+    }
+
+
+    //Metodo para extraer un solo dato
+    private extractDataOnly(res: Response) {
+        let body = res.json();
+        return body;
+    }
+
+
+    //Metodo para manejar los errores
+    private handleError(error: any) {
+        // In a real world app, we might use a remote logging infrastructure
+        // We'd also dig deeper into the error to get a better message
+        let errMsg =
+            error.status ? `${error.status}` : 'Server error';
+        console.error(errMsg); // log to console instead
+        return Observable.throw(errMsg);
+    }
+
 }

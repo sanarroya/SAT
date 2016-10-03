@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
+var Observable_1 = require('rxjs/Observable');
 require('rxjs/add/operator/map');
 var AuthenticationService = (function () {
     function AuthenticationService(http) {
@@ -48,9 +49,40 @@ var AuthenticationService = (function () {
             .map(function (res) { return res.json(); });
     };
     AuthenticationService.prototype.getTramites = function () {
-        var url = "" + (this.baseUrl + this.tramitesEndpoint);
-        return this.http.get(url)
-            .map(function (res) { return res.json(); });
+        var authHeader = new http_1.Headers();
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.get(this.baseUrl + this.tramitesEndpoint, headers)
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    //Metodo para traer todos los usuarios registrados
+    AuthenticationService.prototype.getAllTramites = function () {
+        var authHeader = new http_1.Headers();
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.get('http://localhost:44111/procedureResource/getAllProcedures/', {
+            headers: headers
+        }).map(this.extractData)
+            .catch(this.handleError);
+    };
+    //Metodo to manipulate data
+    AuthenticationService.prototype.extractData = function (res) {
+        var body = res.json();
+        return body.tramites || {};
+    };
+    //Metodo para extraer un solo dato
+    AuthenticationService.prototype.extractDataOnly = function (res) {
+        var body = res.json();
+        return body;
+    };
+    //Metodo para manejar los errores
+    AuthenticationService.prototype.handleError = function (error) {
+        // In a real world app, we might use a remote logging infrastructure
+        // We'd also dig deeper into the error to get a better message
+        var errMsg = error.status ? "" + error.status : 'Server error';
+        console.error(errMsg); // log to console instead
+        return Observable_1.Observable.throw(errMsg);
     };
     AuthenticationService = __decorate([
         core_1.Injectable(), 

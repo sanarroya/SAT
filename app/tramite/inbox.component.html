@@ -6,46 +6,51 @@
 
 <div class="container">
 
-    <h2>
-        Bandeja Trámites
-    </h2>
+        <h2>
+            Bandeja Trámites
+        </h2>
+        <div style="text-align:right; ">
+
+            <h5>
+                Bienvenido: {{username}}
+            </h5>
+        </div>
 
      <table>
           
         <tr *ngFor="let tramite of selectTramite">
-             <td>
-                 <div>
-                     {{tramite.id}} |                    
-                     {{tramite.nombre}} .
-                     {{tramite.descripcion}}<div class="fixed-action-btn horizontal" style="bottom: 45px; right: 24px;">
-    <a class="btn-floating btn-large red" (click)="editItem(tramite)">
-        <i class="large material-icons">
-            mode_edit
-        </i>
-    </a>
-</div><div class="fixed-action-btn horizontal" style="bottom: 45px; right: 24px;">
-    <a class="btn-floating btn-large red" (click)="removeItem(tramite)">
-        <i class="large material-icons">
-            delete
-        </i>
-    </a>
-</div>
-                 </div>
-             </td>
-             
+            <td>
+                <div>
+                    <strong>ID: {{tramite.id}} | {{tramite.nombre}}</strong>
+                    <br />
+                    {{tramite.descripcion}}
+                </div>
+            </td>
+            <td>
+                <div style="display: flex; ">
+                        <a (click)="editItem(tramite)" title="Editar">
+                            <i class="large material-icons">
+                                mode_edit
+                            </i>
+                        </a>
+                        <a (click)="removeItem(tramite)" title="Eliminar">
+                            <i class="large material-icons">
+                                delete
+                            </i>
+                        </a>
+                </div>
+            </td>
+
          </tr>
+                  
     </table>
     
+    <nav class="circular-menu">        
+        <i class="menu-button fa fa-plus fa-lg" (click)="newItem()" title="Nuevo"></i>
+    </nav>
+           
     <br />
-    <div style="grid-column-align:center;">
-        <button md-raised-button disableripple="true" class="auth-button" (click)="newItem()">Nuevo</button>
-    </div>
-
-    <br />
-    <br />
-     
-     
   
-     
-</div>
 
+</div>
+<br />
