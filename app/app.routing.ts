@@ -9,6 +9,8 @@ import { RecoverPasswordComponent } from './recover-password/recover-password.co
 import { HeroDetailComponent } from './hero-detail.component';
 import { InboxTramiteComponent } from './tramite/inbox.component';
 import { EditTramite } from './edit-tramite/editTramite.component';
+import { InboxSolicitudComponent } from './solicitud/inbox.component';
+import { EditSolicitud } from './edit-solicitud/editSolicitud.component';
 
 
 
@@ -45,9 +47,15 @@ const appRoutes: Routes = [
     {
         path: 'editTramite/:idTramite',
         component: EditTramite
+    },
+    {
+        path: 'inboxSolicitud',
+        component: InboxSolicitudComponent
+    },
+    {
+        path: 'editSolicitud/:idSolicitud',
+        component: EditSolicitud
     }
-
-
     
 ];
 

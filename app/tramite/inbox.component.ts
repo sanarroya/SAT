@@ -47,15 +47,15 @@ export class InboxTramiteComponent implements OnInit {
     
     ngOnInit(): void {
         //alert("Bandeja Trámites");
-        /*this.selectTramite = [
+        this.selectTramite = [
             { descripcion: 'descripicion del tramite1', nombre: 'tramite1', id: 1 },
             { descripcion: 'descripicion del tramite2', nombre: 'tramite2', id: 2 },
             { descripcion: 'descripicion del tramite3', nombre: 'tramite3', id: 3 },
             { descripcion: 'descripicion del tramite4', nombre: 'tramite4', id: 4 }
-        ];*/
+        ];
 
        this.username= "Administrador";
-        this.getAllTramites();
+        //this.getAllTramites();
 
     }
 
@@ -73,4 +73,5 @@ export class InboxTramiteComponent implements OnInit {
             );
     }
     
+
 }

@@ -22,6 +22,7 @@ var AuthenticationService = (function () {
         this.userInfoEndpoint = '/userResource/getRegisteredUsers';
         this.updateUserEndpoint = '/userResource/updateUser';
         this.tramitesEndpoint = '/procedureResource/getAllProcedures';
+        this.solicitudEndpoint = '/procedureResource/getAllSolicitudes';
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     AuthenticationService.prototype.signIn = function (user) {
@@ -48,20 +49,21 @@ var AuthenticationService = (function () {
         return this.http.put(this.baseUrl + this.updateUserEndpoint, JSON.stringify(user), this.headers)
             .map(function (res) { return res.json(); });
     };
-    AuthenticationService.prototype.getTramites = function () {
-        var authHeader = new http_1.Headers();
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
-        return this.http.get(this.baseUrl + this.tramitesEndpoint, headers)
-            .map(this.extractData)
-            .catch(this.handleError);
-    };
-    //Metodo para traer todos los usuarios registrados
+    //Metodo para traer todos los tramites registrados
     AuthenticationService.prototype.getAllTramites = function () {
         var authHeader = new http_1.Headers();
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         return this.http.get('http://localhost:44111/procedureResource/getAllProcedures/', {
+            headers: headers
+        }).map(this.extractData)
+            .catch(this.handleError);
+    };
+    AuthenticationService.prototype.getAllSolicitudes = function () {
+        var authHeader = new http_1.Headers();
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.get('http://localhost:44111/procedureResource/getAllSolicitudes/', {
             headers: headers
         }).map(this.extractData)
             .catch(this.handleError);

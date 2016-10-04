@@ -7,6 +7,8 @@ var edit_profile_component_1 = require('./edit-profile/edit-profile.component');
 var recover_password_component_1 = require('./recover-password/recover-password.component');
 var inbox_component_1 = require('./tramite/inbox.component');
 var editTramite_component_1 = require('./edit-tramite/editTramite.component');
+var inbox_component_2 = require('./solicitud/inbox.component');
+var editSolicitud_component_1 = require('./edit-solicitud/editSolicitud.component');
 var appRoutes = [
     {
         path: '',
@@ -40,6 +42,14 @@ var appRoutes = [
     {
         path: 'editTramite/:idTramite',
         component: editTramite_component_1.EditTramite
+    },
+    {
+        path: 'inboxSolicitud',
+        component: inbox_component_2.InboxSolicitudComponent
+    },
+    {
+        path: 'editSolicitud/:idSolicitud',
+        component: editSolicitud_component_1.EditSolicitud
     }
 ];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);

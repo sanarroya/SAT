@@ -6,7 +6,8 @@ import 'rxjs/add/operator/map'
 
 import { User } from '../user'
 import { Login } from '../login'
-import { Tramite } from '../tramite' 
+import { Tramite } from '../tramite'
+import { Solicitud } from '../solicitud' 
  
 @Injectable()
 export class AuthenticationService {
@@ -17,6 +18,7 @@ export class AuthenticationService {
     private userInfoEndpoint = '/userResource/getRegisteredUsers'
     private updateUserEndpoint = '/userResource/updateUser'
     private tramitesEndpoint = '/procedureResource/getAllProcedures';
+    private solicitudEndpoint = '/procedureResource/getAllSolicitudes';
     private headers = new Headers({'Content-Type': 'application/json'})
 
     constructor(private http: Http) {
@@ -51,23 +53,23 @@ export class AuthenticationService {
         return this.http.put(this.baseUrl + this.updateUserEndpoint, JSON.stringify(user), this.headers)
             .map(res => res.json())
     }
-
-    getTramites(): Observable<Tramite[]> {
-        var authHeader = new Headers();
-        var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        return this.http.get(this.baseUrl + this.tramitesEndpoint,headers)
-        .map(this.extractData)
-            .catch(this.handleError);
-    }     
-
-
-    //Metodo para traer todos los usuarios registrados
+    
+    //Metodo para traer todos los tramites registrados
     getAllTramites(): Observable<Tramite[]> {
         var authHeader = new Headers();
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         return this.http.get('http://localhost:44111/procedureResource/getAllProcedures/', {
+            headers
+        }).map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    getAllSolicitudes(): Observable<Solicitud[]> {
+        var authHeader = new Headers();
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.get('http://localhost:44111/procedureResource/getAllSolicitudes/', {
             headers
         }).map(this.extractData)
             .catch(this.handleError);

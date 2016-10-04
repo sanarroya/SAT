@@ -11,62 +11,62 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var authentication_service_1 = require('../services/authentication.service');
-var InboxTramiteComponent = (function () {
-    function InboxTramiteComponent(router, authService) {
+var InboxSolicitudComponent = (function () {
+    function InboxSolicitudComponent(router, authService) {
         this.router = router;
         this.authService = authService;
         this.sortByWordLength = function (a) {
             return a.name.length;
         };
     }
-    InboxTramiteComponent.prototype.removeItem = function (item) {
+    InboxSolicitudComponent.prototype.removeItem = function (item) {
         alert("eliminar: " + item.id);
         console.log("Remove: ", item.id);
     };
-    InboxTramiteComponent.prototype.editItem = function (item) {
+    InboxSolicitudComponent.prototype.editItem = function (item) {
         alert("Editar" + item.id);
-        var link = ['/editTramite', item.id];
+        var link = ['/editSolicitud', item.id];
         this.router.navigate(link);
         console.log("Edit: ", item.id);
     };
-    InboxTramiteComponent.prototype.newItem = function () {
-        alert("Nuevo Trámite");
-        var link = ['/editTramite', 0];
+    InboxSolicitudComponent.prototype.newItem = function () {
+        alert("Nueva Solicitud");
+        var link = ['/editSolicitud', 0];
         this.router.navigate(link);
-        console.log("Nuevo Trámite: ");
+        console.log("Nueva Solicitud");
     };
-    InboxTramiteComponent.prototype.ngOnInit = function () {
-        //alert("Bandeja Trámites");
-        this.selectTramite = [
-            { descripcion: 'descripicion del tramite1', nombre: 'tramite1', id: 1 },
-            { descripcion: 'descripicion del tramite2', nombre: 'tramite2', id: 2 },
-            { descripcion: 'descripicion del tramite3', nombre: 'tramite3', id: 3 },
-            { descripcion: 'descripicion del tramite4', nombre: 'tramite4', id: 4 }
+    InboxSolicitudComponent.prototype.ngOnInit = function () {
+        //alert("Bandeja Solicitud");
+        this.selectSolicitud = [
+            { descripcion: 'descripicion de solicitud 1', nombre: 'solicitud 1', id: 1 },
+            { descripcion: 'descripicion de solicitud 2', nombre: 'solicitud 2', id: 2 },
+            { descripcion: 'descripicion de solicitud 3', nombre: 'solicitud 3', id: 3 },
+            { descripcion: 'descripicion de solicitud 4', nombre: 'solicitud 4', id: 4 }
         ];
         this.username = "Administrador";
-        //this.getAllTramites();
+        //this.getAllSolicitudes();
     };
-    InboxTramiteComponent.prototype.getAllTramites = function () {
+    InboxSolicitudComponent.prototype.getAllSolicitudes = function () {
         var _this = this;
-        this.authService.getAllTramites()
+        this.authService.getAllSolicitudes()
             .subscribe(function (response) {
-            _this.selectTramite = response;
+            _this.selectSolicitud = response;
         }, function (error) {
             alert('hay un error');
             alert(error.text());
             console.log(error.text());
         });
     };
-    InboxTramiteComponent = __decorate([
+    InboxSolicitudComponent = __decorate([
         core_1.Component({
             selector: 'tramite',
-            templateUrl: './app/tramite/inbox.component.html',
-            styleUrls: ['./app/tramite/inbox.component.css', './app/tramite/button-floating.css'],
+            templateUrl: './app/solicitud/inbox.component.html',
+            styleUrls: ['./app/solicitud/inbox.component.css', './app/solicitud/button-floating.css'],
             providers: [authentication_service_1.AuthenticationService]
         }), 
         __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService])
-    ], InboxTramiteComponent);
-    return InboxTramiteComponent;
+    ], InboxSolicitudComponent);
+    return InboxSolicitudComponent;
 }());
-exports.InboxTramiteComponent = InboxTramiteComponent;
+exports.InboxSolicitudComponent = InboxSolicitudComponent;
 //# sourceMappingURL=inbox.component.js.map
