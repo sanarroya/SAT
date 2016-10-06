@@ -1,5 +1,5 @@
 export class User {
-    cedula: number
+    cedula: string
     nombre: string
     email: string
     password: string

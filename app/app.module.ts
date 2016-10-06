@@ -19,6 +19,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { RecoverPasswordComponent } from './recover-password/recover-password.component';
 
 import { AuthenticationService } from './services/authentication.service'
+import { ValidatorService } from './validator/validator.service'
+
 import { routing } from './app.routing';
 
 @NgModule({
@@ -45,7 +47,8 @@ import { routing } from './app.routing';
   ],
   providers: [
     HeroService,
-    AuthenticationService
+    AuthenticationService,
+    ValidatorService
   ],
   bootstrap: [ AppComponent ] 
 })
