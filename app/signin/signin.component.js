@@ -33,6 +33,7 @@ var SignInComponent = (function () {
             var jsonObject = JSON.parse(error.text());
             alert(jsonObject.message);
             console.log(error.text());
+            _this.router.navigate(['/editProfile']);
         });
     };
     SignInComponent.prototype.onRecoverPassword = function () {

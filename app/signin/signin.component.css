@@ -29,13 +29,17 @@ div.container {
     margin-top: -5;
 }
 
+.toolbar-menu {
+    margin-right: 15;
+}
+
 .form-logo {
     width: 400;
     margin-bottom: 100;
 }
 
 .separtor-container {
-    display:inline-block;
+    display: inline-block;
     width: 400;
 }
 
@@ -47,7 +51,7 @@ div.container {
     margin-top: 5px;
 }
 
-.icon-space{
+.icon-space {
     margin-right: 15px;
 }
 
@@ -60,6 +64,7 @@ div.container {
     margin-bottom: 0px;
     margin-top: 10px;
 }
+
 .hr-sect::before,
 .hr-sect::after {
     content: "";
@@ -71,13 +76,19 @@ div.container {
     margin: 0px 2px;
 }
 
-
 .separator {
     width: 100;
 }
 
-.md-accent{
+.md-accent {
     height: 74;
+    align-items: left;
+    align-content: left;
+    text-align: center;
+}
+
+.md-sidnav {
+    background-color: #05AFA8;
     align-items: center;
     align-content: center;
     text-align: center;

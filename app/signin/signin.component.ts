@@ -35,6 +35,7 @@ export class SignInComponent {
                 let jsonObject = JSON.parse(error.text());
                 alert(jsonObject.message);
                 console.log(error.text());
+                this.router.navigate(['/editProfile']);
             })
     }
 
