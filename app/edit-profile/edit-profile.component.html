@@ -1,12 +1,13 @@
-<md-sidenav-layout>
+<md-sidenav-layout >
     <div>
-        <md-sidenav #start class="md-sidnav" mode="over" >
+        <md-sidenav #start class="md-sidnav" mode="over">
             <div><img class="form-logo" src="assets/satlogo2.png"></div>
             <ul>
-                <li *ngFor="let menu of menus">
-                    <span>{{menu.name}}</span>
+                <li class="menu" *ngFor="let hero of menus" (click)="onSelect(hero)">
+                    <span>{{hero.name}}</span>
                 </li>
             </ul>
+
         </md-sidenav>
         <md-toolbar class="md-accent">
             <i class="material-icons app-input-icon icon-space" (click)="start.toggle()">menu</i>

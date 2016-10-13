@@ -55,6 +55,10 @@ var EditProfileComponent = (function () {
             _this.router.navigate(['/editProfile']);
         });
     };
+    EditProfileComponent.prototype.onSelect = function (hero) {
+        alert(hero.id);
+        this.router.navigate([hero.id]);
+    };
     EditProfileComponent.prototype.ngOnInit = function () {
         this.getUser();
     };

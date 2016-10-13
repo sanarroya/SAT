@@ -61,6 +61,11 @@ export class EditProfileComponent implements OnInit {
             })
     }
 
+    onSelect(hero: menu): void {
+        alert(hero.id);
+        this.router.navigate([hero.id]);
+    }
+
 
     ngOnInit(): void {
         this.getUser();

@@ -1,16 +1,16 @@
 import {menu} from "./menu";
 export const MENU_ADM: menu[] = [
-    { id: '', name: 'Tramites' },
-    { id: '', name: 'Funcionarios' },
-    { id: '', name: 'Solicitudes' },
-    { id: '', name: 'Editar Perfil' },
-    { id: '', name: 'Cerrar Sesion' }
+    { id: '/signin', name: 'Tramites' },
+    { id: '/signin', name: 'Funcionarios' },
+    { id: '/signin', name: 'Solicitudes' },
+    { id: '/signin', name: 'Editar Perfil' },
+    { id: '/signin', name: 'Cerrar Sesion' }
 
 ];
 
 export const MENU_CDN: menu[] = [
-    { id: '', name: 'Tramites' },
-    { id: '', name: 'Mis Solicitudes' },
-    { id: '', name: 'Editar Perfil' },
-    { id: '', name: 'Cerrar Sesion' }
+    { id: '/signin', name: 'Tramites' },
+    { id: '/signin', name: 'Mis Solicitudes' },
+    { id: '/signin', name: 'Editar Perfil' },
+    { id: '/signin', name: 'Cerrar Sesion' }
 ];

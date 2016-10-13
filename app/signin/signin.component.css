@@ -89,12 +89,34 @@ div.container {
 
 .md-sidnav {
     background-color: #05AFA8;
-    align-items: center;
-    align-content: center;
+    align-items: left;
+    align-content: left;
     text-align: center;
+
+
 }
+
+
+.md-sidnav-layout {
+   z-index: -2;
+
+
+}
+
+
 
 .forgot-button {
     float: right;
     color: #05AFA8;
+}
+
+.menu {
+    margin: 0 0 2em 0;
+    list-style-type: none;
+    padding: 0;
+    width: 15em;
+    color: white;
+    z-index: 10;
+    display: block;
+
 }
