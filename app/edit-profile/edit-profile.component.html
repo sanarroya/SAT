@@ -1,7 +1,7 @@
-<md-sidenav-layout >
-    <div>
-        <md-sidenav #start class="md-sidnav" mode="over">
+<md-sidenav-layout>
+        <md-sidenav #start class="app-sidenav" mode="side">
             <div><img class="form-logo" src="assets/satlogo2.png"></div>
+            <button md-button #mybutton (click)="onClose()">Close</button>
             <ul>
                 <li class="menu" *ngFor="let hero of menus" (click)="onSelect(hero)">
                     <span>{{hero.name}}</span>
@@ -15,6 +15,7 @@
             <h1 class="toolbar-title">SAT - Sistema de Automatizacion de Tramites</h1>
             <span class="app-toolbar-filler"></span>
         </md-toolbar>
+    <div>
         <div class="container" (click)="start.close()">
             <form name="userForm1"
                   (submit)="updateUser(ced.value,nickname.value,email.value,password.value,confirmpassword.value,phone.value);">

@@ -87,23 +87,13 @@ div.container {
     text-align: center;
 }
 
-.md-sidnav {
+md-sidenav {
     background-color: #05AFA8;
     align-items: left;
     align-content: left;
     text-align: center;
 
-
 }
-
-
-.md-sidnav-layout {
-   z-index: -2;
-
-
-}
-
-
 
 .forgot-button {
     float: right;
