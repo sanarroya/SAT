@@ -23,6 +23,7 @@ var AuthenticationService = (function () {
         this.updateUserEndpoint = '/userResource/updateUser';
         this.tramitesEndpoint = '/procedureResource/getAllProcedures';
         this.solicitudEndpoint = '/procedureResource/getAllSolicitudes';
+        this.usuarioEndpoint = '/procedureResource/getAllUsuarios';
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     AuthenticationService.prototype.signIn = function (user) {
@@ -64,6 +65,15 @@ var AuthenticationService = (function () {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         return this.http.get('http://localhost:44111/procedureResource/getAllSolicitudes/', {
+            headers: headers
+        }).map(this.extractData)
+            .catch(this.handleError);
+    };
+    AuthenticationService.prototype.getAllUsuarios = function () {
+        var authHeader = new http_1.Headers();
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.get('http://localhost:44111/procedureResource/getAllUsuarios/', {
             headers: headers
         }).map(this.extractData)
             .catch(this.handleError);

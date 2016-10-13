@@ -11,7 +11,7 @@ import { InboxTramiteComponent } from './tramite/inbox.component';
 import { EditTramite } from './edit-tramite/editTramite.component';
 import { InboxSolicitudComponent } from './solicitud/inbox.component';
 import { EditSolicitud } from './edit-solicitud/editSolicitud.component';
-
+import { InboxUsuarioComponent } from './usuario/inbox.component'; 
 
 
 const appRoutes: Routes = [
@@ -55,8 +55,11 @@ const appRoutes: Routes = [
     {
         path: 'editSolicitud/:idSolicitud',
         component: EditSolicitud
+    },
+    {
+        path: 'inboxUsuario',
+        component: InboxUsuarioComponent
     }
-    
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

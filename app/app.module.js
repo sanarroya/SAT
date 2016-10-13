@@ -30,6 +30,7 @@ var inbox_component_1 = require('./tramite/inbox.component');
 var editTramite_component_1 = require('./edit-tramite/editTramite.component');
 var inbox_component_2 = require('./solicitud/inbox.component');
 var editSolicitud_component_1 = require('./edit-solicitud/editSolicitud.component');
+var inbox_component_3 = require('./usuario/inbox.component');
 var authentication_service_1 = require('./services/authentication.service');
 var app_routing_1 = require('./app.routing');
 var AppModule = (function () {
@@ -60,7 +61,8 @@ var AppModule = (function () {
                 inbox_component_1.InboxTramiteComponent,
                 editTramite_component_1.EditTramite,
                 inbox_component_2.InboxSolicitudComponent,
-                editSolicitud_component_1.EditSolicitud
+                editSolicitud_component_1.EditSolicitud,
+                inbox_component_3.InboxUsuarioComponent
             ],
             providers: [
                 hero_service_1.HeroService,

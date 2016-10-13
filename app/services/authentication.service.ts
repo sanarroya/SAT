@@ -19,6 +19,7 @@ export class AuthenticationService {
     private updateUserEndpoint = '/userResource/updateUser'
     private tramitesEndpoint = '/procedureResource/getAllProcedures';
     private solicitudEndpoint = '/procedureResource/getAllSolicitudes';
+    private usuarioEndpoint = '/procedureResource/getAllUsuarios';
     private headers = new Headers({'Content-Type': 'application/json'})
 
     constructor(private http: Http) {
@@ -75,7 +76,16 @@ export class AuthenticationService {
             .catch(this.handleError);
     }
 
-
+    getAllUsuarios(): Observable<User[]> {
+        var authHeader = new Headers();
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.get('http://localhost:44111/procedureResource/getAllUsuarios/', {
+            headers
+        }).map(this.extractData)
+            .catch(this.handleError);
+    }
+    
     //Metodo to manipulate data
     private extractData(res: Response) {
         let body = res.json();

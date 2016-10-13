@@ -21,6 +21,7 @@ import { InboxTramiteComponent } from './tramite/inbox.component';
 import { EditTramite } from './edit-tramite/editTramite.component';
 import { InboxSolicitudComponent } from './solicitud/inbox.component';
 import { EditSolicitud } from './edit-solicitud/editSolicitud.component';
+import { InboxUsuarioComponent } from './usuario/inbox.component';
 
 import { AuthenticationService } from './services/authentication.service'
 import { routing } from './app.routing';
@@ -49,7 +50,8 @@ import { routing } from './app.routing';
     InboxTramiteComponent,
     EditTramite,
     InboxSolicitudComponent,
-    EditSolicitud
+    EditSolicitud,
+    InboxUsuarioComponent
   ],
   providers: [
     HeroService,

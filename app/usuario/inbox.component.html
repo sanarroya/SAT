@@ -7,7 +7,7 @@
 <div class="container">
 
         <h2>
-            Bandeja Solicitudes
+            Bandeja Usuarios
         </h2>
         <div style="text-align:right; ">
 
@@ -18,22 +18,22 @@
 
      <table>
           
-        <tr *ngFor="let solicitud of selectSolicitud">
+        <tr *ngFor="let usuario of selectUsuario">
             <td style="width:95%">
                 <div>
-                    <strong>ID: {{solicitud.id}} | {{solicitud.nombre}}</strong>
-                    <br />
-                    {{solicitud.descripcion}}
+                    <strong>Documento: {{usuario.cedula}} | {{usuario.nombre}}</strong>  
+                    <br />          
+                    {{usuario.tipo}}       
                 </div>
             </td>
             <td style="width:5%">
                 <div style="display: flex; ">
-                    <a (click)="editItem(solicitud)" title="Editar">
+                    <a (click)="editItem(usuario)" title="Editar">
                         <i class="large material-icons">
                             mode_edit
                         </i>
                     </a>
-                    <a (click)="removeItem(solicitud)" title="Eliminar">
+                    <a (click)="removeItem(usuario)" title="Eliminar">
                         <i class="large material-icons">
                             delete
                         </i>
