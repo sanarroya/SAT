@@ -6,6 +6,7 @@ div.container {
     margin-bottom:10%;
     display: block;
     width: 95%; 
+    text-align:justify;
 }
 
 .auth-input {
@@ -15,7 +16,7 @@ div.container {
 .auth-button {
     margin-top: 20;
     width: 200px;
-    background-color: #05AFA8;
+    background-color: #808080;
     color: #fff;
 }
 
@@ -113,3 +114,21 @@ a:hover {
   color: #05AFA8;
   cursor: pointer;
 }
+
+.Title {
+  color: #05AFA8;
+  font-size: x-large;
+  text-align:justify;
+}
+
+.subTitle {
+  color: #05AFA8;
+  text-align:justify;
+}
+
+.auth-button:hover {
+  color: #fff;
+  cursor: pointer;
+  background:#05AFA8
+}
+ 

@@ -109,7 +109,27 @@ th {
 }
 
 
+
+
 a:hover {
   color: #05AFA8;
   cursor: pointer;
 }
+
+.Title {
+  color: #05AFA8;
+  font-size: x-large;
+  text-align:justify;
+}
+
+.subTitle {
+  color: #05AFA8;
+  text-align:justify;
+}
+
+.auth-button:hover {
+  color: #fff;
+  cursor: pointer;
+  background:#05AFA8
+}
+ 
