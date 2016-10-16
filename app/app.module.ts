@@ -7,6 +7,8 @@ import { MdIconModule } from '@angular2-material/icon';
 import { MdCardModule } from '@angular2-material/card';
 import { MdInputModule } from '@angular2-material/input';
 import { MdToolbarModule } from '@angular2-material/toolbar';
+import { MdSidenavModule } from '@angular2-material/sidenav';
+import { MdSidenavModule } from '@angular2-material/sidenav';
 
 import { AppComponent } from './app.component';
 import { HeroDetailComponent } from './hero-detail.component';
@@ -31,6 +33,7 @@ import { routing } from './app.routing';
     MdInputModule,
     MdIconModule,
     MdToolbarModule,
+    MdSidenavModule,
     routing 
   ],
   declarations: [ 

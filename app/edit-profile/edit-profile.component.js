@@ -12,11 +12,13 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var authentication_service_1 = require('../services/authentication.service');
 var user_1 = require('../user');
+var menu_mock_1 = require("../menu_mock");
 var EditProfileComponent = (function () {
     function EditProfileComponent(router, authService) {
         this.router = router;
         this.authService = authService;
         this.selectUser = user_1.User();
+        this.menus = localStorage.getItem("type_user") == 'Ciudadano' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
     }
     EditProfileComponent.prototype.getUser = function () {
         var _this = this;
@@ -52,6 +54,9 @@ var EditProfileComponent = (function () {
             console.log(error.text());
             _this.router.navigate(['/editProfile']);
         });
+    };
+    EditProfileComponent.prototype.onSelect = function (hero) {
+        this.router.navigate([hero.id]);
     };
     EditProfileComponent.prototype.ngOnInit = function () {
         this.getUser();

@@ -21,6 +21,7 @@
       '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
       '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
+
     
       // other libraries
       'rxjs':                       'npm:rxjs',
@@ -30,7 +31,8 @@
       '@angular2-material/card':    'npm:@angular2-material/card/card.umd.js',
       '@angular2-material/input':   'npm:@angular2-material/input/input.umd.js',
       '@angular2-material/icon':   'npm:@angular2-material/icon/icon.umd.js',
-      '@angular2-material/toolbar': 'npm:@angular2-material/toolbar/toolbar.umd.js'
+      '@angular2-material/toolbar': 'npm:@angular2-material/toolbar/toolbar.umd.js',
+      '@angular2-material/sidenav': 'npm:@angular2-material/sidenav/sidenav.umd.js'
       
     },
     // packages tells the System loader how to load when no filename and/or no extension
