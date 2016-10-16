@@ -1,20 +1,18 @@
 <md-sidenav-layout>
-        <md-sidenav #start class="app-sidenav" mode="side">
-            <div><img class="form-logo" src="assets/satlogo2.png"></div>
-            <button md-button #mybutton (click)="onClose()">Close</button>
-            <ul>
-                <li class="menu" *ngFor="let hero of menus" (click)="onSelect(hero)">
-                    <span>{{hero.name}}</span>
-                </li>
-            </ul>
-
-        </md-sidenav>
-        <md-toolbar class="md-accent">
-            <i class="material-icons app-input-icon icon-space" (click)="start.toggle()">menu</i>
-            <img class="toolbar-logo" src="assets/satlogo.png"/>
-            <h1 class="toolbar-title">SAT - Sistema de Automatizacion de Tramites</h1>
-            <span class="app-toolbar-filler"></span>
-        </md-toolbar>
+    <md-sidenav #start class="app-sidenav" mode="side">
+        <div><img class="form-logo" src="assets/satlogo2.png"></div>
+        <ul>
+            <li class="menu" *ngFor="let hero of menus" (click)="onSelect(hero)">
+                <span>{{hero.name}}</span>
+            </li>
+        </ul>
+    </md-sidenav>
+    <md-toolbar class="md-accent">
+        <i class="material-icons app-input-icon icon-space" (click)="start.toggle()">menu</i>
+        <img class="toolbar-logo" src="assets/satlogo.png"/>
+        <h1 class="toolbar-title">SAT - Sistema de Automatizacion de Tramites</h1>
+        <span class="app-toolbar-filler"></span>
+    </md-toolbar>
     <div>
         <div class="container" (click)="start.close()">
             <form name="userForm1"

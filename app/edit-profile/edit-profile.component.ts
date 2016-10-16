@@ -21,7 +21,7 @@ export class EditProfileComponent implements OnInit {
     menus: menu[];
 
     constructor(private router: Router, private authService: AuthenticationService) {
-      this.menus=localStorage.getItem("type_user")=='Ciudadano'?MENU_CDN:MENU_ADM;
+        this.menus = localStorage.getItem("type_user") == 'Ciudadano' ? MENU_CDN : MENU_ADM;
     }
 
     getUser(): void {
@@ -62,7 +62,6 @@ export class EditProfileComponent implements OnInit {
     }
 
     onSelect(hero: menu): void {
-        alert(hero.id);
         this.router.navigate([hero.id]);
     }
 
