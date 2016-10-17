@@ -26,6 +26,7 @@
     "@angular2-material/core": "^2.0.0-alpha.8-1",
     "@angular2-material/icon": "^2.0.0-alpha.8-1",
     "@angular2-material/input": "^2.0.0-alpha.8-1",
+    "@angular2-material/sidenav": "^2.0.0-alpha.8-2",
     "@angular2-material/toolbar": "^2.0.0-alpha.8-1",
     "angular2-in-memory-web-api": "0.0.18",
     "bootstrap": "^3.3.6",

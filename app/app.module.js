@@ -17,6 +17,7 @@ var icon_1 = require('@angular2-material/icon');
 var card_1 = require('@angular2-material/card');
 var input_1 = require('@angular2-material/input');
 var toolbar_1 = require('@angular2-material/toolbar');
+var sidenav_1 = require('@angular2-material/sidenav');
 var app_component_1 = require('./app.component');
 var hero_detail_component_1 = require('./hero-detail.component');
 var heroes_component_1 = require('./heroes.component');
@@ -47,6 +48,7 @@ var AppModule = (function () {
                 input_1.MdInputModule,
                 icon_1.MdIconModule,
                 toolbar_1.MdToolbarModule,
+                sidenav_1.MdSidenavModule,
                 app_routing_1.routing
             ],
             declarations: [
