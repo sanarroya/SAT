@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map'
 
 import { User } from '../user'
 import { Login } from '../login'
+import {tramites} from "../tramite";
 
 @Injectable()
 export class AuthenticationService {
@@ -15,6 +16,7 @@ export class AuthenticationService {
     private recoverPasswordEndpoint = '/userResource/recoverPassword'
     private userInfoEndpoint = '/userResource/getRegisteredUsers'
     private updateUserEndpoint='/userResource/updateUser';
+    private createProcedureEndpoint='/procedureResource/createProcedure';
     private headers = new Headers({'Content-Type': 'application/json'})
 
     constructor(private http: Http) {
@@ -47,6 +49,11 @@ export class AuthenticationService {
 
     updateUser(user: User): Observable<any> {
         return this.http.put(this.baseUrl + this.updateUserEndpoint, JSON.stringify(user), this.headers)
+            .map(res => res.json())
+    }
+
+    createProcedure(tramite: tramites): Observable<any> {
+        return this.http.post(this.baseUrl + this.createProcedureEndpoint, JSON.stringify(tramite), this.headers)
             .map(res => res.json())
     }
 }

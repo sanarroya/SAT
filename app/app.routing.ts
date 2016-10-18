@@ -6,7 +6,8 @@ import { SignInComponent } from './signin/signin.component';
 import { SignUpComponent } from './signup/signup.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { RecoverPasswordComponent } from './recover-password/recover-password.component';
-import { HeroDetailComponent } from './hero-detail.component';
+import {ProcedureComponent} from "./procedure/procedure.component";
+import {FieldDetailComponent} from "./field-detail/field-detail.component";
 
 const appRoutes: Routes = [
     {
@@ -33,6 +34,14 @@ const appRoutes: Routes = [
     {
         path: 'recoverPassword',
         component: RecoverPasswordComponent
+    },
+    {
+        path: 'procedure',
+        component: ProcedureComponent
+    },
+    {
+        path: 'fieldDetail',
+        component: FieldDetailComponent
     }
 ];
 

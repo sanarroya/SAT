@@ -18,6 +18,8 @@ var card_1 = require('@angular2-material/card');
 var input_1 = require('@angular2-material/input');
 var toolbar_1 = require('@angular2-material/toolbar');
 var sidenav_1 = require('@angular2-material/sidenav');
+var angular2_select_1 = require('angular2-select');
+var ng2_toastr_1 = require('ng2-toastr/ng2-toastr');
 var app_component_1 = require('./app.component');
 var hero_detail_component_1 = require('./hero-detail.component');
 var heroes_component_1 = require('./heroes.component');
@@ -27,6 +29,8 @@ var signin_component_1 = require('./signin/signin.component');
 var signup_component_1 = require('./signup/signup.component');
 var edit_profile_component_1 = require('./edit-profile/edit-profile.component');
 var recover_password_component_1 = require('./recover-password/recover-password.component');
+var procedure_component_1 = require('./procedure/procedure.component');
+var field_detail_component_1 = require('./field-detail/field-detail.component');
 var authentication_service_1 = require('./services/authentication.service');
 var app_routing_1 = require('./app.routing');
 var AppModule = (function () {
@@ -44,6 +48,8 @@ var AppModule = (function () {
                 icon_1.MdIconModule,
                 toolbar_1.MdToolbarModule,
                 sidenav_1.MdSidenavModule,
+                angular2_select_1.SelectModule,
+                ng2_toastr_1.ToastModule,
                 app_routing_1.routing
             ],
             declarations: [
@@ -54,6 +60,8 @@ var AppModule = (function () {
                 signup_component_1.SignUpComponent,
                 edit_profile_component_1.EditProfileComponent,
                 recover_password_component_1.RecoverPasswordComponent,
+                procedure_component_1.ProcedureComponent,
+                field_detail_component_1.FieldDetailComponent,
                 dashboard_component_1.DashboardComponent
             ],
             providers: [

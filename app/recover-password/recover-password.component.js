@@ -11,19 +11,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var authentication_service_1 = require('../services/authentication.service');
+var ng2_toastr_1 = require('ng2-toastr/ng2-toastr');
 var RecoverPasswordComponent = (function () {
-    function RecoverPasswordComponent(authService, router) {
+    function RecoverPasswordComponent(authService, router, toastr) {
         this.authService = authService;
         this.router = router;
+        this.toastr = toastr;
     }
     RecoverPasswordComponent.prototype.onForgotPassword = function (cedula) {
         var _this = this;
         this.authService.recoverPassword(cedula)
             .subscribe(function (response) {
             alert(response.message);
+            _this.toastr.info(response.message, 'Alerta');
             _this.router.navigate(['/signin']);
         }, function (error) {
             alert(error.json().message);
+            _this.toastr.error(error.json().message, 'Alerta');
             console.log(error.text());
         });
     };
@@ -36,7 +40,7 @@ var RecoverPasswordComponent = (function () {
                 authentication_service_1.AuthenticationService
             ]
         }), 
-        __metadata('design:paramtypes', [authentication_service_1.AuthenticationService, router_1.Router])
+        __metadata('design:paramtypes', [authentication_service_1.AuthenticationService, router_1.Router, ng2_toastr_1.ToastsManager])
     ], RecoverPasswordComponent);
     return RecoverPasswordComponent;
 }());
