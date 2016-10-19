@@ -20,6 +20,7 @@ var AuthenticationService = (function () {
         this.singUpEndpoint = '/userResource/registerCitizen';
         this.recoverPasswordEndpoint = '/userResource/recoverPassword';
         this.userInfoEndpoint = '/userResource/getRegisteredUsers';
+        this.createProcedureEndpoint = '/procedureResource/createProcedure';
         this.updateUserEndpoint = '/userResource/updateUser';
         this.tramitesEndpoint = '/procedureResource/getAllProcedures';
         this.solicitudEndpoint = '/procedureResource/getAllSolicitudes';
@@ -48,6 +49,10 @@ var AuthenticationService = (function () {
     };
     AuthenticationService.prototype.updateUser = function (user) {
         return this.http.put(this.baseUrl + this.updateUserEndpoint, JSON.stringify(user), this.headers)
+            .map(function (res) { return res.json(); });
+    };
+    AuthenticationService.prototype.createProcedure = function (tramite) {
+        return this.http.post(this.baseUrl + this.createProcedureEndpoint, JSON.stringify(tramite), this.headers)
             .map(function (res) { return res.json(); });
     };
     //Metodo para traer todos los tramites registrados
@@ -95,6 +100,10 @@ var AuthenticationService = (function () {
         var errMsg = error.status ? "" + error.status : 'Server error';
         console.error(errMsg); // log to console instead
         return Observable_1.Observable.throw(errMsg);
+    };
+    AuthenticationService.prototype.getSolicitudProfile = function (item) {
+    };
+    AuthenticationService.prototype.getTramiteProfile = function (item) {
     };
     AuthenticationService = __decorate([
         core_1.Injectable(), 

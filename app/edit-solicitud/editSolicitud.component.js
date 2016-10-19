@@ -11,10 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var authentication_service_1 = require('../services/authentication.service');
+var ng2_toastr_1 = require('ng2-toastr/ng2-toastr');
+var menu_mock_1 = require("../menu_mock");
 var EditSolicitud = (function () {
-    function EditSolicitud(router, authService) {
+    function EditSolicitud(router, authService, toastr) {
         this.router = router;
         this.authService = authService;
+        this.toastr = toastr;
+        this.menus = localStorage.getItem("type_user") === 'Ciudadano' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
     }
     EditSolicitud.prototype.getInfoSolicitud = function () {
         var _this = this;
@@ -25,7 +29,7 @@ var EditSolicitud = (function () {
             _this.selectSolicitud = response;
         }, function (error) {
             var jsonObject = JSON.parse(error.text());
-            alert(jsonObject.message);
+            _this.toastr.error(jsonObject.message, 'Alerta');
             console.log(error.text());
             ;
         });
@@ -39,10 +43,13 @@ var EditSolicitud = (function () {
     EditSolicitud.prototype.ngOnInit = function () {
         this.param = this.router.url.split('/');
         /*if (this.param[2].length>0)
-            alert("Detalle Trámite: " + this.param[2]);
-        else
-            alert("Nuevo Trámite: " + this.param[2]);*/
+         alert("Detalle Trámite: " + this.param[2]);
+         else
+         alert("Nuevo Trámite: " + this.param[2]);*/
         //this.getInfoTramite();
+    };
+    EditSolicitud.prototype.onSelect = function (hero) {
+        this.router.navigate([hero.id]);
     };
     __decorate([
         core_1.Input, 
@@ -52,10 +59,10 @@ var EditSolicitud = (function () {
         core_1.Component({
             selector: 'edit-tramite',
             templateUrl: './app/edit-solicitud/editSolicitud.component.html',
-            styleUrls: ['./app/solicitud/inbox.component.css'],
+            styleUrls: ['./app/signin/signin.component.css'],
             providers: [authentication_service_1.AuthenticationService]
         }), 
-        __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService])
+        __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService, ng2_toastr_1.ToastsManager])
     ], EditSolicitud);
     return EditSolicitud;
 }());

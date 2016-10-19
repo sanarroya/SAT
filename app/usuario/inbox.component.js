@@ -11,26 +11,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var authentication_service_1 = require('../services/authentication.service');
+var menu_mock_1 = require("../menu_mock");
+var ng2_toastr_1 = require('ng2-toastr/ng2-toastr');
 var InboxUsuarioComponent = (function () {
-    function InboxUsuarioComponent(router, authService) {
+    function InboxUsuarioComponent(router, authService, toastr) {
         this.router = router;
         this.authService = authService;
+        this.toastr = toastr;
         this.sortByWordLength = function (a) {
             return a.name.length;
         };
+        this.menus = localStorage.getItem("type_user") === 'Ciudadano' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
     }
     InboxUsuarioComponent.prototype.removeItem = function (item) {
-        alert("eliminar: " + item.id);
+        this.toastr.info("Eliminar: " + item.id, 'Alerta');
         console.log("Remove: ", item.id);
     };
     InboxUsuarioComponent.prototype.editItem = function (item) {
-        alert("Editar" + item.cedula);
+        this.toastr.info("Editar: " + item.id, 'Alerta');
         var link = ['/editProfile', item.cedula];
         this.router.navigate(link);
         console.log("Edit: ", item.id);
     };
     InboxUsuarioComponent.prototype.newItem = function () {
-        alert("Nuevo Usuario");
+        this.toastr.info("Nuevo Usuario", 'Alerta');
         var link = ['/editProfile', 0];
         this.router.navigate(link);
         console.log("Nuevo Uusuario");
@@ -51,19 +55,22 @@ var InboxUsuarioComponent = (function () {
             .subscribe(function (response) {
             _this.selectUsuario = response;
         }, function (error) {
-            alert('hay un error');
-            alert(error.text());
+            _this.toastr.error('hay un error', 'Alerta');
+            _this.toastr.error(error.text(), 'Alerta');
             console.log(error.text());
         });
+    };
+    InboxUsuarioComponent.prototype.onSelect = function (hero) {
+        this.router.navigate([hero.id]);
     };
     InboxUsuarioComponent = __decorate([
         core_1.Component({
             selector: 'usuario',
             templateUrl: './app/usuario/inbox.component.html',
-            styleUrls: ['./app/usuario/inbox.component.css', './app/usuario/button-floating.css'],
+            styleUrls: ['./app/signin/signin.component.css', './app/usuario/inbox.component.css', './app/usuario/button-floating.css'],
             providers: [authentication_service_1.AuthenticationService]
         }), 
-        __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService])
+        __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService, ng2_toastr_1.ToastsManager])
     ], InboxUsuarioComponent);
     return InboxUsuarioComponent;
 }());

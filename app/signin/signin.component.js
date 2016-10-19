@@ -12,10 +12,12 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var authentication_service_1 = require('../services/authentication.service');
 var user_1 = require('../user');
+var ng2_toastr_1 = require('ng2-toastr/ng2-toastr');
 var SignInComponent = (function () {
-    function SignInComponent(router, authService) {
+    function SignInComponent(router, authService, toastr) {
         this.router = router;
         this.authService = authService;
+        this.toastr = toastr;
     }
     SignInComponent.prototype.onSignIn = function (cedula, password) {
         var _this = this;
@@ -28,11 +30,12 @@ var SignInComponent = (function () {
             localStorage.setItem('id_token', response.token);
             localStorage.setItem('name', response.usuario.nombre);
             localStorage.setItem('type_user', response.usuario.tipo);
-            _this.router.navigate(['/editProfile']);
+            _this.router.navigate(['/inboxTramite']);
         }, function (error) {
             var jsonObject = JSON.parse(error.text());
-            alert(jsonObject.message);
+            _this.toastr.error(jsonObject.message, 'Alerta');
             console.log(error.text());
+            _this.router.navigate(['/inboxTramite']);
         });
     };
     SignInComponent.prototype.onRecoverPassword = function () {
@@ -50,7 +53,7 @@ var SignInComponent = (function () {
                 authentication_service_1.AuthenticationService
             ]
         }), 
-        __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService])
+        __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService, ng2_toastr_1.ToastsManager])
     ], SignInComponent);
     return SignInComponent;
 }());

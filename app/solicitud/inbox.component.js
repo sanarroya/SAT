@@ -11,26 +11,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var authentication_service_1 = require('../services/authentication.service');
+var menu_mock_1 = require("../menu_mock");
+var ng2_toastr_1 = require('ng2-toastr/ng2-toastr');
 var InboxSolicitudComponent = (function () {
-    function InboxSolicitudComponent(router, authService) {
+    function InboxSolicitudComponent(router, authService, toastr) {
         this.router = router;
         this.authService = authService;
+        this.toastr = toastr;
         this.sortByWordLength = function (a) {
             return a.name.length;
         };
+        this.menus = localStorage.getItem("type_user") === 'Ciudadano' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
     }
     InboxSolicitudComponent.prototype.removeItem = function (item) {
-        alert("eliminar: " + item.id);
+        this.toastr.info("eliminar: " + item.id, 'Alerta');
         console.log("Remove: ", item.id);
     };
     InboxSolicitudComponent.prototype.editItem = function (item) {
-        alert("Editar" + item.id);
+        this.toastr.info("Editar" + item.id, 'Alerta');
         var link = ['/editSolicitud', item.id];
         this.router.navigate(link);
         console.log("Edit: ", item.id);
     };
     InboxSolicitudComponent.prototype.newItem = function () {
-        alert("Nueva Solicitud");
+        this.toastr.info("Nueva Solicitud", 'Alerta');
         var link = ['/editSolicitud', 0];
         this.router.navigate(link);
         console.log("Nueva Solicitud");
@@ -52,19 +56,22 @@ var InboxSolicitudComponent = (function () {
             .subscribe(function (response) {
             _this.selectSolicitud = response;
         }, function (error) {
-            alert('hay un error');
-            alert(error.text());
+            _this.toastr.error('hay un error', 'Alerta');
+            _this.toastr.error(error.text(), 'Alerta');
             console.log(error.text());
         });
+    };
+    InboxSolicitudComponent.prototype.onSelect = function (hero) {
+        this.router.navigate([hero.id]);
     };
     InboxSolicitudComponent = __decorate([
         core_1.Component({
             selector: 'tramite',
             templateUrl: './app/solicitud/inbox.component.html',
-            styleUrls: ['./app/solicitud/inbox.component.css', './app/solicitud/button-floating.css'],
+            styleUrls: ['./app/signin/signin.component.css', './app/solicitud/inbox.component.css', './app/solicitud/button-floating.css'],
             providers: [authentication_service_1.AuthenticationService]
         }), 
-        __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService])
+        __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService, ng2_toastr_1.ToastsManager])
     ], InboxSolicitudComponent);
     return InboxSolicitudComponent;
 }());

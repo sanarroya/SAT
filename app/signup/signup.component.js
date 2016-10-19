@@ -12,10 +12,12 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var authentication_service_1 = require('../services/authentication.service');
 var user_1 = require('../user');
+var ng2_toastr_1 = require('ng2-toastr/ng2-toastr');
 var SignUpComponent = (function () {
-    function SignUpComponent(router, authService) {
+    function SignUpComponent(router, authService, toastr) {
         this.router = router;
         this.authService = authService;
+        this.toastr = toastr;
     }
     SignUpComponent.prototype.onSignUp = function (cedula, nombre, email, password, confirmPassword, telefono) {
         var _this = this;
@@ -29,11 +31,11 @@ var SignUpComponent = (function () {
         user.tipo = 2;
         this.authService.signUp(user)
             .subscribe(function (response) {
-            alert("Usuario Creado");
+            _this.toastr.info("Usuario Creado", 'Alerta');
             _this.router.navigate(['/signin']);
         }, function (error) {
             var jsonObject = JSON.parse(error.text());
-            alert(jsonObject.message);
+            _this.toastr.info(jsonObject.message, 'Alerta');
             console.log(error.text());
         });
     };
@@ -43,7 +45,7 @@ var SignUpComponent = (function () {
             templateUrl: '/app/signup/signup.component.html',
             styleUrls: ['./app/signin/signin.component.css', './app/signup/signup.component.css']
         }), 
-        __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService])
+        __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService, ng2_toastr_1.ToastsManager])
     ], SignUpComponent);
     return SignUpComponent;
 }());

@@ -1,17 +1,18 @@
-import { ModuleWithProviders } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {ModuleWithProviders} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 
-import { HeroesComponent } from './heroes.component';
-import { SignInComponent } from './signin/signin.component';
-import { SignUpComponent } from './signup/signup.component';
-import { EditProfileComponent } from './edit-profile/edit-profile.component';
-import { RecoverPasswordComponent } from './recover-password/recover-password.component';
-import { HeroDetailComponent } from './hero-detail.component';
-import { InboxTramiteComponent } from './tramite/inbox.component';
-import { EditTramite } from './edit-tramite/editTramite.component';
-import { InboxSolicitudComponent } from './solicitud/inbox.component';
-import { EditSolicitud } from './edit-solicitud/editSolicitud.component';
-import { InboxUsuarioComponent } from './usuario/inbox.component'; 
+import {HeroesComponent} from './heroes.component';
+import {SignInComponent} from './signin/signin.component';
+import {SignUpComponent} from './signup/signup.component';
+import {EditProfileComponent} from './edit-profile/edit-profile.component';
+import {RecoverPasswordComponent} from './recover-password/recover-password.component';
+import {ProcedureComponent} from "./procedure/procedure.component";
+import {FieldDetailComponent} from "./field-detail/field-detail.component";
+import {InboxTramiteComponent} from './tramite/inbox.component';
+import {EditTramite} from './edit-tramite/editTramite.component';
+import {InboxSolicitudComponent} from './solicitud/inbox.component';
+import {EditSolicitud} from './edit-solicitud/editSolicitud.component';
+import {InboxUsuarioComponent} from './usuario/inbox.component';
 
 
 const appRoutes: Routes = [
@@ -41,6 +42,15 @@ const appRoutes: Routes = [
         component: RecoverPasswordComponent
     },
     {
+        path: 'procedure',
+        component: ProcedureComponent
+    },
+    {
+        path: 'fieldDetail',
+        component: FieldDetailComponent
+    },
+    {
+
         path: 'inboxTramite',
         component: InboxTramiteComponent
     },

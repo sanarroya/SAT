@@ -1,14 +1,15 @@
-import { Component } from '@angular/core'
+
 import { Injectable } from '@angular/core'
 import { Headers, Http, Response } from '@angular/http'
 import { Observable }     from 'rxjs/Observable'
 import 'rxjs/add/operator/map'
-
 import { User } from '../user'
 import { Login } from '../login'
+
+import {tramites} from "../tramites";
 import { Tramite } from '../tramite'
 import { Solicitud } from '../solicitud' 
- 
+
 @Injectable()
 export class AuthenticationService {
     private baseUrl = 'http://localhost:44111'
@@ -16,6 +17,7 @@ export class AuthenticationService {
     private singUpEndpoint = '/userResource/registerCitizen'
     private recoverPasswordEndpoint = '/userResource/recoverPassword'
     private userInfoEndpoint = '/userResource/getRegisteredUsers'
+    private createProcedureEndpoint='/procedureResource/createProcedure';
     private updateUserEndpoint = '/userResource/updateUser'
     private tramitesEndpoint = '/procedureResource/getAllProcedures';
     private solicitudEndpoint = '/procedureResource/getAllSolicitudes';
@@ -52,6 +54,11 @@ export class AuthenticationService {
 
     updateUser(user: User): Observable<any> {
         return this.http.put(this.baseUrl + this.updateUserEndpoint, JSON.stringify(user), this.headers)
+            .map(res => res.json())
+    }
+
+    createProcedure(tramite: tramites): Observable<any> {
+        return this.http.post(this.baseUrl + this.createProcedureEndpoint, JSON.stringify(tramite), this.headers)
             .map(res => res.json())
     }
     
@@ -110,4 +117,11 @@ export class AuthenticationService {
         return Observable.throw(errMsg);
     }
 
+    getSolicitudProfile(item: any) {
+        
+    }
+
+    getTramiteProfile(item: any) {
+        
+    }
 }

@@ -1,56 +1,51 @@
-﻿<md-toolbar class="md-accent">
-    <img class="toolbar-logo" src="../assets/satlogo.png" />
-    <h1 class="toolbar-title">SAT - Sistema de Automatizacion de Tramites</h1>
-    <span class="app-toolbar-filler"></span>
-</md-toolbar>
+﻿<md-sidenav-layout>
+    <md-sidenav #start class="app-sidenav" >
+        <div><img class="form-logo" src="assets/satlogo2.png"></div>
+        <ul>
+            <li class="menu" *ngFor="let hero of menus" (click)="onSelect(hero)">
+                <span>{{hero.name}}</span>
+            </li>
+        </ul>
+    </md-sidenav>
+    <md-toolbar class="md-accent">
+        <i class="material-icons app-input-icon icon-space" (click)="start.toggle()">menu</i>
+        <img class="toolbar-logo" src="assets/satlogo.png"/>
+        <h1 class="toolbar-title">SAT - Sistema de Automatizacion de Tramites</h1>
+        <span class="app-toolbar-filler"></span>
+    </md-toolbar>
 
-<div class="container">
+    <div class="container">
 
-    <h1 class="Title">
-        Bandeja Trámites
-    </h1>
-        <div style="text-align:right; ">
+        <div style="text-align:left; ">
 
-            <h5>
-                Bienvenido: {{username}}
-            </h5>
         </div>
 
-     <table>
-          
-        <tr *ngFor="let tramite of selectTramite">
-            <td style="width:95%">
-                <div>
-                    <strong>ID: {{tramite.id}} | {{tramite.nombre}}</strong>
-                    <br />
-                    {{tramite.descripcion}}
-                </div>
-            </td>
-            <td style="width:5%">
-                <div style="display: flex; ">
-                    <a (click)="editItem(tramite)" title="Editar">
-                        <i class="large material-icons">
-                            mode_edit
-                        </i>
-                    </a>
-                    <a (click)="removeItem(tramite)" title="Eliminar">
-                        <i class="large material-icons">
-                            delete
-                        </i>
-                    </a>
-                </div>
-            </td>
+        <table align="center" style="align-items: center; margin-left: 80">
 
-         </tr>
-                  
-    </table>
-    
-    <nav class="circular-menu">        
-        <i class="menu-button fa fa-plus fa-lg" (click)="newItem()" title="Nuevo"></i>
-    </nav>
-           
-    <br />
-  
+            <tr *ngFor="let tramite of selectTramite" class="lt">
+                <td style="width:95%">
+                    <div>
+                        <strong style="margin-left: 10;margin-top: 15;color: #05AFA8;">ID: {{tramite.id}} | {{tramite.nombre}}</strong>
 
-</div>
-<br />
+                        <i class="material-icons campored1" (click)="removeItem(tramite)">clear</i>
+                        <i class="material-icons campogreen1" (click)="editItem(tramite)">mode_edit</i>
+
+                        <br/>
+                    </div>
+                    <div style="margin-top: 30;margin-left: 10;"><span> {{tramite.descripcion}}</span></div>
+                </td>
+            </tr>
+
+        </table>
+
+        <nav class="circular-menu">
+            <i class="menu-button fa fa-plus fa-lg" (click)="newItem()" title="Nuevo"></i>
+        </nav>
+
+
+    </div>
+</md-sidenav-layout>
+
+
+<br/>
+<br/>

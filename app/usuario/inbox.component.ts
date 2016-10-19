@@ -1,12 +1,15 @@
 ﻿import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { AuthenticationService } from '../services/authentication.service'
-import { User } from '../user' 
+import { User } from '../user'
+import {menu} from "../menu";
+import {MENU_ADM, MENU_CDN} from "../menu_mock";
+import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 
 @Component({
     selector: 'usuario',
     templateUrl: './app/usuario/inbox.component.html',
-    styleUrls: ['./app/usuario/inbox.component.css', './app/usuario/button-floating.css'],
+    styleUrls: ['./app/signin/signin.component.css','./app/usuario/inbox.component.css', './app/usuario/button-floating.css'],
     providers: [AuthenticationService]
 })
 
@@ -15,30 +18,32 @@ export class InboxUsuarioComponent implements OnInit {
 
     public selectUsuario: User[];
     public username;
+    menus: menu[];
 
     constructor(
         private router: Router,
-        private authService: AuthenticationService
-    ) { }
+        private authService: AuthenticationService,
+        private toastr: ToastsManager
+    ) { this.menus = localStorage.getItem("type_user") === 'Ciudadano' ? MENU_CDN : MENU_ADM;}
 
     private sortByWordLength = (a: any) => {
         return a.name.length;
     }
 
     public removeItem(item: any) {
-        alert("eliminar: " + item.id);
+        this.toastr.info("Eliminar: " + item.id, 'Alerta');
         console.log("Remove: ", item.id);
     }
 
     public editItem(item: any) {
-        alert("Editar" + item.cedula);
+        this.toastr.info("Editar: " + item.id, 'Alerta');
         let link = ['/editProfile', item.cedula];
         this.router.navigate(link);
         console.log("Edit: ", item.id);
     }
 
     public newItem() {
-        alert("Nuevo Usuario");
+        this.toastr.info("Nuevo Usuario", 'Alerta');
         let link = ['/editProfile', 0];
         this.router.navigate(link);
         console.log("Nuevo Uusuario");
@@ -64,11 +69,15 @@ export class InboxUsuarioComponent implements OnInit {
                 this.selectUsuario = response;
             },
             error => {
-                alert('hay un error');
-                alert(error.text());
+                this.toastr.error('hay un error', 'Alerta');
+                this.toastr.error(error.text(), 'Alerta');
                 console.log(error.text());
             }
             );
+    }
+
+    onSelect(hero: menu): void {
+        this.router.navigate([hero.id]);
     }
 
 }

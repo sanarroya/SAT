@@ -2,12 +2,16 @@
 import { Router } from '@angular/router'
 import { AuthenticationService } from '../services/authentication.service'
 import { User } from '../user'
-import { Tramite } from '../tramite' 
+import { Tramite } from '../tramite'
+import {ToastsManager} from 'ng2-toastr/ng2-toastr';
+import {menu} from "../menu";
+import {MENU_ADM, MENU_CDN} from "../menu_mock";
+import {campo} from "../campo";
 
 @Component({
     selector: 'tramite',
     templateUrl: './app/tramite/inbox.component.html',
-    styleUrls: ['./app/tramite/inbox.component.css','./app/tramite/button-floating.css'],
+    styleUrls: ['./app/signin/signin.component.css','./app/tramite/inbox.component.css','./app/tramite/button-floating.css'],
     providers: [AuthenticationService]
 })
 
@@ -16,31 +20,49 @@ export class InboxTramiteComponent implements OnInit {
 
     public selectTramite: Tramite[];  
     public username;
+    menus: menu[];
 
     constructor(
         private router: Router,
-        private authService: AuthenticationService
-    ) { }
+        private authService: AuthenticationService,
+        private toastr: ToastsManager
+    ) { this.menus = localStorage.getItem("type_user") === 'Ciudadano' ? MENU_CDN : MENU_ADM;}
     
     private sortByWordLength = (a: any) => {
         return a.name.length;
     }
     
     public removeItem(item: any) {
-        alert("eliminar: " + item.id); 
+        this.toastr.info("Eliminar: " + item.id, 'Alerta');
         console.log("Remove: ", item.id);
     }
 
     public editItem(item: any) {
-        alert("Editar" + item.id);
-        let link = ['/editTramite', item.id];
+        this.toastr.info("Editar: " + item.id, 'Alerta');
+        let campo:campo[]=[];
+        localStorage.setItem("campos", JSON.stringify(campo));
+        localStorage.setItem("tramite", "");
+        localStorage.setItem("descripcion", "");
+        localStorage.setItem("edit", 'false');
+        localStorage.setItem("campoid", "");
+        localStorage.setItem("type", "");
+        localStorage.setItem("campo", "");
+        let link = ['/procedure'];
         this.router.navigate(link);
         console.log("Edit: ", item.id);
     }
 
     public newItem() {
-        alert("Nuevo Trámite"); 
-        let link = ['/editTramite', 0];
+        this.toastr.info("Nuevo Trámite", 'Alerta');
+        let campo:campo[]=[];
+        localStorage.setItem("campos", JSON.stringify(campo));
+        localStorage.setItem("tramite", "");
+        localStorage.setItem("descripcion", "");
+        localStorage.setItem("edit", 'false');
+        localStorage.setItem("campoid", "");
+        localStorage.setItem("type", "");
+        localStorage.setItem("campo", "");
+        let link = ['/procedure'];
         this.router.navigate(link);
         console.log("Nuevo Trámite: ");
     }
@@ -66,12 +88,15 @@ export class InboxTramiteComponent implements OnInit {
                 this.selectTramite = response;
             },
             error => {
-                alert('hay un error');
-                alert(error.text());
+                this.toastr.error('hay un error', 'Alerta');
+                this.toastr.error(error.text(), 'Alerta');
                 console.log(error.text());
             } 
             );
     }
-    
+
+    onSelect(hero: menu): void {
+        this.router.navigate([hero.id]);
+    }
 
 }

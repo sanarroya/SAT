@@ -1,7 +1,8 @@
-import { Component } from '@angular/core'
-import { Router } from '@angular/router'
-import { AuthenticationService } from '../services/authentication.service'
-import { User } from '../user'
+import {Component} from '@angular/core'
+import {Router} from '@angular/router'
+import {AuthenticationService} from '../services/authentication.service'
+import {User} from '../user'
+import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 
 @Component({
     selector: 'sign-up',
@@ -11,10 +12,8 @@ import { User } from '../user'
 
 export class SignUpComponent {
 
-    constructor(
-        private router: Router,
-        private authService: AuthenticationService
-    ) { }
+    constructor(private router: Router, private authService: AuthenticationService, private toastr: ToastsManager) {
+    }
 
     onSignUp(cedula, nombre, email, password, confirmPassword, telefono) {
         let user = new User()
@@ -27,12 +26,12 @@ export class SignUpComponent {
         user.tipo = <string>2
 
         this.authService.signUp(user)
-            .subscribe( response => {
-                alert("Usuario Creado");
+            .subscribe(response => {
+                this.toastr.info("Usuario Creado", 'Alerta');
                 this.router.navigate(['/signin']);
             }, error => {
                 let jsonObject = JSON.parse(error.text());
-                alert(jsonObject.message);
+                this.toastr.info(jsonObject.message, 'Alerta');
                 console.log(error.text());
             })
     }
