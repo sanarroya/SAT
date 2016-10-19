@@ -12,7 +12,7 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var authentication_service_1 = require('../services/authentication.service');
 var menu_mock_1 = require("../menu_mock");
-var tramite_1 = require("../tramite");
+var tramites_1 = require("../tramites");
 var campo_1 = require("../campo");
 var ng2_toastr_1 = require('ng2-toastr/ng2-toastr');
 var ProcedureComponent = (function () {
@@ -21,7 +21,7 @@ var ProcedureComponent = (function () {
         this.authService = authService;
         this.toastr = toastr;
         this.camposSelected = [];
-        this.tramiteSelected = new tramite_1.tramites();
+        this.tramiteSelected = new tramites_1.tramites();
         this.menus = localStorage.getItem("type_user") == 'Ciudadano' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
         this.camposSelected = JSON.parse(localStorage.getItem("campos")) === null ? [] : JSON.parse(localStorage.getItem("campos"));
         this.tramiteSelected.nombre = localStorage.getItem("tramite");
@@ -56,11 +56,11 @@ var ProcedureComponent = (function () {
         else {
             var lenghtC_1 = +this.camposSelected.length;
             if (lenghtC_1 > 0) {
-                var tramitex = new tramite_1.tramites();
+                var tramitex = new tramites_1.tramites();
                 tramitex.nombre = nomTramite;
                 tramitex.descripcion = desTramite;
                 tramitex.campos = this.camposSelected;
-                this.authService.createProcedure(tramite_1.tramites)
+                this.authService.createProcedure(tramites_1.tramites)
                     .subscribe(function (response) {
                     _this.toastr.info("Tramite Creado", 'Alerta');
                     _this.camposSelected.splice(0, _this.camposSelected.length);

@@ -31,6 +31,11 @@ var edit_profile_component_1 = require('./edit-profile/edit-profile.component');
 var recover_password_component_1 = require('./recover-password/recover-password.component');
 var procedure_component_1 = require('./procedure/procedure.component');
 var field_detail_component_1 = require('./field-detail/field-detail.component');
+var inbox_component_1 = require('./tramite/inbox.component');
+var editTramite_component_1 = require('./edit-tramite/editTramite.component');
+var inbox_component_2 = require('./solicitud/inbox.component');
+var editSolicitud_component_1 = require('./edit-solicitud/editSolicitud.component');
+var inbox_component_3 = require('./usuario/inbox.component');
 var authentication_service_1 = require('./services/authentication.service');
 var app_routing_1 = require('./app.routing');
 var AppModule = (function () {
@@ -62,6 +67,11 @@ var AppModule = (function () {
                 recover_password_component_1.RecoverPasswordComponent,
                 procedure_component_1.ProcedureComponent,
                 field_detail_component_1.FieldDetailComponent,
+                inbox_component_1.InboxTramiteComponent,
+                inbox_component_2.InboxSolicitudComponent,
+                editTramite_component_1.EditTramite,
+                editSolicitud_component_1.EditSolicitud,
+                inbox_component_3.InboxUsuarioComponent,
                 dashboard_component_1.DashboardComponent
             ],
             providers: [

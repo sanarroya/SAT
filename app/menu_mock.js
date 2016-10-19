@@ -1,14 +1,14 @@
 "use strict";
 exports.MENU_ADM = [
-    { id: '/procedure', name: 'Tramites' },
-    { id: '/signin', name: 'Funcionarios' },
-    { id: '/signin', name: 'Solicitudes' },
+    { id: '/inboxTramite', name: 'Tramites' },
+    { id: '/inboxUsuario', name: 'Funcionarios' },
+    { id: '/inboxSolicitud', name: 'Solicitudes' },
     { id: '/editProfile', name: 'Editar Perfil' },
     { id: '/signin', name: 'Cerrar Sesion' }
 ];
 exports.MENU_CDN = [
-    { id: '/signin', name: 'Tramites' },
-    { id: '/signin', name: 'Mis Solicitudes' },
+    { id: '/inboxTramite', name: 'Tramites' },
+    { id: '/inboxSolicitud', name: 'Mis Solicitudes' },
     { id: '/editProfile', name: 'Editar Perfil' },
     { id: '/signin', name: 'Cerrar Sesion' }
 ];

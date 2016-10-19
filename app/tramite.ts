@@ -1,6 +1,5 @@
-import {campo} from "./campo";
-export class tramites {
+export class Tramite {
+    id: number
     nombre: string
     descripcion: string
-    campos: campo[]
 }

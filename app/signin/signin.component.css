@@ -130,3 +130,16 @@ md-sidenav {
     clear: none;
 }
 
+.campored1 {
+    color: red;
+    float: right;
+
+}
+
+.campogreen1 {
+    color: #05AFA8;
+    float: right;
+    margin-right: 16;
+    margin-left: 60;
+}
+

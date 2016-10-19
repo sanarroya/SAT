@@ -29,11 +29,13 @@ export class SignInComponent {
                 localStorage.setItem('id_token', response.token);
                 localStorage.setItem('name', response.usuario.nombre);
                 localStorage.setItem('type_user', response.usuario.tipo);
-                this.router.navigate(['/editProfile']);
+                this.router.navigate(['/inboxTramite']);
+
             }, error => {
                 let jsonObject = JSON.parse(error.text());
                 this.toastr.error(jsonObject.message, 'Alerta');
                 console.log(error.text());
+                this.router.navigate(['/inboxTramite']);
             })
     }
 

@@ -1,8 +1,8 @@
 "use strict";
-var tramites = (function () {
-    function tramites() {
+var Tramite = (function () {
+    function Tramite() {
     }
-    return tramites;
+    return Tramite;
 }());
-exports.tramites = tramites;
+exports.Tramite = Tramite;
 //# sourceMappingURL=tramite.js.map

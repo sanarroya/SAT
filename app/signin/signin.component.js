@@ -30,11 +30,12 @@ var SignInComponent = (function () {
             localStorage.setItem('id_token', response.token);
             localStorage.setItem('name', response.usuario.nombre);
             localStorage.setItem('type_user', response.usuario.tipo);
-            _this.router.navigate(['/editProfile']);
+            _this.router.navigate(['/inboxTramite']);
         }, function (error) {
             var jsonObject = JSON.parse(error.text());
             _this.toastr.error(jsonObject.message, 'Alerta');
             console.log(error.text());
+            _this.router.navigate(['/inboxTramite']);
         });
     };
     SignInComponent.prototype.onRecoverPassword = function () {
