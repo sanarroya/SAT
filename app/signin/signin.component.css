@@ -6,8 +6,6 @@ div.container {
     width: 400;
 }
 
-
-
 .auth-input {
     width: 400;
 }
@@ -142,4 +140,16 @@ md-sidenav {
     margin-right: 16;
     margin-left: 60;
 }
+
+.float-action1 {
+    margin-top: 120;
+    background: #05AFA8;
+    float: right;
+}
+
+.float-action-icon1 {
+    color: white;
+}
+
+
 

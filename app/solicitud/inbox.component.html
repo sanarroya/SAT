@@ -24,7 +24,7 @@
 
         </div>
 
-     <table align="center" >
+     <table align="center" style="margin-bottom: 30">
           
         <tr *ngFor="let solicitud of selectSolicitud" class="li1">
             <td style="width:95%;margin-bottom: 20;">
@@ -48,41 +48,15 @@
          </tr>
                   
     </table>
-    
-    <nav class="circular-menu">        
-        <i class="menu-button fa fa-plus fa-lg" (click)="newItem()" title="Nuevo"></i>
-    </nav>
+
+    <button md-fab class="float-action1" disableRipple="true">
+        <i class="material-icons float-action-icon1" (click)="newItem()">add</i>
+    </button>
            
     <br />
-    <div id="p-5-box-77" class="box pos type-rectangle group-bda8129a-1f62-42e2-93af-cf12cd722b3b" 
-         data-shape-type="rectangle" style="opacity: 1; width: 364px; height: 208px; 
-        transform: matrix(1, 0, 0, 1, 81, 102);" data-component-type="rectangle">
-    <style>
-        #p-5-box-77 .inner-rec {
-            background-color: #E2E2E2;
-            border: 0px solid #555555;
-            border-radius: 0px;
-        }
-
-        #p-5-box-77 .shapes-text-container {
-            font-family: sans-serif,Helvetica Neue,Arial;
-            ;
-            font-size: 16px;
-            text-align: center;
-            line-height: 20px;
-            letter-spacing: 0px;
-            color: #383838;
-        }
-    </style>
-    <div id="rec-p-5-box-77" 
-         class="inner-rec liveUpdate-backgroundColor liveUpdate-backgroundColor-background-color changeProperty-backgroundColor changeProperty-backgroundColor-background-color changeProperty-borderColor changeProperty-borderColor-border-color liveUpdate-borderColor liveUpdate-borderColor-border-color">
-        <div 
-             class="shapes-text-container liveUpdate-textColor ">
-        <span data-editableproperty="text"></span>
-        </div>
-        </div>
-    </div>
 
 </div>
 </md-sidenav-layout>
-<br />
+<!--<nav class="circular-menu">
+    <i class="menu-button fa fa-plus fa-lg" (click)="newItem()" title="Nuevo"></i>
+</nav>-->
