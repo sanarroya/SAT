@@ -20,7 +20,7 @@
 
         </div>
 
-        <table align="center" style="align-items: center; margin-left: 80">
+        <table align="center" style="align-items: center; margin-left: 80;margin-bottom: 30;">
 
             <tr *ngFor="let tramite of selectTramite" class="lt">
                 <td style="width:95%">
@@ -38,13 +38,19 @@
 
         </table>
 
-        <nav class="circular-menu">
-            <i class="menu-button fa fa-plus fa-lg" (click)="newItem()" title="Nuevo"></i>
-        </nav>
+        <button md-fab class="float-action1" disableRipple="true">
+            <i class="material-icons float-action-icon1" (click)="newItem()">add</i>
+        </button>
 
 
     </div>
 </md-sidenav-layout>
+
+
+<!--<nav class="circular-menu">
+    <i class="menu-button fa fa-plus fa-lg" (click)="newItem()" title="Nuevo"></i>
+</nav>-->
+
 
 
 <br/>

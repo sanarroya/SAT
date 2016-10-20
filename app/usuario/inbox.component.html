@@ -25,7 +25,7 @@
             </h5>
         </div>
 
-        <table>
+        <table  align="center" style="margin-bottom: 30">
 
             <tr *ngFor="let usuario of selectUsuario" class="li1">
                 <td style="width:95%;;margin-bottom: 20;">
@@ -51,12 +51,10 @@
 
         </table>
 
-        <nav class="circular-menu">
-            <i class="menu-button fa fa-plus fa-lg" (click)="newItem()" title="Nuevo"></i>
-        </nav>
+
 
         <br/>
-        <div id="p-5-box-77" class="box pos type-rectangle group-bda8129a-1f62-42e2-93af-cf12cd722b3b"
+       <!-- <div id="p-5-box-77" class="box pos type-rectangle group-bda8129a-1f62-42e2-93af-cf12cd722b3b"
              data-shape-type="rectangle" style="opacity: 1; width: 364px; height: 208px;
         transform: matrix(1, 0, 0, 1, 81, 102);" data-component-type="rectangle">
             <style>
@@ -82,8 +80,12 @@
                     <span data-editableproperty="text"></span>
                 </div>
             </div>
-        </div>
-
+        </div>-->
+        <button md-fab class="float-action1" disableRipple="true">
+            <i class="material-icons float-action-icon1" (click)="newItem()">add</i>
+        </button>
     </div>
 </md-sidenav-layout>
-<br/>
+<nav class="circular-menu">
+    <i class="menu-button fa fa-plus fa-lg" (click)="newItem()" title="Nuevo"></i>
+</nav>
