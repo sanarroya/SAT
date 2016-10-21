@@ -12,6 +12,7 @@ var editTramite_component_1 = require('./edit-tramite/editTramite.component');
 var inbox_component_2 = require('./solicitud/inbox.component');
 var editSolicitud_component_1 = require('./edit-solicitud/editSolicitud.component');
 var inbox_component_3 = require('./usuario/inbox.component');
+var create_procedure_component_1 = require('./create-procedure/create-procedure.component');
 var appRoutes = [
     {
         path: '',
@@ -65,6 +66,10 @@ var appRoutes = [
     {
         path: 'inboxUsuario',
         component: inbox_component_3.InboxUsuarioComponent
+    },
+    {
+        path: 'createProcedure',
+        component: create_procedure_component_1.CreateProcedureComponent
     }
 ];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);

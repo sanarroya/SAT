@@ -133,7 +133,6 @@ export class ProcedureComponent implements OnInit {
         this.router.navigate(['/fieldDetail']);
     }
 
-
     onBack(): void {
         this.router.navigate(["/inboxTramite"]);
     }
