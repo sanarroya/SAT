@@ -14,6 +14,7 @@ import {InboxSolicitudComponent} from './solicitud/inbox.component';
 import {EditSolicitud} from './edit-solicitud/editSolicitud.component';
 import {InboxUsuarioComponent} from './usuario/inbox.component';
 import {CreateProcedureComponent} from './create-procedure/create-procedure.component'
+import {SignUpEmployeeComponent} from './signupemployee/signup.component';
 
 
 const appRoutes: Routes = [
@@ -72,9 +73,14 @@ const appRoutes: Routes = [
         component: InboxUsuarioComponent
     },
     {
+        path: 'newuserin',
+        component: SignUpEmployeeComponent
+    },
+    {
         path: 'createProcedure',
         component: CreateProcedureComponent
     }
+    
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

@@ -36,6 +36,12 @@ var AuthenticationService = (function () {
         return this.http.post(this.baseUrl + this.singUpEndpoint, JSON.stringify(user), this.headers)
             .map(function (res) { return res.json(); });
     };
+    //Crear funcionario
+    AuthenticationService.prototype.signUpFuncionario = function (user) {
+        user.tipo = '2';
+        return this.http.post(this.baseUrl + this.singUpEndpoint, JSON.stringify(user), this.headers)
+            .map(function (res) { return res.json(); });
+    };
     //TODO - Cambiar el tipo del observador
     AuthenticationService.prototype.recoverPassword = function (cedula) {
         return this.http.post(this.baseUrl + this.recoverPasswordEndpoint, JSON.stringify({ cedula: cedula }), this.headers)
@@ -44,7 +50,6 @@ var AuthenticationService = (function () {
     //TODO - Cambiar el tipo del observador
     AuthenticationService.prototype.getUserProfile = function (cedula) {
         var url = (this.baseUrl + this.userInfoEndpoint) + "/" + cedula;
-        alert('ol');
         return this.http.get(url)
             .map(this.extractDataUsuarios);
     };

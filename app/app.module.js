@@ -37,6 +37,7 @@ var inbox_component_2 = require('./solicitud/inbox.component');
 var editSolicitud_component_1 = require('./edit-solicitud/editSolicitud.component');
 var inbox_component_3 = require('./usuario/inbox.component');
 var create_procedure_component_1 = require('./create-procedure/create-procedure.component');
+var signup_component_2 = require('./signupemployee/signup.component');
 var survey_component_1 = require('./create-procedure/survey.component');
 var authentication_service_1 = require('./services/authentication.service');
 var app_routing_1 = require('./app.routing');
@@ -78,7 +79,8 @@ var AppModule = (function () {
                 inbox_component_3.InboxUsuarioComponent,
                 create_procedure_component_1.CreateProcedureComponent,
                 survey_component_1.Survey,
-                dashboard_component_1.DashboardComponent
+                dashboard_component_1.DashboardComponent,
+                signup_component_2.SignUpEmployeeComponent
             ],
             providers: [
                 hero_service_1.HeroService,

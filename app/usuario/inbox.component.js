@@ -35,7 +35,7 @@ var InboxUsuarioComponent = (function () {
     };
     InboxUsuarioComponent.prototype.newItem = function () {
         this.toastr.info("Nuevo Usuario", 'Alerta');
-        var link = ['/editProfile', 0];
+        var link = ['/newuserin'];
         this.router.navigate(link);
         console.log("Nuevo Uusuario");
     };
