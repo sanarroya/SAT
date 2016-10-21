@@ -19,7 +19,7 @@ var EditProfileComponent = (function () {
         this.router = router;
         this.authService = authService;
         this.toastr = toastr;
-        this.selectUser = user_1.User();
+        this.selectUser = new user_1.User();
         this.menus = localStorage.getItem("type_user") === '1' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
     }
     EditProfileComponent.prototype.getUser = function () {
@@ -62,6 +62,10 @@ var EditProfileComponent = (function () {
     EditProfileComponent.prototype.ngOnInit = function () {
         this.getUser();
     };
+    __decorate([
+        core_1.Input, 
+        __metadata('design:type', Object)
+    ], EditProfileComponent.prototype, "selectUser", void 0);
     EditProfileComponent = __decorate([
         core_1.Component({
             selector: 'edit-profile',
