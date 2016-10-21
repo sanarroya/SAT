@@ -1,0 +1,23 @@
+<div>
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+        <div *ngFor="let field of model.fields">
+            <div [ngSwitch]="field.controlType">
+                <div *ngSwitchCase="'textbox'">
+                    <md-input required type="{{field.type}}" id="{{field.key}}" [formControlName]="field.key" placeholder="{{field.text}}"></md-input>
+                </div>
+                <div *ngSwitchCase="'file'">
+                    <input required type="file" id="{{field.key}}" [formControlName]="field.key">
+                </div>
+            </div>
+        </div>
+        <div>
+            <button md-button disableRipple="true" type="submit">Crear Solicitud</button>
+        </div>
+    </form>
+    <div class="form-row">
+        <div *ngIf="payLoad"><strong>The form contains the following values</strong></div>
+        <div>
+            {{payLoad}}
+        </div>
+    </div>
+</div>
