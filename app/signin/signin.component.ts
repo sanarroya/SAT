@@ -32,7 +32,7 @@ export class SignInComponent {
                 this.router.navigate(['/inboxTramite']);
             }, error => {
                 let jsonObject = JSON.parse(error.text());
-                this.toastr.error(jsonObject.message, 'Email o contraseña invalidos');
+                this.toastr.error("", 'Email o contraseña invalidos');
                 console.log(error.text());
             })
     }
