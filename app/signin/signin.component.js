@@ -33,7 +33,7 @@ var SignInComponent = (function () {
             _this.router.navigate(['/inboxTramite']);
         }, function (error) {
             var jsonObject = JSON.parse(error.text());
-            _this.toastr.error(jsonObject.message, 'Email o contraseña invalidos');
+            _this.toastr.error("", 'Email o contraseña invalidos');
             console.log(error.text());
         });
     };
