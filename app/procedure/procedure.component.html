@@ -14,32 +14,40 @@
         <span class="app-toolbar-filler"></span>
     </md-toolbar>
     <div>
+        <button md-fab disableRipple="true" style="float: right;margin-right: 60;margin-top:40;background:#05AFA8;"
+                (click)="onBack()">
+            <i class="material-icons addgreenback">backspace</i>
+        </button>
+
         <div class="container" style="width: 600;">
             <form name="userForm1" (submit)="createProcedure(nombre.value,descripcion.value)">
                 <div>
                     <div style="float:left;width:70%;">
-                        <md-input #nombre type="text" placeholder="Nombre de Trámite" class="left-input" [(ngModel)]="tramiteSelected.nombre" name="nombre" required>
+                        <md-input #nombre type="text" placeholder="Nombre de Trámite" class="left-input" maxlength="10"
+                                  [(ngModel)]="tramiteSelected.nombre" name="nombre" required>
                         </md-input>
                     </div>
                     <div style="float:left;width:30%;">
-                        <button md-raised-button disableRipple="false" class="left-button" type="submit" style="font-size:75%;">CREAR
+                        <button md-raised-button disableRipple="false" class="left-button" type="submit"
+                                style="font-size:75%;">CREAR/EDITAR
                         </button>
                     </div>
 
                 </div>
                 <div>
                     <div style="float:left;width:100%;">
-                        <md-input #descripcion type="text" placeholder="Descripción de Trámite" class="left-input" [(ngModel)]="tramiteSelected.descripcion" name="descripcion" required>
+                        <md-input #descripcion type="text" placeholder="Descripción de Trámite" class="left-input" maxlength="10"
+                                  [(ngModel)]="tramiteSelected.descripcion" name="descripcion" required>
                         </md-input>
                     </div>
 
                 </div>
                 <div class="container-title">
-                <span style="color: #05AFA8;padding-top:150;font-size:150%;">CAMPOS DE TRAMITE</span>
-                <i class="material-icons addgreen" (click)="onFielDetail()">note_add</i>
+                    <span style="color: #05AFA8;padding-top:150;font-size:150%;">CAMPOS DE TRAMITE</span>
+                    <i class="material-icons addgreen" (click)="onFielDetail()">note_add</i>
                 </div>
                 <ul class="campo">
-                    <li  *ngFor="let campo of camposSelected" >
+                    <li *ngFor="let campo of camposSelected">
                         <span>{{campo.nombre}}</span>
                         <i class="material-icons campored" (click)="onSelectRemoveCampo(campo)">clear</i>
                         <i class="material-icons campogreen" (click)="onSelectEditCampo(campo)">mode_edit</i>
@@ -52,5 +60,6 @@
         <div style="  margin: 0">
 
         </div>
+
     </div>
 </md-sidenav-layout>

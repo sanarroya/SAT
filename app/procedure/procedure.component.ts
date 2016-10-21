@@ -21,7 +21,8 @@ export class ProcedureComponent implements OnInit {
 
     menus: menu[];
     camposSelected: campo[] = [];
-    tramiteSelected=new tramites();
+    tramiteSelected = new tramites();
+    num: number = 1;
 
 
     constructor(private router: Router, private authService: AuthenticationService, private toastr: ToastsManager) {
@@ -29,18 +30,18 @@ export class ProcedureComponent implements OnInit {
 
         this.camposSelected = JSON.parse(localStorage.getItem("campos")) === null ? [] : JSON.parse(localStorage.getItem("campos"));
 
-        this.tramiteSelected.nombre=localStorage.getItem("tramite");
-        this.tramiteSelected.descripcion=localStorage.getItem("descripcion");
+        this.tramiteSelected.nombre = localStorage.getItem("tramite");
+        this.tramiteSelected.descripcion = localStorage.getItem("descripcion");
 
         if (localStorage.getItem("operationDetail") === "true") {
 
             localStorage.setItem("operationDetail", "false");
 
             if (localStorage.getItem("edit") === "true") {
-                localStorage.setItem("edit","false");
+                localStorage.setItem("edit", "false");
                 let index: number = +localStorage.getItem("campoid");
                 if (index > -1) {
-                    index=index-1;
+                    index = index - 1;
                     this.camposSelected[index].nombre = localStorage.getItem("campo");
                     this.camposSelected[index].tipo = localStorage.getItem("type");
                 }
@@ -58,48 +59,63 @@ export class ProcedureComponent implements OnInit {
 
     }
 
-    createProcedure(nomTramite,desTramite): void {
+    createProcedure(nomTramite, desTramite): void {
         let lenghtC: number = 0;
-        if(nomTramite==null || nomTramite==="" || desTramite===null || desTramite==="" || this.camposSelected===null ){
+        if (nomTramite == null || nomTramite === "" || desTramite === null || desTramite === "" || this.camposSelected === null) {
             this.toastr.error('Un Tramite todos los campos son obligatorios', 'Alerta');
-        }else{
+        } else {
 
-            let lenghtC=+this.camposSelected.length;
+            let lenghtC = +this.camposSelected.length;
 
-            if(lenghtC>0){
+            if (lenghtC > 0) {
 
-                let tramitex=new tramites();
-                tramitex.nombre=nomTramite;
-                tramitex.descripcion=desTramite;
-                tramitex.campos=this.camposSelected;
+                let id: string="0";
+                let edit = localStorage.getItem("editcampoStoredId");
+                if (edit === "true") {
+                    id = localStorage.getItem("campoStoredId");
+                } else {
+                    let num: number = +localStorage.getItem("campoStoredId");
+                    num = num + 1;
+                    id = num.toString();
+                    localStorage.setItem("campoStoredId",id.toString());
+                }
+
+                let tramitex = new tramites();
+                tramitex.id = id;
+                tramitex.nombre = nomTramite;
+                tramitex.descripcion = desTramite;
+                tramitex.campos = this.camposSelected;
 
 
-                this.authService.createProcedure(tramites)
-                    .subscribe(response => {
-                        this.toastr.info("Tramite Creado", 'Alerta');
-                        this.camposSelected.splice(0,this.camposSelected.length);
-                        localStorage.setItem("campos", JSON.stringify(this.camposSelected));
-                        localStorage.setItem("tramite", "");
-                        localStorage.setItem("descripcion", "");
-                        localStorage.setItem("edit", 'false');
-                        localStorage.setItem("campoid", "");
-                        localStorage.setItem("type", "");
-                        localStorage.setItem("campo", "");
-                        this.router.navigate(['/editProfile']);
-                    }, error => {
-                        let jsonObject = JSON.parse(error.text());
-                        this.toastr.error("Error creando el tramite, por favor intente de nuevo", 'Alerta');
-                        console.log(error.text());
-                    });
+                /*this.authService.createProcedure(tramites)
+                 .subscribe(response => {
+                 this.toastr.info("Tramite Creado", 'Alerta');
+                 this.camposSelected.splice(0,this.camposSelected.length);
+                 localStorage.setItem("campos", JSON.stringify(this.camposSelected));
+                 localStorage.setItem("tramite", "");
+                 localStorage.setItem("descripcion", "");
+                 localStorage.setItem("edit", 'false');
+                 localStorage.setItem("campoid", "");
+                 localStorage.setItem("type", "");
+                 localStorage.setItem("campo", "");
+                 this.router.navigate(['/editProfile']);
+                 }, error => {
+                 let jsonObject = JSON.parse(error.text());
+                 this.toastr.error("Error creando el tramite, por favor intente de nuevo", 'Alerta');
+                 console.log(error.text());
+                 });*/
 
-            }else{
+                localStorage.setItem("tramiteStored", JSON.stringify(tramitex));
+                this.router.navigate(["/inboxTramite"]);
+
+
+            } else {
                 this.toastr.error('Un Tramite debe tener al menos un campo', 'Alerta');
             }
 
         }
 
     }
-
 
 
     onSelect(hero: menu): void {
@@ -115,6 +131,11 @@ export class ProcedureComponent implements OnInit {
         localStorage.setItem("campo", campo.nombre);
         localStorage.setItem("campos", JSON.stringify(this.camposSelected));
         this.router.navigate(['/fieldDetail']);
+    }
+
+
+    onBack(): void {
+        this.router.navigate(["/inboxTramite"]);
     }
 
     onSelectRemoveCampo(campo: campo): void {
