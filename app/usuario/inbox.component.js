@@ -40,6 +40,7 @@ var InboxUsuarioComponent = (function () {
         console.log("Nuevo Uusuario");
     };
     InboxUsuarioComponent.prototype.ngOnInit = function () {
+        //noinspection TypeScriptValidateTypes
         this.selectUsuario = [
             { nombre: 'Maria Antonia Ochoa Perez', cedula: 1234, email: 'mochoa@correo.com', tipo: '1', telefono: '', confirmPassword: '', password: '' },
             { nombre: 'Juan Carlos Marin Lopez', cedula: 2345, email: 'jlopez@correo.com', tipo: '1', telefono: '', confirmPassword: '', password: '' },
