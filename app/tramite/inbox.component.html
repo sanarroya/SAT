@@ -25,7 +25,7 @@
             <tr *ngFor="let tramite of selectTramite" class="lt">
                 <td style="width:95%">
                     <div>
-                        <strong style="margin-left: 10;margin-top: 15;color: #05AFA8;">ID: {{tramite.id}} | {{tramite.nombre}}</strong>
+                        <strong style="margin-left: 10;margin-top: 15;color: #05AFA8;">{{tramite.nombre}}</strong>
 
                         <i class="material-icons campored1" (click)="removeItem(tramite)">clear</i>
                         <i class="material-icons campogreen1" (click)="editItem(tramite)">mode_edit</i>
