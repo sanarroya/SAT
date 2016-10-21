@@ -35,6 +35,9 @@ var FieldDetailComponent = (function () {
         this.num = localStorage.getItem("campoid");
         this.edit = localStorage.getItem("edit");
     }
+    FieldDetailComponent.prototype.onBack = function () {
+        this.router.navigate(["/procedure"]);
+    };
     FieldDetailComponent.prototype.getCampo = function () {
         var campo1 = new campo_1.campo();
         campo1.nombre = localStorage.getItem("campo");

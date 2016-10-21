@@ -6,6 +6,11 @@
     </md-toolbar>
     <div>
         <div class="container">
+
+            <button md-fab disableRipple="true" style="float: right;margin-right: 30;margin-top:40;background:#05AFA8;"
+                    (click)="onBack()">
+                <i class="material-icons addgreenback">backspace</i>
+            </button>
             <form name="userForm12" (submit)="submitTramite(nombre.value)">
                 <div>
                     <div>
@@ -18,6 +23,7 @@
                     <span>Tipo Campo</span>
                 </div>
                     <ng-select
+                            style="high"
                             select
                             [(ngModel)]="type" name="type"
                             [options]="options"
