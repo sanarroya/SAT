@@ -44,8 +44,9 @@ var AuthenticationService = (function () {
     //TODO - Cambiar el tipo del observador
     AuthenticationService.prototype.getUserProfile = function (cedula) {
         var url = (this.baseUrl + this.userInfoEndpoint) + "/" + cedula;
+        alert('ol');
         return this.http.get(url)
-            .map(function (res) { return res.json(); });
+            .map(this.extractDataUsuarios);
     };
     AuthenticationService.prototype.updateUser = function (user) {
         return this.http.put(this.baseUrl + this.updateUserEndpoint, JSON.stringify(user), this.headers)
@@ -92,6 +93,12 @@ var AuthenticationService = (function () {
     AuthenticationService.prototype.extractDataOnly = function (res) {
         var body = res.json();
         return body;
+    };
+    //Metodo to manipulate data
+    AuthenticationService.prototype.extractDataUsuarios = function (res) {
+        // alert(res.json().usuarios[0])
+        var body = res.json();
+        return body.usuarios[0] || {};
     };
     //Metodo para manejar los errores
     AuthenticationService.prototype.handleError = function (error) {

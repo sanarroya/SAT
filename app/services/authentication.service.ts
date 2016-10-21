@@ -48,8 +48,9 @@ export class AuthenticationService {
     //TODO - Cambiar el tipo del observador
     getUserProfile(cedula: string): Observable<User> {
         const url =  `${this.baseUrl + this.userInfoEndpoint}/${cedula}`;
+        alert('ol')
         return this.http.get(url)
-            .map(res => res.json())
+            .map(this.extractDataUsuarios)
     }
 
     updateUser(user: User): Observable<any> {
@@ -104,6 +105,13 @@ export class AuthenticationService {
     private extractDataOnly(res: Response) {
         let body = res.json();
         return body;
+    }
+
+    //Metodo to manipulate data
+    private extractDataUsuarios(res: Response) {
+        // alert(res.json().usuarios[0])
+        let body = res.json();
+        return body.usuarios[0] || { };
     }
 
 
