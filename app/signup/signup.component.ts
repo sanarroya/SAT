@@ -31,17 +31,18 @@ export class SignUpComponent {
         user.tipo = "2"
 
         if(!this.validator.isDocumentValid(user.cedula)) {
-            alert("Por favor ingrese un documento valido")
+            this.toastr.error("Por favor ingrese un documento valido", "Alerta")
         } else if(!this.validator.isEmailValid(user.email)) {
+            this.toastr.error("Por favor ingrese un email valido", "Alerta")
             alert("Por favor ingrese un email valido")
         } else if(!this.validator.isPasswordValid(user.password)) {
-            alert("Por favor ingrese una contraseña valida")
+            this.toastr.error("Por favor ingrese una contraseña valida: 8-16 caracteres, un numero, una minuscula, una mayuscula y uno de los siguientes caracteres !%*$", "Alerta")
         } else if(!this.validator.isPasswordValid(user.confirmPassword)) {
-            alert("Por favor ingrese una contraseña valida")
+            this.toastr.error("Por favor ingrese una contraseña valida: 8-16 caracteres, un numero, una minuscula, una mayuscula y uno de los siguientes caracteres !%*$", "Alerta")
         } else if(!this.validator.passwordsMatch(user.password, user.confirmPassword)) {
-            alert("Las claves no coinciden")
+            this.toastr.error("Las contraseñas no coinciden", "Alerta")
         } else if(!this.validator.isPhoneValid(user.telefono)) {
-            alert("Por favor ingrese un telegono valido")
+            this.toastr.error("Por favor ingrese un teléfono valido", "Alerta")
         } else {
             this.authService.signUp(user)
                 .subscribe(response => {

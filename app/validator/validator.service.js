@@ -21,7 +21,7 @@ var ValidatorService = (function () {
         this.phoneRegex = new RegExp("[0-9]{7,10}");
     }
     ValidatorService.prototype.isDocumentValid = function (cc) {
-        if (cc.length == 10) {
+        if (cc.length >= 8 && cc.length <= 10) {
             return true;
         }
         else {

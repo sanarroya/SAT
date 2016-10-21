@@ -13,7 +13,7 @@ export class ValidatorService {
     private phoneRegex = new RegExp("[0-9]{7,10}")
 
     isDocumentValid(cc: string): boolean {
-        if(cc.length == 10) {
+        if(cc.length >= 8 && cc.length <= 10) {
             return true
         } else {
             return false
