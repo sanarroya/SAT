@@ -19,10 +19,12 @@ var InboxTramiteComponent = (function () {
         this.authService = authService;
         this.toastr = toastr;
         this.selectTramite = [];
+        this.admin = false;
         this.sortByWordLength = function (a) {
             return a.name.length;
         };
         this.menus = localStorage.getItem("type_user") === '1' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
+        this.admin = localStorage.getItem("type_user") === '1' ? false : true;
         this.selectTramite = JSON.parse(localStorage.getItem("tramiteInbox")) === null ? [] : JSON.parse(localStorage.getItem("tramiteInbox"));
         var tramite = JSON.parse(localStorage.getItem("tramiteStored"));
         var edit = localStorage.getItem("editcampoStoredId");
@@ -65,6 +67,15 @@ var InboxTramiteComponent = (function () {
         var link = ['/procedure'];
         this.router.navigate(link);
         console.log("Edit: ", item.nombre);
+    };
+    InboxTramiteComponent.prototype.onNewProcedure = function (item) {
+        if (!this.admin) {
+            localStorage.setItem("crearSolicitud", JSON.stringify(item));
+            this.router.navigate(['/createProcedure']);
+        }
+    };
+    InboxTramiteComponent.prototype.change = function () {
+        this.admin = !this.admin;
     };
     InboxTramiteComponent.prototype.newItem = function () {
         this.toastr.info("Nuevo Trámite", 'Alerta');

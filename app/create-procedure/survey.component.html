@@ -6,6 +6,7 @@
                     <md-input required type="{{field.type}}" id="{{field.key}}" [formControlName]="field.key" placeholder="{{field.text}}" class="auth-input"></md-input>
                 </div>
                 <div *ngSwitchCase="'file'">
+                    <span>{{field.key}}*</span>
                     <input required type="file" id="{{field.key}}" [formControlName]="field.key">
                 </div>
             </div>
