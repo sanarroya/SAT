@@ -20,9 +20,11 @@ export class InboxTramiteComponent implements OnInit {
     public selectTramite: tramites[] = [];
     public username;
     menus: menu[];
+    admin = false
 
     constructor(private router: Router, private authService: AuthenticationService, private toastr: ToastsManager) {
         this.menus = localStorage.getItem("type_user") === '1' ? MENU_CDN : MENU_ADM;
+        this.admin = localStorage.getItem("type_user") === '1' ? false : true
         this.selectTramite = JSON.parse(localStorage.getItem("tramiteInbox")) === null ? [] : JSON.parse(localStorage.getItem("tramiteInbox"));
         let tramite: tramites = JSON.parse(localStorage.getItem("tramiteStored"));
         let edit: string = localStorage.getItem("editcampoStoredId");
@@ -75,6 +77,17 @@ export class InboxTramiteComponent implements OnInit {
         let link = ['/procedure'];
         this.router.navigate(link);
         console.log("Edit: ", item.nombre);
+    }
+
+    public onNewProcedure(item: tramites) {
+        if(!this.admin) {
+            localStorage.setItem("crearSolicitud", JSON.stringify(item));
+            this.router.navigate(['/createProcedure'])
+        }
+    }
+
+    public change() {
+        this.admin = !this.admin
     }
 
     public newItem() {

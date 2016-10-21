@@ -35,7 +35,7 @@ var SignInComponent = (function () {
             var jsonObject = JSON.parse(error.text());
             _this.toastr.error("", 'Email o contraseña invalidos');
             console.log(error.text());
-            _this.router.navigate(['/inboxTramite']);
+            //this.router.navigate(['/inboxTramite']);
         });
     };
     SignInComponent.prototype.onRecoverPassword = function () {

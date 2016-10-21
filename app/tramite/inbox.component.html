@@ -22,13 +22,13 @@
 
         <table align="center" style="align-items: center; margin-left: 80;margin-bottom: 30;">
 
-            <tr *ngFor="let tramite of selectTramite" class="lt">
+            <tr *ngFor="let tramite of selectTramite" class="lt" (click)= "onNewProcedure(tramite)">
                 <td style="width:95%">
                     <div>
                         <strong style="margin-left: 10;margin-top: 15;color: #05AFA8;">{{tramite.nombre}}</strong>
 
-                        <i class="material-icons campored1" (click)="removeItem(tramite)">clear</i>
-                        <i class="material-icons campogreen1" (click)="editItem(tramite)">mode_edit</i>
+                        <i *ngIf="admin" class="material-icons campored1" (click)="removeItem(tramite)">clear</i>
+                        <i *ngIf="admin" class="material-icons campogreen1" (click)="editItem(tramite)">mode_edit</i>
 
                         <br/>
                     </div>
@@ -37,7 +37,9 @@
             </tr>
 
         </table>
-
+        <button md-raised-button disableRipple="false" class="left-button" type="submit"
+                                style="font-size:75%;" (click)="change()">Change
+                        </button>
         <button md-fab class="float-action1" disableRipple="true">
             <i class="material-icons float-action-icon1" (click)="newItem()">add</i>
         </button>

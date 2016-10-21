@@ -30,6 +30,7 @@ import {EditSolicitud} from './edit-solicitud/editSolicitud.component';
 import {InboxUsuarioComponent} from './usuario/inbox.component';
 import {CreateProcedureComponent} from './create-procedure/create-procedure.component'
 import { Survey } from './create-procedure/survey.component'
+
 import {AuthenticationService} from './services/authentication.service'
 import {routing} from './app.routing';
 import { ValidatorService } from './validator/validator.service'

@@ -15,35 +15,57 @@ var menu_mock_1 = require("../menu_mock");
 var field_model_1 = require('../create-procedure/field-model');
 var textbox_field_1 = require('../create-procedure/textbox-field');
 var file_field_1 = require('../create-procedure/file-field');
+var tramites_1 = require("../tramites");
 var CreateProcedureComponent = (function () {
     function CreateProcedureComponent(router, authService) {
         this.router = router;
         this.authService = authService;
+        this.tramiteSelected = new tramites_1.tramites();
+        this.camposSelected = [];
+        this.num = 0;
         this.fieldModel = new field_model_1.FieldModel();
         this.menus = localStorage.getItem("type_user") === '1' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
     }
     CreateProcedureComponent.prototype.ngOnInit = function () {
         this.drawFields();
     };
+    CreateProcedureComponent.prototype.onSelect = function (hero) {
+        this.router.navigate([hero.id]);
+    };
     CreateProcedureComponent.prototype.drawFields = function () {
-        var field = new textbox_field_1.TextBoxField();
-        field.key = 'lastName';
-        field.text = 'Last name';
-        field.required = true;
-        field.order = 0;
-        this.fieldModel.fields.push(field);
-        field = new textbox_field_1.TextBoxField();
-        field.key = 'firstName';
-        field.text = 'First name';
-        field.required = true;
-        field.order = 1;
-        this.fieldModel.fields.push(field);
-        field = new file_field_1.FileField();
-        field.key = 'extractoBancario';
-        field.text = 'Extracto Bancario';
-        field.required = true;
-        field.order = 2;
-        this.fieldModel.fields.push(field);
+        var _this = this;
+        var tramite = JSON.parse(localStorage.getItem("crearSolicitud"));
+        tramite.campos.forEach(function (campo) {
+            if (campo.tipo === "texto") {
+                var field = new textbox_field_1.TextBoxField();
+                field.key = campo.nombre;
+                field.text = campo.nombre;
+                field.required = true;
+                field.order = _this.num;
+                _this.fieldModel.fields.push(field);
+            }
+            else {
+                var field = new file_field_1.FileField();
+                field.key = campo.nombre;
+                field.text = campo.nombre;
+                field.required = true;
+                field.order = _this.num;
+                _this.fieldModel.fields.push(field);
+            }
+            _this.num++;
+        });
+        //field = new TextBoxField()
+        //field.key = 'firstName'
+        //field.text = 'First name'
+        //field.required = true
+        //field.order = 1
+        // this.fieldModel.fields.push(field)
+        // field = new FileField()
+        // field.key = 'extractoBancario'
+        // field.text = 'Extracto Bancario'
+        // field.required = true
+        // field.order = 2
+        // this.fieldModel.fields.push(field)
     };
     CreateProcedureComponent = __decorate([
         core_1.Component({

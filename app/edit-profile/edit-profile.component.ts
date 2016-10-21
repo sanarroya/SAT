@@ -69,7 +69,6 @@ export class EditProfileComponent implements OnInit {
         this.router.navigate([hero.id]);
     }
 
-
     ngOnInit(): void {
         this.getUser();
     }
