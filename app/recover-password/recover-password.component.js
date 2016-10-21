@@ -22,11 +22,9 @@ var RecoverPasswordComponent = (function () {
         var _this = this;
         this.authService.recoverPassword(cedula)
             .subscribe(function (response) {
-            alert(response.message);
             _this.toastr.info(response.message, 'Alerta');
             _this.router.navigate(['/signin']);
         }, function (error) {
-            alert(error.json().message);
             _this.toastr.error(error.json().message, 'Alerta');
             console.log(error.text());
         });
