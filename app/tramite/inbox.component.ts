@@ -58,7 +58,7 @@ export class InboxTramiteComponent implements OnInit {
         console.log("Remove: ", item.nombre);
         let index = this.selectTramite.indexOf(item, 0);
         if (index > -1) {
-            this.selectTramite.splice(index, 0);
+            this.selectTramite.splice(index, 1);
         }
 
         localStorage.setItem("tramiteInbox", JSON.stringify(this.selectTramite));
