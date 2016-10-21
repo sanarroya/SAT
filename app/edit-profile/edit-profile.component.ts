@@ -18,14 +18,17 @@ import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 
 export class EditProfileComponent implements OnInit {
 
-    selectUser = User()
+    @Input
+    selectUser = new User();
     menus: menu[];
 
     constructor(private router: Router, private authService: AuthenticationService, private toastr: ToastsManager) {
         this.menus = localStorage.getItem("type_user") === '1' ? MENU_CDN : MENU_ADM;
+
     }
 
     getUser(): void {
+
         this.authService.getUserProfile(localStorage.getItem('cedula_user')).subscribe(response => {
             localStorage.setItem('cedula_user', <string>response.cedula);
             localStorage.setItem('name', response.nombre);
