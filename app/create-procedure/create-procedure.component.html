@@ -1,0 +1,17 @@
+<md-sidenav-layout>
+    <md-sidenav #start class="app-sidenav" >
+        <div><img class="form-logo" src="assets/satlogo2.png"></div>
+        <ul>
+            <li class="menu" *ngFor="let hero of menus" (click)="onSelect(hero)">
+                <span>{{hero.name}}</span>
+            </li>
+        </ul>
+    </md-sidenav>
+    <md-toolbar class="md-accent">
+        <i class="material-icons app-input-icon icon-space" (click)="start.toggle()">menu</i>
+        <img class="toolbar-logo" src="assets/satlogo.png"/>
+        <h1 class="toolbar-title">SAT - Sistema de Automatizacion de Tramites</h1>
+        <span class="app-toolbar-filler"></span>
+    </md-toolbar>
+    <div class="container"><survey [model]="fieldModel"></survey></div>
+</md-sidenav-layout>

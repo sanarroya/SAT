@@ -1,6 +1,6 @@
 import {NgModule}      from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {MdButtonModule} from '@angular2-material/button';
 import {MdIconModule} from '@angular2-material/icon';
@@ -28,6 +28,8 @@ import {EditTramite} from './edit-tramite/editTramite.component';
 import {InboxSolicitudComponent} from './solicitud/inbox.component';
 import {EditSolicitud} from './edit-solicitud/editSolicitud.component';
 import {InboxUsuarioComponent} from './usuario/inbox.component';
+import {CreateProcedureComponent} from './create-procedure/create-procedure.component'
+import { Survey } from './create-procedure/survey.component'
 import {AuthenticationService} from './services/authentication.service'
 import {routing} from './app.routing';
 
@@ -36,6 +38,7 @@ import {routing} from './app.routing';
     imports: [
         BrowserModule,
         FormsModule,
+        ReactiveFormsModule,
         HttpModule,
         MdButtonModule,
         MdCardModule,
@@ -62,6 +65,8 @@ import {routing} from './app.routing';
         EditTramite,
         EditSolicitud,
         InboxUsuarioComponent,
+        CreateProcedureComponent,
+        Survey,
         DashboardComponent
     ],
     providers: [
