@@ -24,7 +24,7 @@ export class EditTramite implements OnInit {
     menus: menu[];
 
     constructor(private router: Router, private authService: AuthenticationService, private toastr: ToastsManager) {
-        this.menus = localStorage.getItem("type_user") === 'Ciudadano' ? MENU_CDN : MENU_ADM;
+        this.menus = localStorage.getItem("type_user") === '1' ? MENU_CDN : MENU_ADM;
     }
 
 

@@ -21,7 +21,7 @@ var InboxSolicitudComponent = (function () {
         this.sortByWordLength = function (a) {
             return a.name.length;
         };
-        this.menus = localStorage.getItem("type_user") === 'Ciudadano' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
+        this.menus = localStorage.getItem("type_user") === '1' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
     }
     InboxSolicitudComponent.prototype.removeItem = function (item) {
         this.toastr.info("eliminar: " + item.id, 'Alerta');
