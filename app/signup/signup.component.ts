@@ -50,7 +50,7 @@ export class SignUpComponent {
                     this.router.navigate(['/signin']);
                 }, error => {
                     let jsonObject = JSON.parse(error.text());
-                    this.toastr.info(jsonObject.message, 'Alerta');
+                    this.toastr.error(jsonObject.message, 'Alerta');
                     console.log(error.text());
                 })
             }

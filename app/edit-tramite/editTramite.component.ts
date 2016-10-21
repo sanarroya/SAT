@@ -17,7 +17,7 @@ import {Tramite} from '../tramite'
 
 export class EditTramite implements OnInit {
 
-    @Input idTramite: any;
+    @Input() idTramite: any;
 
     public selectTramite: any[];
     public param: any;

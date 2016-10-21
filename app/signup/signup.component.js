@@ -58,7 +58,7 @@ var SignUpComponent = (function () {
                 _this.router.navigate(['/signin']);
             }, function (error) {
                 var jsonObject = JSON.parse(error.text());
-                _this.toastr.info(jsonObject.message, 'Alerta');
+                _this.toastr.error(jsonObject.message, 'Alerta');
                 console.log(error.text());
             });
         }

@@ -51,7 +51,7 @@ var EditTramite = (function () {
         this.router.navigate([hero.id]);
     };
     __decorate([
-        core_1.Input, 
+        core_1.Input(), 
         __metadata('design:type', Object)
     ], EditTramite.prototype, "idTramite", void 0);
     EditTramite = __decorate([
