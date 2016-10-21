@@ -12,6 +12,7 @@ var editTramite_component_1 = require('./edit-tramite/editTramite.component');
 var inbox_component_2 = require('./solicitud/inbox.component');
 var editSolicitud_component_1 = require('./edit-solicitud/editSolicitud.component');
 var inbox_component_3 = require('./usuario/inbox.component');
+var signup_component_2 = require('./signupemployee/signup.component');
 var appRoutes = [
     {
         path: '',
@@ -65,6 +66,10 @@ var appRoutes = [
     {
         path: 'inboxUsuario',
         component: inbox_component_3.InboxUsuarioComponent
+    },
+    {
+        path: 'newuserin',
+        component: signup_component_2.SignUpEmployeeComponent
     }
 ];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);

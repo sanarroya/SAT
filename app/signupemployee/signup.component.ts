@@ -4,19 +4,29 @@ import {AuthenticationService} from '../services/authentication.service'
 import {User} from '../user'
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 import {ValidatorService} from '../validator/validator.service'
+import {menu} from "../menu";
+import {MENU_ADM, MENU_CDN} from "../menu_mock";
+import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 
 @Component({
     selector: 'sign-up',
-    templateUrl: '/app/signup/signup.component.html',
-    styleUrls: ['./app/signup/signup.component.css', './app/signup/signup.component.css']
+    templateUrl: '/app/signupemployee/signup.component.html',
+    styleUrls: ['./app/signin/signin.component.css', './app/edit-profile/edit-profile.component.css'],
 })
 
-export class SignUpComponent {
+export class SignUpEmployeeComponent {
+    menus: menu[];
 
-    constructor(private router: Router, 
-                private authService: AuthenticationService, 
+    constructor(private router: Router,
+                private authService: AuthenticationService,
                 private toastr: ToastsManager,
                 private validator: ValidatorService) {
+        this.menus = localStorage.getItem("type_user") === '1' ? MENU_CDN : MENU_ADM;
+    }
+
+
+    onSelect(hero: menu): void {
+        this.router.navigate([hero.id]);
     }
 
     onSignUp(cedula, nombre, email, password, confirmPassword, telefono) {
@@ -28,7 +38,7 @@ export class SignUpComponent {
         user.password = password
         user.confirmPassword = confirmPassword
         user.telefono = telefono
-        user.tipo = "1"
+        user.tipo = "2"
 
         if(!this.validator.isDocumentValid(user.cedula)) {
             this.toastr.error("Por favor ingrese un documento valido", "Alerta")
@@ -44,7 +54,7 @@ export class SignUpComponent {
         } else if(!this.validator.isPhoneValid(user.telefono)) {
             this.toastr.error("Por favor ingrese un teléfono valido", "Alerta")
         } else {
-            this.authService.signUp(user)
+            this.authService.signUpFuncionario(user)
                 .subscribe(response => {
                     this.toastr.info("Usuario Creado", 'Alerta');
                     this.router.navigate(['/signin']);
@@ -55,4 +65,6 @@ export class SignUpComponent {
                 })
             }
     }
+
+
 }

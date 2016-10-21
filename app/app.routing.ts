@@ -13,6 +13,7 @@ import {EditTramite} from './edit-tramite/editTramite.component';
 import {InboxSolicitudComponent} from './solicitud/inbox.component';
 import {EditSolicitud} from './edit-solicitud/editSolicitud.component';
 import {InboxUsuarioComponent} from './usuario/inbox.component';
+import {SignUpEmployeeComponent} from './signupemployee/signup.component';
 
 
 const appRoutes: Routes = [
@@ -69,6 +70,10 @@ const appRoutes: Routes = [
     {
         path: 'inboxUsuario',
         component: InboxUsuarioComponent
+    },
+    {
+        path: 'newuserin',
+        component: SignUpEmployeeComponent
     }
 ];
 

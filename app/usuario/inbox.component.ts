@@ -44,7 +44,7 @@ export class InboxUsuarioComponent implements OnInit {
 
     public newItem() {
         this.toastr.info("Nuevo Usuario", 'Alerta');
-        let link = ['/editProfile', 0];
+        let link = ['/newuserin'];
         this.router.navigate(link);
         console.log("Nuevo Uusuario");
     }

@@ -39,6 +39,13 @@ export class AuthenticationService {
             .map(res => res.json())
     }
 
+    //Crear funcionario
+    signUpFuncionario(user: User): Observable<User> {
+        user.tipo = '2';
+        return this.http.post(this.baseUrl + this.singUpEndpoint, JSON.stringify(user), this.headers)
+            .map(res => res.json())
+    }
+
     //TODO - Cambiar el tipo del observador
     recoverPassword(cedula: string): Observable<any> {
         return this.http.post(this.baseUrl + this.recoverPasswordEndpoint, JSON.stringify({cedula: cedula}), this.headers)
@@ -48,7 +55,6 @@ export class AuthenticationService {
     //TODO - Cambiar el tipo del observador
     getUserProfile(cedula: string): Observable<User> {
         const url =  `${this.baseUrl + this.userInfoEndpoint}/${cedula}`;
-        alert('ol')
         return this.http.get(url)
             .map(this.extractDataUsuarios)
     }

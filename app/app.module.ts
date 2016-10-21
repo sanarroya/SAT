@@ -29,6 +29,7 @@ import {InboxSolicitudComponent} from './solicitud/inbox.component';
 import {EditSolicitud} from './edit-solicitud/editSolicitud.component';
 import {InboxUsuarioComponent} from './usuario/inbox.component';
 import {CreateProcedureComponent} from './create-procedure/create-procedure.component'
+import {SignUpEmployeeComponent} from './signupemployee/signup.component'
 import { Survey } from './create-procedure/survey.component'
 import {AuthenticationService} from './services/authentication.service'
 import {routing} from './app.routing';
@@ -68,7 +69,8 @@ import { ValidatorService } from './validator/validator.service'
         InboxUsuarioComponent,
         CreateProcedureComponent,
         Survey,
-        DashboardComponent
+        DashboardComponent,
+        SignUpEmployeeComponent
     ],
     providers: [
         HeroService,
