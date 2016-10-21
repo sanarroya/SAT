@@ -20,7 +20,7 @@ var CreateProcedureComponent = (function () {
         this.router = router;
         this.authService = authService;
         this.fieldModel = new field_model_1.FieldModel();
-        this.menus = localStorage.getItem("type_user") === 'Ciudadano' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
+        this.menus = localStorage.getItem("type_user") === '1' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
     }
     CreateProcedureComponent.prototype.ngOnInit = function () {
         this.drawFields();

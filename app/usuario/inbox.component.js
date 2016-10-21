@@ -21,7 +21,7 @@ var InboxUsuarioComponent = (function () {
         this.sortByWordLength = function (a) {
             return a.name.length;
         };
-        this.menus = localStorage.getItem("type_user") === 'Ciudadano' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
+        this.menus = localStorage.getItem("type_user") === '1' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
     }
     InboxUsuarioComponent.prototype.removeItem = function (item) {
         this.toastr.info("Eliminar: " + item.id, 'Alerta');
@@ -40,11 +40,12 @@ var InboxUsuarioComponent = (function () {
         console.log("Nuevo Uusuario");
     };
     InboxUsuarioComponent.prototype.ngOnInit = function () {
+        //noinspection TypeScriptValidateTypes
         this.selectUsuario = [
-            { nombre: 'Maria Antonia Ochoa Perez', cedula: 1234, email: 'mochoa@correo.com', tipo: 'Funcionario', telefono: '', confirmPassword: '', password: '' },
-            { nombre: 'Juan Carlos Marin Lopez', cedula: 2345, email: 'jlopez@correo.com', tipo: 'Funcionario', telefono: '', confirmPassword: '', password: '' },
-            { nombre: 'Johana Patricia Rojas Pinto', cedula: 3456, email: 'jpinto@correo.com', tipo: 'Ciudadano', telefono: '', confirmPassword: '', password: '' },
-            { nombre: 'Rosa Cecilia Sanchez Gil', cedula: 4567, email: 'rsanchez@correo.com', tipo: 'Ciudadano', telefono: '', confirmPassword: '', password: '' }
+            { nombre: 'Maria Antonia Ochoa Perez', cedula: 1234, email: 'mochoa@correo.com', tipo: '1', telefono: '', confirmPassword: '', password: '' },
+            { nombre: 'Juan Carlos Marin Lopez', cedula: 2345, email: 'jlopez@correo.com', tipo: '1', telefono: '', confirmPassword: '', password: '' },
+            { nombre: 'Johana Patricia Rojas Pinto', cedula: 3456, email: 'jpinto@correo.com', tipo: '1', telefono: '', confirmPassword: '', password: '' },
+            { nombre: 'Rosa Cecilia Sanchez Gil', cedula: 4567, email: 'rsanchez@correo.com', tipo: '1', telefono: '', confirmPassword: '', password: '' }
         ];
         this.username = "Administrador";
         //this.getAllUsuarios();

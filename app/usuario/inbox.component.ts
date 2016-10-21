@@ -24,7 +24,7 @@ export class InboxUsuarioComponent implements OnInit {
         private router: Router,
         private authService: AuthenticationService,
         private toastr: ToastsManager
-    ) { this.menus = localStorage.getItem("type_user") === 'Ciudadano' ? MENU_CDN : MENU_ADM;}
+    ) { this.menus = localStorage.getItem("type_user") === '1' ? MENU_CDN : MENU_ADM;}
 
     private sortByWordLength = (a: any) => {
         return a.name.length;
@@ -50,11 +50,12 @@ export class InboxUsuarioComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        //noinspection TypeScriptValidateTypes
         this.selectUsuario = [
-            { nombre: 'Maria Antonia Ochoa Perez', cedula: 1234, email: 'mochoa@correo.com', tipo:'Funcionario', telefono: '', confirmPassword:'',password:'' },
-            { nombre: 'Juan Carlos Marin Lopez', cedula: 2345, email: 'jlopez@correo.com', tipo: 'Funcionario', telefono: '', confirmPassword: '', password: ''},
-            { nombre: 'Johana Patricia Rojas Pinto', cedula: 3456, email: 'jpinto@correo.com', tipo: 'Ciudadano', telefono: '', confirmPassword: '', password: ''},
-            { nombre: 'Rosa Cecilia Sanchez Gil', cedula: 4567, email: 'rsanchez@correo.com', tipo: 'Ciudadano', telefono: '', confirmPassword: '', password: ''}
+            { nombre: 'Maria Antonia Ochoa Perez', cedula: 1234, email: 'mochoa@correo.com', tipo:'1', telefono: '', confirmPassword:'',password:'' },
+            { nombre: 'Juan Carlos Marin Lopez', cedula: 2345, email: 'jlopez@correo.com', tipo: '1', telefono: '', confirmPassword: '', password: ''},
+            { nombre: 'Johana Patricia Rojas Pinto', cedula: 3456, email: 'jpinto@correo.com', tipo: '1', telefono: '', confirmPassword: '', password: ''},
+            { nombre: 'Rosa Cecilia Sanchez Gil', cedula: 4567, email: 'rsanchez@correo.com', tipo: '1', telefono: '', confirmPassword: '', password: ''}
         ];
 
         this.username = "Administrador";

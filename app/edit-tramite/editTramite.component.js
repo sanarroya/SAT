@@ -18,7 +18,7 @@ var EditTramite = (function () {
         this.router = router;
         this.authService = authService;
         this.toastr = toastr;
-        this.menus = localStorage.getItem("type_user") === 'Ciudadano' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
+        this.menus = localStorage.getItem("type_user") === '1' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
     }
     EditTramite.prototype.getInfoTramite = function () {
         var _this = this;

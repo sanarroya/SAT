@@ -20,7 +20,7 @@ var EditProfileComponent = (function () {
         this.authService = authService;
         this.toastr = toastr;
         this.selectUser = user_1.User();
-        this.menus = localStorage.getItem("type_user") === 'Ciudadano' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
+        this.menus = localStorage.getItem("type_user") === '1' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
     }
     EditProfileComponent.prototype.getUser = function () {
         var _this = this;

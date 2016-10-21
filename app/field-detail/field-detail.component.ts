@@ -44,6 +44,10 @@ export class FieldDetailComponent implements OnInit {
     }
 
 
+    onBack(): void {
+        this.router.navigate(["/procedure"]);
+    }
+
     getCampo():void{
         let campo1=new campo();
         campo1.nombre=localStorage.getItem("campo");

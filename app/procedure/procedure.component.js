@@ -23,7 +23,7 @@ var ProcedureComponent = (function () {
         this.camposSelected = [];
         this.tramiteSelected = new tramites_1.tramites();
         this.num = 1;
-        this.menus = localStorage.getItem("type_user") == 'Ciudadano' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
+        this.menus = localStorage.getItem("type_user") == '1' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
         this.camposSelected = JSON.parse(localStorage.getItem("campos")) === null ? [] : JSON.parse(localStorage.getItem("campos"));
         this.tramiteSelected.nombre = localStorage.getItem("tramite");
         this.tramiteSelected.descripcion = localStorage.getItem("descripcion");
