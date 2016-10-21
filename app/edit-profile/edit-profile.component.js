@@ -47,7 +47,6 @@ var EditProfileComponent = (function () {
         user.tipo = localStorage.getItem('type_user');
         this.authService.updateUser(user)
             .subscribe(function (response) {
-            alert("Usuario actualizado");
             _this.toastr.info("Usuario actualizado", 'Alerta');
             _this.router.navigate(['/editProfile']);
         }, function (error) {

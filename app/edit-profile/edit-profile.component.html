@@ -21,7 +21,7 @@
          <span md-prefix>
                 <i class="material-icons app-input-icon icon-space">chrome_reader_mode</i>
             </span>
-                    <md-input #ced type="number" placeholder="Cedula" class="auth-input" required>
+                    <md-input #ced type="number" placeholder="Cedula" class="auth-input" required readonly="readonly">
                         <span *ngIf="selectUser" placeholder="Cedula">{{selectUser.cedula}}</span>
                     </md-input>
                 </div>
@@ -68,7 +68,7 @@
                     </md-input>
                 </div>
                 <div>
-                    <button md-raised-button disableRipple="false" class="auth-button " type="submit">ACTUALIZAR
+                    <button md-raised-button disableRipple="false" class="auth-button" type="submit">ACTUALIZAR
                         PERFIL
                     </button>
                 </div>

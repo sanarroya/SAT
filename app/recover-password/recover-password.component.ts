@@ -20,11 +20,9 @@ export class RecoverPasswordComponent {
     onForgotPassword(cedula: string) {
         this.authService.recoverPassword(cedula)
             .subscribe(response => {
-                alert(response.message)
                 this.toastr.info(response.message, 'Alerta');
                 this.router.navigate(['/signin']);
             }, error => {
-                alert(error.json().message);
                 this.toastr.error(error.json().message, 'Alerta');
                 console.log(error.text());
             })

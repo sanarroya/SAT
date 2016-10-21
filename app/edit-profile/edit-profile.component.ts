@@ -52,7 +52,6 @@ export class EditProfileComponent implements OnInit {
 
         this.authService.updateUser(user)
             .subscribe(response => {
-                alert("Usuario actualizado");
                 this.toastr.info("Usuario actualizado", 'Alerta');
                 this.router.navigate(['/editProfile']);
             }, error => {
