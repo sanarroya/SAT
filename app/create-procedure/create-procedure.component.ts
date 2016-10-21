@@ -13,7 +13,7 @@ import { FileField } from '../create-procedure/file-field'
 @Component({
     selector: 'create-procedure',
     templateUrl: './app/create-procedure/create-procedure.component.html',
-    styles: ['']
+    styleUrls: ['./app/signin/signin.component.css', './app/edit-profile/edit-profile.component.css'],
 })
 
 export class CreateProcedureComponent implements OnInit {
@@ -50,12 +50,5 @@ export class CreateProcedureComponent implements OnInit {
         field.required = true
         field.order = 2
         this.fieldModel.fields.push(field)
-
-        //var element = document.createElement("input");
-        //Assign different attributes to the element.
-        //element.setAttribute("type", "file");
-        //element.setAttribute("name", "htmlelent");
-        //element.setAttribute("style","color: white; background-color: #05AFA8;");
-        //document.body.appendChild(element);
     }
 }
