@@ -40,6 +40,7 @@ var create_procedure_component_1 = require('./create-procedure/create-procedure.
 var survey_component_1 = require('./create-procedure/survey.component');
 var authentication_service_1 = require('./services/authentication.service');
 var app_routing_1 = require('./app.routing');
+var validator_service_1 = require('./validator/validator.service');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -81,7 +82,8 @@ var AppModule = (function () {
             ],
             providers: [
                 hero_service_1.HeroService,
-                authentication_service_1.AuthenticationService
+                authentication_service_1.AuthenticationService,
+                validator_service_1.ValidatorService
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

@@ -32,6 +32,7 @@ import {CreateProcedureComponent} from './create-procedure/create-procedure.comp
 import { Survey } from './create-procedure/survey.component'
 import {AuthenticationService} from './services/authentication.service'
 import {routing} from './app.routing';
+import { ValidatorService } from './validator/validator.service'
 
 
 @NgModule({
@@ -71,9 +72,11 @@ import {routing} from './app.routing';
     ],
     providers: [
         HeroService,
-        AuthenticationService
+        AuthenticationService,
+        ValidatorService
     ],
     bootstrap: [AppComponent]
+    
 })
 
 export class AppModule {

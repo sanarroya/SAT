@@ -30,12 +30,10 @@ export class SignInComponent {
                 localStorage.setItem('name', response.usuario.nombre);
                 localStorage.setItem('type_user', response.usuario.tipo);
                 this.router.navigate(['/inboxTramite']);
-
             }, error => {
                 let jsonObject = JSON.parse(error.text());
-                this.toastr.error(jsonObject.message, 'Alerta');
+                this.toastr.error(jsonObject.message, 'Email o contraseña invalidos');
                 console.log(error.text());
-                this.router.navigate(['/inboxTramite']);
             })
     }
 

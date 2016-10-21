@@ -13,31 +13,54 @@ var router_1 = require('@angular/router');
 var authentication_service_1 = require('../services/authentication.service');
 var user_1 = require('../user');
 var ng2_toastr_1 = require('ng2-toastr/ng2-toastr');
+var validator_service_1 = require('../validator/validator.service');
 var SignUpComponent = (function () {
-    function SignUpComponent(router, authService, toastr) {
+    function SignUpComponent(router, authService, toastr, validator) {
         this.router = router;
         this.authService = authService;
         this.toastr = toastr;
+        this.validator = validator;
     }
     SignUpComponent.prototype.onSignUp = function (cedula, nombre, email, password, confirmPassword, telefono) {
         var _this = this;
         var user = new user_1.User();
-        user.cedula = cedula;
+        console.log(cedula);
+        user.cedula = cedula.toString();
         user.nombre = nombre;
         user.email = email;
         user.password = password;
         user.confirmPassword = confirmPassword;
         user.telefono = telefono;
-        user.tipo = 2;
-        this.authService.signUp(user)
-            .subscribe(function (response) {
-            _this.toastr.info("Usuario Creado", 'Alerta');
-            _this.router.navigate(['/signin']);
-        }, function (error) {
-            var jsonObject = JSON.parse(error.text());
-            _this.toastr.info(jsonObject.message, 'Alerta');
-            console.log(error.text());
-        });
+        user.tipo = "2";
+        if (!this.validator.isDocumentValid(user.cedula)) {
+            alert("Por favor ingrese un documento valido");
+        }
+        else if (!this.validator.isEmailValid(user.email)) {
+            alert("Por favor ingrese un email valido");
+        }
+        else if (!this.validator.isPasswordValid(user.password)) {
+            alert("Por favor ingrese una contraseña valida");
+        }
+        else if (!this.validator.isPasswordValid(user.confirmPassword)) {
+            alert("Por favor ingrese una contraseña valida");
+        }
+        else if (!this.validator.passwordsMatch(user.password, user.confirmPassword)) {
+            alert("Las claves no coinciden");
+        }
+        else if (!this.validator.isPhoneValid(user.telefono)) {
+            alert("Por favor ingrese un telegono valido");
+        }
+        else {
+            this.authService.signUp(user)
+                .subscribe(function (response) {
+                _this.toastr.info("Usuario Creado", 'Alerta');
+                _this.router.navigate(['/signin']);
+            }, function (error) {
+                var jsonObject = JSON.parse(error.text());
+                _this.toastr.info(jsonObject.message, 'Alerta');
+                console.log(error.text());
+            });
+        }
     };
     SignUpComponent = __decorate([
         core_1.Component({
@@ -45,7 +68,7 @@ var SignUpComponent = (function () {
             templateUrl: '/app/signup/signup.component.html',
             styleUrls: ['./app/signin/signin.component.css', './app/signup/signup.component.css']
         }), 
-        __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService, ng2_toastr_1.ToastsManager])
+        __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService, ng2_toastr_1.ToastsManager, validator_service_1.ValidatorService])
     ], SignUpComponent);
     return SignUpComponent;
 }());
