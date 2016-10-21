@@ -2,6 +2,10 @@ import {Component, OnInit, Input} from '@angular/core'
 import {Router} from '@angular/router'
 import {AuthenticationService} from '../services/authentication.service'
 import {User} from '../user'
+import {menu} from "../menu";
+import {MENU_ADM, MENU_CDN} from "../menu_mock";
+import {ToastsManager} from 'ng2-toastr/ng2-toastr';
+
 
 @Component({
     selector: 'edit-profile',
@@ -14,10 +18,11 @@ import {User} from '../user'
 
 export class EditProfileComponent implements OnInit {
 
-    selectUser = User();
+    selectUser = User()
+    menus: menu[];
 
-    constructor(private router: Router,
-                private authService: AuthenticationService) {
+    constructor(private router: Router, private authService: AuthenticationService, private toastr: ToastsManager) {
+        this.menus = localStorage.getItem("type_user") === 'Ciudadano' ? MENU_CDN : MENU_ADM;
     }
 
     getUser(): void {
@@ -28,9 +33,9 @@ export class EditProfileComponent implements OnInit {
             this.selectUser = response;
         }, error => {
             let jsonObject = JSON.parse(error.text());
-            alert(jsonObject.message);
+            this.toastr.error(jsonObject.message, 'Alerta');
             console.log(error.text());
-            ;
+
         });
     }
 
@@ -48,13 +53,18 @@ export class EditProfileComponent implements OnInit {
         this.authService.updateUser(user)
             .subscribe(response => {
                 alert("Usuario actualizado");
+                this.toastr.info("Usuario actualizado", 'Alerta');
                 this.router.navigate(['/editProfile']);
             }, error => {
                 let jsonObject = JSON.parse(error.text());
-                alert(jsonObject.message);
+                this.toastr.error(jsonObject.message, 'Alerta');
                 console.log(error.text());
                 this.router.navigate(['/editProfile']);
             })
+    }
+
+    onSelect(hero: menu): void {
+        this.router.navigate([hero.id]);
     }
 
 

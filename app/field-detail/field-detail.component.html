@@ -1,0 +1,44 @@
+<md-sidenav-layout>
+    <md-toolbar class="md-accent">
+        <img class="toolbar-logo" src="assets/satlogo.png"/>
+        <h1 class="toolbar-title">SAT - Sistema de Automatizacion de Tramites</h1>
+        <span class="app-toolbar-filler"></span>
+    </md-toolbar>
+    <div>
+        <div class="container">
+            <form name="userForm12" (submit)="submitTramite(nombre.value)">
+                <div>
+                    <div>
+                        <md-input #nombre type="text" placeholder="Nombre del Campo" class="auth-input" [(ngModel)]="campoSelected.nombre" name="nombre"required>
+
+                        </md-input>
+                    </div>
+                </div>
+                <div style="color: #05AFA8;margin-top:20;margin-bottom:10">
+                    <span>Tipo Campo</span>
+                </div>
+                    <ng-select
+                            select
+                            [(ngModel)]="type" name="type"
+                            [options]="options"
+                            placeholder={{placeholder}}
+                            [allowClear]="false"
+                            (selected)="onSelected($event)"
+                            (opened)="onSelectOpened()"
+                            required
+                            theme="default">
+
+                    </ng-select>
+
+                <div style="margin-top:10;margin-bottom:20">
+                   Tipo de Campo Seleccionado: <span style="color: #05AFA8;">{{type}}</span>
+                </div>
+                <div style="margin-top:20;">
+                    <button md-raised-button disableRipple="false" class="auth-button" type="submit" >ACTUALIZAR/CREAR
+                        CAMPO
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</md-sidenav-layout>

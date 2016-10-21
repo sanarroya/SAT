@@ -1,8 +1,9 @@
-import { Component } from '@angular/core'
-import { Router } from '@angular/router'
-import { AuthenticationService } from '../services/authentication.service'
-import { ValidatorService } from '../validator/validator.service'
-import { User } from '../user'
+import {Component} from '@angular/core'
+import {Router} from '@angular/router'
+import {AuthenticationService} from '../services/authentication.service'
+import {User} from '../user'
+import {ToastsManager} from 'ng2-toastr/ng2-toastr';
+import {ValidatorService} from '../validator/validator.service'
 
 @Component({
     selector: 'sign-up',
@@ -12,11 +13,11 @@ import { User } from '../user'
 
 export class SignUpComponent {
 
-    constructor(
-        private router: Router,
-        private authService: AuthenticationService,
-        private validator: ValidatorService
-    ) { }
+    constructor(private router: Router, 
+                private authService: AuthenticationService, 
+                private toastr: ToastsManager,
+                private validator: ValidatorService) {
+    }
 
     onSignUp(cedula, nombre, email, password, confirmPassword, telefono) {
         let user = new User()
@@ -43,14 +44,14 @@ export class SignUpComponent {
             alert("Por favor ingrese un telegono valido")
         } else {
             this.authService.signUp(user)
-            .subscribe( response => {
-                alert("Usuario Creado");
-                this.router.navigate(['/signin']);
-            }, error => {
-                let jsonObject = JSON.parse(error.text());
-                alert(jsonObject.message);
-                console.log(error.text());
-            })
-        }
+                .subscribe(response => {
+                    this.toastr.info("Usuario Creado", 'Alerta');
+                    this.router.navigate(['/signin']);
+                }, error => {
+                    let jsonObject = JSON.parse(error.text());
+                    this.toastr.info(jsonObject.message, 'Alerta');
+                    console.log(error.text());
+                })
+            }
     }
 }

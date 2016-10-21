@@ -1,0 +1,41 @@
+.campo {
+
+    width: 600;
+
+    -webkit-padding-start: 0px;
+
+}
+
+.campo li {
+    background-color: #EEE;
+    border-radius: 1px;
+    margin-bottom: 20;
+    padding: 20;
+    color: black;
+    width: 100%;
+    list-style-type: none;
+
+}
+
+.campored {
+    color: red;
+    float: right;
+
+}
+
+.campogreen {
+    color: #05AFA8;
+    float: right;
+    margin-right: 20;
+}
+
+.addgreen {
+    color: #05AFA8;
+    margin-top: 30;
+    margin-left: 20;
+    align-items: center;
+}
+
+.container-title{
+    align-items: center;
+}
