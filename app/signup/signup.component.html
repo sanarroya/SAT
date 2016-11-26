@@ -25,6 +25,12 @@
         <md-input #email type="email" placeholder="Email" class="auth-input" required></md-input>
     </div>
     <div class="icon-sect">
+        <span md-prefix>
+            <i class="material-icons app-input-icon icon-space">phone</i>
+        </span>
+        <md-input #phone type="phone" placeholder="Telefono" class="auth-input" required></md-input>
+    </div>
+    <div class="icon-sect">
             <span md-prefix>
                 <i class="material-icons app-input-icon icon-space">vpn_key</i>
             </span>
@@ -36,17 +42,19 @@
             </span>
         <md-input #confirmpassword type="password" placeholder="Confirmar contraseña" class="auth-input" required></md-input>
     </div>
-    <div class="icon-sect">
-        <span md-prefix>
-            <i class="material-icons app-input-icon icon-space">phone</i>
+    <div>
+        <span>
+            La contraseña debe tener entre 8 y 16 caracteres, un numero, una minuscula, una mayuscula y uno de los siguientes caracteres !%*$"
         </span>
-        <md-input #phone type="phone" placeholder="Telefono" class="auth-input" required></md-input>
     </div>
-    <div><span>La contraseña debe tener entre 8 y 16 caracteres, un numero, una minuscula, una mayuscula y uno de los siguientes caracteres !%*$"</span></div>
     <div>
         <button md-raised-button disableRipple="false" class="auth-button " type="submit">CREAR CUENTA</button>
     </div>
     </form>
+    <div class="hr-sect">Ya tienes cuenta?</div>
+    <div>
+        <button md-raised-button disableRipple="true" class="auth-button" (click)="onSignIn()">INICIAR SESION</button>
+    </div>
     <br/>
     <br/>
     <br/>

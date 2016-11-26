@@ -21,6 +21,9 @@ var SignUpComponent = (function () {
         this.toastr = toastr;
         this.validator = validator;
     }
+    SignUpComponent.prototype.onSignIn = function () {
+        this.router.navigate(['/signin']);
+    };
     SignUpComponent.prototype.onSignUp = function (cedula, nombre, email, password, confirmPassword, telefono) {
         var _this = this;
         var user = new user_1.User();

@@ -151,5 +151,10 @@ md-sidenav {
     color: white;
 }
 
-
+.float-back-button {
+    float: left;
+    margin-left: 5;
+    margin-top: 5;
+    background: #05AFA8;
+}
 

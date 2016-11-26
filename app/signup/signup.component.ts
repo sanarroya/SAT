@@ -19,6 +19,10 @@ export class SignUpComponent {
                 private validator: ValidatorService) {
     }
 
+    onSignIn() {
+        this.router.navigate(['/signin'])
+    }
+
     onSignUp(cedula, nombre, email, password, confirmPassword, telefono) {
         let user = new User()
         console.log(cedula)

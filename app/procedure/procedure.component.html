@@ -1,4 +1,4 @@
-<md-sidenav-layout>
+<!--<md-sidenav-layout>
     <md-sidenav #start class="app-sidenav" mode="side">
         <div><img class="form-logo" src="assets/satlogo2.png"></div>
         <ul>
@@ -6,19 +6,26 @@
                 <span>{{hero.name}}</span>
             </li>
         </ul>
-    </md-sidenav>
+    </md-sidenav>-->
     <md-toolbar class="md-accent">
-        <i class="material-icons app-input-icon icon-space" (click)="start.toggle()">menu</i>
+        <i class="material-icons addgreenback icon-space">chevron_left</i>
+        <i class="material-icons addgreenback icon-space">keyboard_backspace</i>
+        <i class="material-icons addgreenback icon-space">arrow_back</i>
+        <!--<i class="material-icons app-input-icon icon-space" (click)="start.toggle()">menu</i>-->
         <img class="toolbar-logo" src="assets/satlogo.png"/>
         <h1 class="toolbar-title">SAT - Sistema de Automatizacion de Tramites</h1>
         <span class="app-toolbar-filler"></span>
     </md-toolbar>
-    <div>
-        <button md-fab disableRipple="true" style="float: right;margin-right: 60;margin-top:40;background:#05AFA8;"
-                (click)="onBack()">
-            <i class="material-icons addgreenback">backspace</i>
+        <button md-fab disableRipple="true" class="float-back-button" (click)="onBack()">
+            <i class="material-icons addgreenback">chevron_left</i>
         </button>
-
+        <button md-fab disableRipple="true" class="float-back-button" (click)="onBack()">
+            <i class="material-icons addgreenback">keyboard_backspace</i>
+        </button>
+        <button md-fab disableRipple="true" class="float-back-button" (click)="onBack()">
+            <i class="material-icons addgreenback">arrow_back</i>
+        </button>
+    <div>
         <div class="container" style="width: 600;">
             <form name="userForm1" (submit)="createProcedure(nombre.value,descripcion.value)">
                 <div>
@@ -62,4 +69,4 @@
         </div>
 
     </div>
-</md-sidenav-layout>
+<!--</md-sidenav-layout>-->
