@@ -67,7 +67,7 @@ var SignUpComponent = (function () {
         core_1.Component({
             selector: 'sign-up',
             templateUrl: '/app/signup/signup.component.html',
-            styleUrls: ['./app/signup/signup.component.css', './app/signup/signup.component.css']
+            styleUrls: ['./app/signin/signin.component.css', './app/signup/signup.component.css']
         }), 
         __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService, ng2_toastr_1.ToastsManager, validator_service_1.ValidatorService])
     ], SignUpComponent);

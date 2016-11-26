@@ -8,7 +8,7 @@ import {ValidatorService} from '../validator/validator.service'
 @Component({
     selector: 'sign-up',
     templateUrl: '/app/signup/signup.component.html',
-    styleUrls: ['./app/signup/signup.component.css', './app/signup/signup.component.css']
+    styleUrls: ['./app/signin/signin.component.css', './app/signup/signup.component.css']
 })
 
 export class SignUpComponent {

@@ -26,10 +26,8 @@ export class ValidatorService {
 
     passwordsMatch(password: string, confirmPassword: string): boolean {
         if (password == confirmPassword) {
-            console.log("TRUE")
             return true
         } else {
-            console.log("False")
             return false
         }
     }
