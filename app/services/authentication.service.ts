@@ -20,7 +20,7 @@ export class AuthenticationService {
     private recoverPasswordEndpoint = '/userResource/recoverPassword'
     private userInfoEndpoint = '/userResource/getRegisteredUsers'
     private updateUserEndpoint = '/userResource/updateUser'
-    private getEmployeesEndpoint = '/userResource/getRegisteredUsersByType/1'
+    private getEmployeesEndpoint = '/userResource/getRegisteredUsersByType/2'
     
     //Procedures
     private createProcedureEndpoint = '/procedureResource/createProcedure';

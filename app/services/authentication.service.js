@@ -22,7 +22,7 @@ var AuthenticationService = (function () {
         this.recoverPasswordEndpoint = '/userResource/recoverPassword';
         this.userInfoEndpoint = '/userResource/getRegisteredUsers';
         this.updateUserEndpoint = '/userResource/updateUser';
-        this.getEmployeesEndpoint = '/userResource/getRegisteredUsersByType/1';
+        this.getEmployeesEndpoint = '/userResource/getRegisteredUsersByType/2';
         //Procedures
         this.createProcedureEndpoint = '/procedureResource/createProcedure';
         this.getProcedureRequestsByUserEndpoint = '/procedureResource/getRequestProceduresByUser';
