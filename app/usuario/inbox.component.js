@@ -13,31 +13,31 @@ var router_1 = require('@angular/router');
 var authentication_service_1 = require('../services/authentication.service');
 var menu_mock_1 = require("../menu_mock");
 var ng2_toastr_1 = require('ng2-toastr/ng2-toastr');
+var edit_employee_service_1 = require('../edit-employee-profile/edit-employee-service');
 var InboxUsuarioComponent = (function () {
-    function InboxUsuarioComponent(router, authService, toastr) {
+    function InboxUsuarioComponent(router, authService, editEmployeeService, toastr) {
         this.router = router;
         this.authService = authService;
+        this.editEmployeeService = editEmployeeService;
         this.toastr = toastr;
         this.sortByWordLength = function (a) {
             return a.name.length;
         };
         this.menus = localStorage.getItem("type_user") === '1' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
     }
-    InboxUsuarioComponent.prototype.removeItem = function (item) {
+    InboxUsuarioComponent.prototype.deleteEmployee = function (item) {
         this.toastr.info("Eliminar: " + item.id, 'Alerta');
         console.log("Remove: ", item.id);
     };
-    InboxUsuarioComponent.prototype.editItem = function (item) {
+    InboxUsuarioComponent.prototype.editEmployee = function (item) {
+        this.editEmployeeService.employee = item;
         this.toastr.info("Editar: " + item.id, 'Alerta');
-        var link = ['/editProfile', item.cedula];
+        var link = ['/editEmployee', item.cedula];
         this.router.navigate(link);
         console.log("Edit: ", item.id);
     };
-    InboxUsuarioComponent.prototype.newItem = function () {
-        this.toastr.info("Nuevo Usuario", 'Alerta');
-        var link = ['/newuserin'];
-        this.router.navigate(link);
-        console.log("Nuevo Uusuario");
+    InboxUsuarioComponent.prototype.addEmployee = function () {
+        this.router.navigate(['/signUpEmployee']);
     };
     InboxUsuarioComponent.prototype.ngOnInit = function () {
         //noinspection TypeScriptValidateTypes
@@ -71,7 +71,7 @@ var InboxUsuarioComponent = (function () {
             styleUrls: ['./app/signin/signin.component.css', './app/usuario/inbox.component.css', './app/usuario/button-floating.css'],
             providers: [authentication_service_1.AuthenticationService]
         }), 
-        __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService, ng2_toastr_1.ToastsManager])
+        __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService, edit_employee_service_1.EditEmployeeService, ng2_toastr_1.ToastsManager])
     ], InboxUsuarioComponent);
     return InboxUsuarioComponent;
 }());

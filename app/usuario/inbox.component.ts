@@ -5,6 +5,7 @@ import { User } from '../user'
 import {menu} from "../menu";
 import {MENU_ADM, MENU_CDN} from "../menu_mock";
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
+import {EditEmployeeService} from '../edit-employee-profile/edit-employee-service'
 
 @Component({
     selector: 'usuario',
@@ -16,37 +17,37 @@ import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 
 export class InboxUsuarioComponent implements OnInit {
 
-    public selectUsuario: User[];
-    public username;
+    selectUsuario: [User];
+    username;
     menus: menu[];
 
     constructor(
         private router: Router,
         private authService: AuthenticationService,
-        private toastr: ToastsManager
-    ) { this.menus = localStorage.getItem("type_user") === '1' ? MENU_CDN : MENU_ADM;}
+        private editEmployeeService: EditEmployeeService,
+        private toastr: ToastsManager) { 
+            this.menus = localStorage.getItem("type_user") === '1' ? MENU_CDN : MENU_ADM;
+    }
 
     private sortByWordLength = (a: any) => {
         return a.name.length;
     }
 
-    public removeItem(item: any) {
+    deleteEmployee(item: any) {
         this.toastr.info("Eliminar: " + item.id, 'Alerta');
         console.log("Remove: ", item.id);
     }
 
-    public editItem(item: any) {
+    editEmployee(item: any) {
+        this.editEmployeeService.employee = <User>item
         this.toastr.info("Editar: " + item.id, 'Alerta');
-        let link = ['/editProfile', item.cedula];
+        let link = ['/editEmployee', item.cedula];
         this.router.navigate(link);
         console.log("Edit: ", item.id);
     }
 
-    public newItem() {
-        this.toastr.info("Nuevo Usuario", 'Alerta');
-        let link = ['/newuserin'];
-        this.router.navigate(link);
-        console.log("Nuevo Uusuario");
+    addEmployee() {
+        this.router.navigate(['/signUpEmployee']);
     }
 
     ngOnInit(): void {

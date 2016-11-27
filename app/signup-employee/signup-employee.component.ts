@@ -6,11 +6,10 @@ import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 import {ValidatorService} from '../validator/validator.service'
 import {menu} from "../menu";
 import {MENU_ADM, MENU_CDN} from "../menu_mock";
-import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 
 @Component({
     selector: 'sign-up',
-    templateUrl: '/app/signupemployee/signup.component.html',
+    templateUrl: '/app/signup-employee/signup-employee.component.html',
     styleUrls: ['./app/signin/signin.component.css', './app/edit-profile/edit-profile.component.css'],
 })
 
@@ -57,7 +56,7 @@ export class SignUpEmployeeComponent {
             this.authService.signUpFuncionario(user)
                 .subscribe(response => {
                     this.toastr.info("Usuario Creado", 'Alerta');
-                    this.router.navigate(['/signin']);
+                    this.onBack()
                 }, error => {
                     let jsonObject = JSON.parse(error.text());
                     this.toastr.error(jsonObject.message, 'Alerta');
@@ -66,5 +65,7 @@ export class SignUpEmployeeComponent {
             }
     }
 
-
+    onBack() {
+        this.router.navigate(['/inboxUsuario'])
+    }
 }

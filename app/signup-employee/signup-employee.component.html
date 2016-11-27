@@ -1,10 +1,11 @@
 <md-toolbar class="md-accent">
+    <i class="material-icons addgreenback icon-space" (click)="onBack()">arrow_back</i>
     <img class="toolbar-logo" src="assets/satlogo.png" />
     <h1 class="toolbar-title">SAT - Sistema de Automatizacion de Tramites</h1>
     <span class="app-toolbar-filler"></span>
 </md-toolbar>
+
 <div class="container">
-    <div><img class="form-logo" src="assets/satlogo2.png"></div>
     <form name="userForm" (submit)="onSignUp(ced.value,nickname.value,email.value,password.value,confirmpassword.value,phone.value);">
         <div class="icon-sect">
             <span md-prefix>
@@ -26,8 +27,8 @@
         </div>
         <div class="icon-sect">
             <span md-prefix>
-            <i class="material-icons app-input-icon icon-space">phone</i>
-        </span>
+                <i class="material-icons app-input-icon icon-space">phone</i>
+            </span>
             <md-input #phone type="phone" placeholder="Telefono" class="auth-input" required></md-input>
         </div>
         <div class="icon-sect">
@@ -44,17 +45,13 @@
         </div>
         <div>
             <span>
-            La contraseña debe tener entre 8 y 16 caracteres, un numero, una minuscula, una mayuscula y uno de los siguientes caracteres !%*$"
-        </span>
+                    La contraseña debe tener entre 8 y 16 caracteres, un numero, una minuscula, una mayuscula y uno de los siguientes caracteres !%*$"
+                </span>
         </div>
         <div>
             <button md-raised-button disableRipple="false" class="auth-button " type="submit">CREAR CUENTA</button>
         </div>
     </form>
-    <div class="hr-sect">Ya tienes cuenta?</div>
-    <div>
-        <button md-raised-button disableRipple="true" class="auth-button" (click)="onSignIn()">INICIAR SESION</button>
-    </div>
     <br/>
     <br/>
     <br/>

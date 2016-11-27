@@ -2,7 +2,7 @@
 import {Router} from '@angular/router'
 import {AuthenticationService} from '../services/authentication.service'
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
-import {Menu} from "../menu";
+import {menu} from "../menu";
 import {MENU_ADM, MENU_CDN} from "../menu_mock";
 import {campo} from "../campo";
 import {tramites} from "../tramites";
