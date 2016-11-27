@@ -52,7 +52,7 @@ export class FieldDetailComponent implements OnInit {
         let campo1=new campo();
         campo1.nombre=localStorage.getItem("campo");
         campo1.tipo=localStorage.getItem("type");
-        campo1.idCampo=localStorage.getItem("campoid");
+        campo1.idcampo=localStorage.getItem("campoid");
         this.campoSelected=campo1;
     }
 

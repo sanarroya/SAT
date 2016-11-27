@@ -42,7 +42,7 @@ var FieldDetailComponent = (function () {
         var campo1 = new campo_1.campo();
         campo1.nombre = localStorage.getItem("campo");
         campo1.tipo = localStorage.getItem("type");
-        campo1.idCampo = localStorage.getItem("campoid");
+        campo1.idcampo = localStorage.getItem("campoid");
         this.campoSelected = campo1;
     };
     FieldDetailComponent.prototype.submitTramite = function (nombre) {

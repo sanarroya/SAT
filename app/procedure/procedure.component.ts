@@ -44,15 +44,30 @@ export class ProcedureComponent implements OnInit {
 
                 if (localStorage.getItem("edit") === "true") {
                     localStorage.setItem("edit", "false");
-                    let index: number = +localStorage.getItem("campoid");
+                    let index : number= +localStorage.getItem("campoid");
+                    console.log("id campo1 "+index);
                     if (index > -1) {
-                        index = index - 1;
+
+                        console.log("id campo 2 "+index);
+
+                        this.camposSelected.filter(function (v) {
+                            console.log("id campo 3 "+v.idcampo);
+                            return v.idcampo == index;
+
+                        }).map(x=> {
+                            x.nombre = localStorage.getItem("campo");
+                            x.tipo = localStorage.getItem("type");
+                            console.log("id campo 3 "+x.nombre);
+                        });
+
+
+                       /* index = index - 1;
                         this.camposSelected[index].nombre = localStorage.getItem("campo");
-                        this.camposSelected[index].tipo = localStorage.getItem("type");
+                        this.camposSelected[index].tipo = localStorage.getItem("type");*/
                     }
                 } else {
                     let camp = new campo();
-                    camp.idCampo = localStorage.getItem("campoid");
+                    camp.idcampo = localStorage.getItem("campoid");
                     camp.nombre = localStorage.getItem("campo");
                     camp.tipo = localStorage.getItem("type");
                     this.camposSelected.push(camp);
@@ -130,7 +145,7 @@ export class ProcedureComponent implements OnInit {
         localStorage.setItem("tramite", this.tramiteSelected.nombre);
         localStorage.setItem("descripcion", this.tramiteSelected.descripcion);
         localStorage.setItem("edit", 'true');
-        localStorage.setItem("campoid", campo.idCampo);
+        localStorage.setItem("campoid", campo.idcampo+"");
         localStorage.setItem("type", campo.tipo);
         localStorage.setItem("campo", campo.nombre);
         localStorage.setItem("campos", JSON.stringify(this.camposSelected));

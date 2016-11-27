@@ -1,5 +1,5 @@
 export class campo {
-    idCampo:string;
+    idcampo:string;
     nombre: string
     tipo: string
 }
