@@ -13,6 +13,7 @@ var router_1 = require('@angular/router');
 var authentication_service_1 = require('../services/authentication.service');
 var ng2_toastr_1 = require('ng2-toastr/ng2-toastr');
 var menu_mock_1 = require("../menu_mock");
+var deleteProcedure_1 = require("../deleteProcedure");
 var InboxTramiteComponent = (function () {
     function InboxTramiteComponent(router, authService, toastr) {
         this.router = router;
@@ -25,89 +26,59 @@ var InboxTramiteComponent = (function () {
         };
         this.menus = localStorage.getItem("type_user") === '1' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
         this.admin = localStorage.getItem("type_user") === '1' ? false : true;
-        this.selectTramite = JSON.parse(localStorage.getItem("tramiteInbox")) === null ? [] : JSON.parse(localStorage.getItem("tramiteInbox"));
-        var tramite = JSON.parse(localStorage.getItem("tramiteStored"));
-        var edit = localStorage.getItem("editcampoStoredId");
-        if (edit === "true") {
-            localStorage.setItem("editcampoStoredId", "false");
-            var index = +localStorage.getItem("campoStoredId");
-            if (index > -1) {
-                index = index - 1;
-                this.selectTramite[index].nombre = tramite.nombre;
-                this.selectTramite[index].descripcion = tramite.descripcion;
-                this.selectTramite[index].campos = tramite.campos;
-                this.selectTramite[index].id = tramite.id;
-            }
-        }
-        else {
-            if (tramite != null) {
-                console.log("stored " + tramite.nombre);
-                this.selectTramite.push(tramite);
-                localStorage.setItem("tramiteStored", null);
-            }
-        }
     }
     InboxTramiteComponent.prototype.removeItem = function (item) {
-        this.toastr.info("Eliminado: " + item.nombre, 'Alerta');
+        var _this = this;
         console.log("Remove: ", item.nombre);
-        var index = this.selectTramite.indexOf(item, 0);
-        if (index > -1) {
-            this.selectTramite.splice(index, 1);
-        }
-        localStorage.setItem("tramiteInbox", JSON.stringify(this.selectTramite));
+        var tramitex = new deleteProcedure_1.DeleteTramite();
+        tramitex.id = item.id;
+        console.log(JSON.stringify(tramitex));
+        this.authService.deleteProcedure(tramitex)
+            .subscribe(function (response) {
+            _this.toastr.info("Tramite Eliminado", 'Alerta');
+            _this.getAllTramites();
+        }, function (error) {
+            _this.toastr.error("Error Eliminando el tramite, por favor intente de nuevo", 'Alerta');
+            console.log(error.toString());
+        });
     };
     InboxTramiteComponent.prototype.editItem = function (item) {
         this.toastr.info("Editar: " + item.nombre, 'Alerta');
-        localStorage.setItem("tramiteInbox", JSON.stringify(this.selectTramite));
-        localStorage.setItem("tramite", item.nombre);
-        localStorage.setItem("descripcion", item.descripcion);
-        localStorage.setItem("campos", JSON.stringify(item.campos));
-        localStorage.setItem("campoStoredId", item.id);
-        localStorage.setItem("editcampoStoredId", "true");
+        localStorage.setItem("editcampoStoredId", item.id.toString());
+        localStorage.setItem("fieldCamp", "false");
         var link = ['/procedure'];
         this.router.navigate(link);
         console.log("Edit: ", item.nombre);
     };
+    InboxTramiteComponent.prototype.newItem = function () {
+        this.toastr.info("Nuevo Trámite", 'Alerta');
+        localStorage.setItem("editcampoStoredId", "0");
+        localStorage.setItem("fieldCamp", "false");
+        var link = ['/procedure'];
+        this.router.navigate(link);
+        console.log("Nuevo Trámite: ");
+    };
     InboxTramiteComponent.prototype.onNewProcedure = function (item) {
         if (!this.admin) {
-            localStorage.setItem("crearSolicitud", JSON.stringify(item));
             this.router.navigate(['/createProcedure']);
         }
     };
     InboxTramiteComponent.prototype.change = function () {
         this.admin = !this.admin;
     };
-    InboxTramiteComponent.prototype.newItem = function () {
-        this.toastr.info("Nuevo Trámite", 'Alerta');
-        var campo = [];
-        localStorage.setItem("campos", JSON.stringify(campo));
-        localStorage.setItem("tramite", "");
-        localStorage.setItem("descripcion", "");
-        localStorage.setItem("edit", 'false');
-        localStorage.setItem("campoid", "");
-        localStorage.setItem("type", "");
-        localStorage.setItem("campo", "");
-        localStorage.setItem("editcampoStoredId", "false");
-        localStorage.setItem("campoStoredId", this.selectTramite.length.toString());
-        localStorage.setItem("tramiteInbox", JSON.stringify(this.selectTramite));
-        var link = ['/procedure'];
-        this.router.navigate(link);
-        console.log("Nuevo Trámite: ");
-    };
     InboxTramiteComponent.prototype.ngOnInit = function () {
+        this.getAllTramites();
     };
     InboxTramiteComponent.prototype.getAllTramites = function () {
-        /* this.authService.getAllTramites()
-         .subscribe(
-         response => {
-         this.selectTramite = response;
-         },
-         error => {
-         this.toastr.error('hay un error', 'Alerta');
-         this.toastr.error(error.text(), 'Alerta');
-         console.log(error.text());
-         }
-         );*/
+        var _this = this;
+        this.authService.getAllTramites()
+            .subscribe(function (response) {
+            _this.selectTramite = response;
+        }, function (error) {
+            _this.toastr.error('hay un error', 'Alerta');
+            _this.toastr.error(error.text(), 'Alerta');
+            console.log(error.text());
+        });
     };
     InboxTramiteComponent.prototype.onSelect = function (hero) {
         this.router.navigate([hero.id]);

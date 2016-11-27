@@ -21,6 +21,9 @@ var AuthenticationService = (function () {
         this.recoverPasswordEndpoint = '/userResource/recoverPassword';
         this.userInfoEndpoint = '/userResource/getRegisteredUsers';
         this.createProcedureEndpoint = '/procedureResource/createProcedure';
+        this.getDetailProcedureEndpoint = '/procedureResource/getProcedureByID';
+        this.updateProcedureEndpoint = '/procedureResource/modifyProcedure';
+        this.deleteProcedureEndPoint = "/procedureResource/deleteProcedure";
         this.updateUserEndpoint = '/userResource/updateUser';
         this.tramitesEndpoint = '/procedureResource/getAllProcedures';
         this.solicitudEndpoint = '/procedureResource/getAllSolicitudes';
@@ -61,15 +64,23 @@ var AuthenticationService = (function () {
         return this.http.post(this.baseUrl + this.createProcedureEndpoint, JSON.stringify(tramite), this.headers)
             .map(function (res) { return res.json(); });
     };
-    //Metodo para traer todos los tramites registrados
+    AuthenticationService.prototype.updateProcedure = function (tramite) {
+        return this.http.post(this.baseUrl + this.updateProcedureEndpoint, JSON.stringify(tramite), this.headers)
+            .map(function (res) { return res.json(); });
+    };
+    AuthenticationService.prototype.deleteProcedure = function (tramite) {
+        return this.http.post(this.baseUrl + this.deleteProcedureEndPoint, JSON.stringify(tramite), this.headers)
+            .map(function (res) { return res.json(); });
+    };
     AuthenticationService.prototype.getAllTramites = function () {
-        var authHeader = new http_1.Headers();
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:44111/procedureResource/getAllProcedures/', {
-            headers: headers
-        }).map(this.extractData)
+        var url = "" + (this.baseUrl + this.tramitesEndpoint);
+        return this.http.get(url).map(this.extractData)
             .catch(this.handleError);
+    };
+    AuthenticationService.prototype.getDetalleTramite = function (id) {
+        var url = (this.baseUrl + this.getDetailProcedureEndpoint) + "/" + id;
+        return this.http.get(url)
+            .map(this.extractDataOnly);
     };
     AuthenticationService.prototype.getAllSolicitudes = function () {
         var authHeader = new http_1.Headers();

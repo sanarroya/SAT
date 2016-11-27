@@ -8,7 +8,8 @@ import { Login } from '../login'
 
 import {tramites} from "../tramites";
 import { Tramite } from '../tramite'
-import { Solicitud } from '../solicitud' 
+import { Solicitud } from '../solicitud'
+import {DeleteTramite} from "../deleteProcedure";
 
 @Injectable()
 export class AuthenticationService {
@@ -18,7 +19,10 @@ export class AuthenticationService {
     private recoverPasswordEndpoint = '/userResource/recoverPassword'
     private userInfoEndpoint = '/userResource/getRegisteredUsers'
     private createProcedureEndpoint='/procedureResource/createProcedure';
-    private updateUserEndpoint = '/userResource/updateUser'
+    private getDetailProcedureEndpoint='/procedureResource/getProcedureByID';
+    private updateProcedureEndpoint = '/procedureResource/modifyProcedure';
+    private deleteProcedureEndPoint="/procedureResource/deleteProcedure";
+    private updateUserEndpoint = '/userResource/updateUser';
     private tramitesEndpoint = '/procedureResource/getAllProcedures';
     private solicitudEndpoint = '/procedureResource/getAllSolicitudes';
     private usuarioEndpoint = '/procedureResource/getAllUsuarios';
@@ -68,16 +72,29 @@ export class AuthenticationService {
         return this.http.post(this.baseUrl + this.createProcedureEndpoint, JSON.stringify(tramite), this.headers)
             .map(res => res.json())
     }
+
+    updateProcedure(tramite: tramites): Observable<any> {
+        return this.http.post(this.baseUrl + this.updateProcedureEndpoint, JSON.stringify(tramite), this.headers)
+            .map(res => res.json())
+    }
+
+
+    deleteProcedure(tramite: DeleteTramite): Observable<any> {
+        return this.http.post(this.baseUrl + this.deleteProcedureEndPoint, JSON.stringify(tramite), this.headers)
+            .map(res => res.json())
+    }
     
-    //Metodo para traer todos los tramites registrados
+
     getAllTramites(): Observable<Tramite[]> {
-        var authHeader = new Headers();
-        var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:44111/procedureResource/getAllProcedures/', {
-            headers
-        }).map(this.extractData)
+        const url =  `${this.baseUrl+this.tramitesEndpoint}`;
+        return this.http.get(url).map(this.extractData)
             .catch(this.handleError);
+    }
+
+    getDetalleTramite(id: string): Observable<tramites> {
+        const url =  `${this.baseUrl + this.getDetailProcedureEndpoint}/${id}`;
+        return this.http.get(url)
+            .map(this.extractDataOnly)
     }
 
     getAllSolicitudes(): Observable<Solicitud[]> {

@@ -42,7 +42,7 @@ var FieldDetailComponent = (function () {
         var campo1 = new campo_1.campo();
         campo1.nombre = localStorage.getItem("campo");
         campo1.tipo = localStorage.getItem("type");
-        campo1.id = localStorage.getItem("campoid");
+        campo1.idCampo = localStorage.getItem("campoid");
         this.campoSelected = campo1;
     };
     FieldDetailComponent.prototype.submitTramite = function (nombre) {
@@ -64,6 +64,7 @@ var FieldDetailComponent = (function () {
             localStorage.setItem("campo", nombre);
             localStorage.setItem("type", this.type);
             localStorage.setItem("operationDetail", "true");
+            localStorage.setItem("fieldCamp", "true");
             this.router.navigate(['/procedure']);
         }
     };
