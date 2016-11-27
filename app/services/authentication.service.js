@@ -16,15 +16,19 @@ var AuthenticationService = (function () {
     function AuthenticationService(http) {
         this.http = http;
         this.baseUrl = 'http://localhost:44111';
+        //User Endpoints
         this.singInEndpoint = '/userResource/login';
         this.singUpEndpoint = '/userResource/registerCitizen';
         this.recoverPasswordEndpoint = '/userResource/recoverPassword';
         this.userInfoEndpoint = '/userResource/getRegisteredUsers';
-        this.createProcedureEndpoint = '/procedureResource/createProcedure';
         this.updateUserEndpoint = '/userResource/updateUser';
+        this.getEmployeesEndpoint = '/userResource/getRegisteredUsersByType/1';
+        //Procedures
+        this.createProcedureEndpoint = '/procedureResource/createProcedure';
+        this.getProcedureRequestsByUserEndpoint = '/procedureResource/getRequestProceduresByUser';
+        this.getAllRequestOfProcedures = '/procedureResource/getAllRequetstProcedures';
         this.tramitesEndpoint = '/procedureResource/getAllProcedures';
         this.solicitudEndpoint = '/procedureResource/getAllSolicitudes';
-        this.usuarioEndpoint = '/procedureResource/getAllUsuarios';
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     AuthenticationService.prototype.signIn = function (user) {
@@ -80,14 +84,13 @@ var AuthenticationService = (function () {
         }).map(this.extractData)
             .catch(this.handleError);
     };
-    AuthenticationService.prototype.getAllUsuarios = function () {
-        var authHeader = new http_1.Headers();
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:44111/procedureResource/getAllUsuarios/', {
-            headers: headers
-        }).map(this.extractData)
-            .catch(this.handleError);
+    AuthenticationService.prototype.getAllEmployees = function () {
+        var url = this.baseUrl + this.getEmployeesEndpoint;
+        console.log(url);
+        return this.http.get(url)
+            .map(function (response) {
+            return response.json().usuarios;
+        });
     };
     //Metodo to manipulate data
     AuthenticationService.prototype.extractData = function (res) {
@@ -107,8 +110,6 @@ var AuthenticationService = (function () {
     };
     //Metodo para manejar los errores
     AuthenticationService.prototype.handleError = function (error) {
-        // In a real world app, we might use a remote logging infrastructure
-        // We'd also dig deeper into the error to get a better message
         var errMsg = error.status ? "" + error.status : 'Server error';
         console.error(errMsg); // log to console instead
         return Observable_1.Observable.throw(errMsg);

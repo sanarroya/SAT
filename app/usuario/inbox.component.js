@@ -40,15 +40,15 @@ var InboxUsuarioComponent = (function () {
         this.router.navigate(['/signUpEmployee']);
     };
     InboxUsuarioComponent.prototype.ngOnInit = function () {
+        var _this = this;
         //noinspection TypeScriptValidateTypes
-        this.selectUsuario = [
-            { nombre: 'Maria Antonia Ochoa Perez', cedula: 1234, email: 'mochoa@correo.com', tipo: '1', telefono: '', confirmPassword: '', password: '' },
-            { nombre: 'Juan Carlos Marin Lopez', cedula: 2345, email: 'jlopez@correo.com', tipo: '1', telefono: '', confirmPassword: '', password: '' },
-            { nombre: 'Johana Patricia Rojas Pinto', cedula: 3456, email: 'jpinto@correo.com', tipo: '1', telefono: '', confirmPassword: '', password: '' },
-            { nombre: 'Rosa Cecilia Sanchez Gil', cedula: 4567, email: 'rsanchez@correo.com', tipo: '1', telefono: '', confirmPassword: '', password: '' }
-        ];
-        this.username = "Administrador";
-        //this.getAllUsuarios();
+        this.authService.getAllEmployees()
+            .subscribe(function (response) {
+            _this.employees = response;
+            console.log(_this.employees);
+        }, function (error) {
+            console.log(error);
+        });
     };
     InboxUsuarioComponent.prototype.getAllUsuarios = function () {
         var _this = this;

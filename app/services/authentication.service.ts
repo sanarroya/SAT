@@ -13,15 +13,22 @@ import { Solicitud } from '../solicitud'
 @Injectable()
 export class AuthenticationService {
     private baseUrl = 'http://localhost:44111'
+
+    //User Endpoints
     private singInEndpoint = '/userResource/login'
     private singUpEndpoint = '/userResource/registerCitizen'
     private recoverPasswordEndpoint = '/userResource/recoverPassword'
     private userInfoEndpoint = '/userResource/getRegisteredUsers'
-    private createProcedureEndpoint='/procedureResource/createProcedure';
     private updateUserEndpoint = '/userResource/updateUser'
+    private getEmployeesEndpoint = '/userResource/getRegisteredUsersByType/1'
+    
+    //Procedures
+    private createProcedureEndpoint = '/procedureResource/createProcedure';
+    private getProcedureRequestsByUserEndpoint = '/procedureResource/getRequestProceduresByUser'
+    private getAllRequestOfProcedures = '/procedureResource/getAllRequetstProcedures'
+
     private tramitesEndpoint = '/procedureResource/getAllProcedures';
     private solicitudEndpoint = '/procedureResource/getAllSolicitudes';
-    private usuarioEndpoint = '/procedureResource/getAllUsuarios';
     private headers = new Headers({'Content-Type': 'application/json'})
 
     constructor(private http: Http) {
@@ -90,14 +97,13 @@ export class AuthenticationService {
             .catch(this.handleError);
     }
 
-    getAllUsuarios(): Observable<User[]> {
-        var authHeader = new Headers();
-        var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:44111/procedureResource/getAllUsuarios/', {
-            headers
-        }).map(this.extractData)
-            .catch(this.handleError);
+    getAllEmployees(): Observable<User[]> {
+        const url =  this.baseUrl + this.getEmployeesEndpoint
+        console.log(url)
+        return this.http.get(url)
+                .map((response: Response) =>
+                    response.json().usuarios as User[]
+                )
     }
     
     //Metodo to manipulate data
@@ -123,10 +129,7 @@ export class AuthenticationService {
 
     //Metodo para manejar los errores
     private handleError(error: any) {
-        // In a real world app, we might use a remote logging infrastructure
-        // We'd also dig deeper into the error to get a better message
-        let errMsg =
-            error.status ? `${error.status}` : 'Server error';
+        let errMsg = error.status ? `${error.status}` : 'Server error';
         console.error(errMsg); // log to console instead
         return Observable.throw(errMsg);
     }

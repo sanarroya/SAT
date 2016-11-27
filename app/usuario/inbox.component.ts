@@ -17,9 +17,10 @@ import {EditEmployeeService} from '../edit-employee-profile/edit-employee-servic
 
 export class InboxUsuarioComponent implements OnInit {
 
-    selectUsuario: [User];
-    username;
-    menus: menu[];
+   // selectUsuario: [User]
+    private employees: User[]
+    username
+    menus: menu[]
 
     constructor(
         private router: Router,
@@ -52,15 +53,17 @@ export class InboxUsuarioComponent implements OnInit {
 
     ngOnInit(): void {
         //noinspection TypeScriptValidateTypes
-        this.selectUsuario = [
-            { nombre: 'Maria Antonia Ochoa Perez', cedula: 1234, email: 'mochoa@correo.com', tipo:'1', telefono: '', confirmPassword:'',password:'' },
-            { nombre: 'Juan Carlos Marin Lopez', cedula: 2345, email: 'jlopez@correo.com', tipo: '1', telefono: '', confirmPassword: '', password: ''},
-            { nombre: 'Johana Patricia Rojas Pinto', cedula: 3456, email: 'jpinto@correo.com', tipo: '1', telefono: '', confirmPassword: '', password: ''},
-            { nombre: 'Rosa Cecilia Sanchez Gil', cedula: 4567, email: 'rsanchez@correo.com', tipo: '1', telefono: '', confirmPassword: '', password: ''}
-        ];
-
-        this.username = "Administrador";
-        //this.getAllUsuarios();
+        this.authService.getAllEmployees()
+            .subscribe(
+                response => {
+                    this.employees = response
+                    console.log(this.employees)
+                },
+                error => {
+                    console.log(error)
+                }
+            )
+        
 
     }
 
