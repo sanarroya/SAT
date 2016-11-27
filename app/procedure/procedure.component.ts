@@ -28,33 +28,54 @@ export class ProcedureComponent implements OnInit {
     constructor(private router: Router, private authService: AuthenticationService, private toastr: ToastsManager) {
         this.menus = localStorage.getItem("type_user") == '1' ? MENU_CDN : MENU_ADM;
 
-        this.camposSelected = JSON.parse(localStorage.getItem("campos")) === null ? [] : JSON.parse(localStorage.getItem("campos"));
+        let index: number = localStorage.getItem("editcampoStoredId");
+        if (index > 0 && localStorage.getItem("fieldCamp") === "false") {
 
-        this.tramiteSelected.nombre = localStorage.getItem("tramite");
-        this.tramiteSelected.descripcion = localStorage.getItem("descripcion");
+            this.getTramite(index.toString());
+        } else if (localStorage.getItem("fieldCamp") === "true") {
 
-        if (localStorage.getItem("operationDetail") === "true") {
+            this.camposSelected = JSON.parse(localStorage.getItem("campos")) === null ? [] : JSON.parse(localStorage.getItem("campos"));
+            this.tramiteSelected.nombre = localStorage.getItem("tramite");
+            this.tramiteSelected.descripcion = localStorage.getItem("descripcion");
 
-            localStorage.setItem("operationDetail", "false");
+            if (localStorage.getItem("operationDetail") === "true") {
 
-            if (localStorage.getItem("edit") === "true") {
-                localStorage.setItem("edit", "false");
-                let index: number = +localStorage.getItem("campoid");
-                if (index > -1) {
-                    index = index - 1;
-                    this.camposSelected[index].nombre = localStorage.getItem("campo");
-                    this.camposSelected[index].tipo = localStorage.getItem("type");
+                localStorage.setItem("operationDetail", "false");
+
+                if (localStorage.getItem("edit") === "true") {
+                    localStorage.setItem("edit", "false");
+                    let index : number= +localStorage.getItem("campoid");
+                    console.log("id campo1 "+index);
+                    if (index > -1) {
+
+                        console.log("id campo 2 "+index);
+
+                        this.camposSelected.filter(function (v) {
+                            console.log("id campo 3 "+v.idcampo);
+                            return v.idcampo == index;
+
+                        }).map(x=> {
+                            x.nombre = localStorage.getItem("campo");
+                            x.tipo = localStorage.getItem("type");
+                            console.log("id campo 3 "+x.nombre);
+                        });
+
+
+                       /* index = index - 1;
+                        this.camposSelected[index].nombre = localStorage.getItem("campo");
+                        this.camposSelected[index].tipo = localStorage.getItem("type");*/
+                    }
+                } else {
+                    let camp = new campo();
+                    camp.idcampo = localStorage.getItem("campoid");
+                    camp.nombre = localStorage.getItem("campo");
+                    camp.tipo = localStorage.getItem("type");
+                    this.camposSelected.push(camp);
+
                 }
-            } else {
-                let camp = new campo();
-                camp.id = localStorage.getItem("campoid");
-                camp.nombre = localStorage.getItem("campo");
-                camp.tipo = localStorage.getItem("type");
-                this.camposSelected.push(camp);
 
+                localStorage.setItem("campos", JSON.stringify(this.camposSelected));
             }
-
-            localStorage.setItem("campos", JSON.stringify(this.camposSelected));
         }
 
     }
@@ -69,44 +90,40 @@ export class ProcedureComponent implements OnInit {
 
             if (lenghtC > 0) {
 
-                let id: string="0";
-                let edit = localStorage.getItem("editcampoStoredId");
-                if (edit === "true") {
-                    id = localStorage.getItem("campoStoredId");
-                } else {
-                    let num: number = +localStorage.getItem("campoStoredId");
-                    num = num + 1;
-                    id = num.toString();
-                    localStorage.setItem("campoStoredId",id.toString());
-                }
-
                 let tramitex = new tramites();
-                tramitex.id = id;
+                tramitex.id = localStorage.getItem("editcampoStoredId");
                 tramitex.nombre = nomTramite;
                 tramitex.descripcion = desTramite;
                 tramitex.campos = this.camposSelected;
 
 
-                /*this.authService.createProcedure(tramites)
-                 .subscribe(response => {
-                 this.toastr.info("Tramite Creado", 'Alerta');
-                 this.camposSelected.splice(0,this.camposSelected.length);
-                 localStorage.setItem("campos", JSON.stringify(this.camposSelected));
-                 localStorage.setItem("tramite", "");
-                 localStorage.setItem("descripcion", "");
-                 localStorage.setItem("edit", 'false');
-                 localStorage.setItem("campoid", "");
-                 localStorage.setItem("type", "");
-                 localStorage.setItem("campo", "");
-                 this.router.navigate(['/editProfile']);
-                 }, error => {
-                 let jsonObject = JSON.parse(error.text());
-                 this.toastr.error("Error creando el tramite, por favor intente de nuevo", 'Alerta');
-                 console.log(error.text());
-                 });*/
+                console.log(JSON.stringify(tramitex));
 
-                localStorage.setItem("tramiteStored", JSON.stringify(tramitex));
-                this.router.navigate(["/inboxTramite"]);
+                let index: number = localStorage.getItem("editcampoStoredId");
+                if (index > 0) {
+
+                    this.authService.updateProcedure(tramitex)
+                        .subscribe(response => {
+                            this.toastr.info("Tramite Actualizado", 'Alerta');
+                            this.router.navigate(['/inboxTramite']);
+                        }, error => {
+                            this.toastr.error("Error Actualizando el tramite, por favor intente de nuevo", 'Alerta');
+                            console.log(error.toString());
+                        });
+
+
+                } else {
+
+                    this.authService.createProcedure(tramitex)
+                        .subscribe(response => {
+                            this.toastr.info("Tramite Creado", 'Alerta');
+                            this.router.navigate(['/inboxTramite']);
+                        }, error => {
+                            this.toastr.error("Error creando el tramite, por favor intente de nuevo", 'Alerta');
+                            console.log(error.toString());
+                        });
+
+                }
 
 
             } else {
@@ -118,6 +135,8 @@ export class ProcedureComponent implements OnInit {
     }
 
 
+
+
     onSelect(hero: menu): void {
         this.router.navigate([hero.id]);
     }
@@ -126,7 +145,7 @@ export class ProcedureComponent implements OnInit {
         localStorage.setItem("tramite", this.tramiteSelected.nombre);
         localStorage.setItem("descripcion", this.tramiteSelected.descripcion);
         localStorage.setItem("edit", 'true');
-        localStorage.setItem("campoid", campo.id);
+        localStorage.setItem("campoid", campo.idcampo+"");
         localStorage.setItem("type", campo.tipo);
         localStorage.setItem("campo", campo.nombre);
         localStorage.setItem("campos", JSON.stringify(this.camposSelected));
@@ -164,4 +183,25 @@ export class ProcedureComponent implements OnInit {
     ngOnInit(): void {
 
     }
+
+
+
+    getTramite(id:string) {
+
+        this.authService.getDetalleTramite(id)
+            .subscribe(
+                response => {
+                    this.tramiteSelected  = response;
+                    this.camposSelected=this.tramiteSelected.campos;
+                },
+                error => {
+                    this.toastr.error('hay un error', 'Alerta');
+                    this.toastr.error(error.text(), 'Alerta');
+                    console.log(error.text());
+                }
+            );
+    }
+
+
+
 }
