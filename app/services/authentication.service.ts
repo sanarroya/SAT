@@ -6,9 +6,10 @@ import 'rxjs/add/operator/map'
 import { User } from '../user'
 import { Login } from '../login'
 
-import {tramites} from "../tramites";
+import {tramites} from "../tramites"
 import { Tramite } from '../tramite'
-import { Solicitud } from '../solicitud' 
+import { Solicitud } from '../solicitud'
+import {DeleteTramite} from "../deleteProcedure"
 
 @Injectable()
 export class AuthenticationService {
@@ -26,12 +27,16 @@ export class AuthenticationService {
     private deleteEmployeeEndpoint = '/userResource/deleteUser'
 
     //Procedures
-    private createProcedureEndpoint = '/procedureResource/createProcedure';
+    private createProcedureEndpoint = '/procedureResource/createProcedure'
     private getProcedureRequestsByUserEndpoint = '/procedureResource/getRequestProceduresByUser'
     private getAllRequestOfProcedures = '/procedureResource/getAllRequetstProcedures'
+    private getDetailProcedureEndpoint='/procedureResource/getProcedureByID'
+    private updateProcedureEndpoint = '/procedureResource/modifyProcedure'
+    private deleteProcedureEndPoint="/procedureResource/deleteProcedure"
+    private tramitesEndpoint = '/procedureResource/getAllProcedures'
+    private solicitudEndpoint = '/procedureResource/getAllSolicitudes'
 
-    private tramitesEndpoint = '/procedureResource/getAllProcedures';
-    private solicitudEndpoint = '/procedureResource/getAllSolicitudes';
+
     private headers = new Headers({'Content-Type': 'application/json'})
 
     constructor(private http: Http) {
@@ -70,15 +75,28 @@ export class AuthenticationService {
         return this.http.post(this.baseUrl + this.createProcedureEndpoint, JSON.stringify(tramite), this.headers)
             .map(res => res.json())
     }
+
+    updateProcedure(tramite: tramites): Observable<any> {
+        return this.http.post(this.baseUrl + this.updateProcedureEndpoint, JSON.stringify(tramite), this.headers)
+            .map(res => res.json())
+    }
+
+
+    deleteProcedure(tramite: DeleteTramite): Observable<any> {
+        return this.http.post(this.baseUrl + this.deleteProcedureEndPoint, JSON.stringify(tramite), this.headers)
+            .map(res => res.json())
+    }
     
     getAllTramites(): Observable<Tramite[]> {
-        var authHeader = new Headers();
-        var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:44111/procedureResource/getAllProcedures/', {
-            headers
-        }).map(this.extractData)
+        const url =  `${this.baseUrl+this.tramitesEndpoint}`;
+        return this.http.get(url).map(this.extractData)
             .catch(this.handleError);
+    }
+
+    getDetalleTramite(id: string): Observable<tramites> {
+        const url =  `${this.baseUrl + this.getDetailProcedureEndpoint}/${id}`;
+        return this.http.get(url)
+            .map(this.extractDataOnly)
     }
 
     getAllSolicitudes(): Observable<Solicitud[]> {
