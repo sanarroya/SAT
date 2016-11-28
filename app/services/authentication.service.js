@@ -28,7 +28,7 @@ var AuthenticationService = (function () {
         //Procedures
         this.createProcedureEndpoint = '/procedureResource/createProcedure';
         this.getProcedureRequestsByUserEndpoint = '/procedureResource/getRequestProceduresByUser';
-        this.getAllRequestOfProcedures = '/procedureResource/getAllRequetstProcedures';
+        this.getAllRequestOfProceduresEndPoint = '/procedureResource/getAllRequestProcedures';
         this.getDetailProcedureEndpoint = '/procedureResource/getProcedureByID';
         this.updateProcedureEndpoint = '/procedureResource/modifyProcedure';
         this.deleteProcedureEndPoint = "/procedureResource/deleteProcedure";
@@ -80,13 +80,15 @@ var AuthenticationService = (function () {
         return this.http.get(url)
             .map(this.extractDataOnly);
     };
-    AuthenticationService.prototype.getAllSolicitudes = function () {
-        var authHeader = new http_1.Headers();
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:44111/procedureResource/getAllSolicitudes/', {
-            headers: headers
-        }).map(this.extractData)
+    AuthenticationService.prototype.getRequests = function () {
+        return this.http.get(this.baseUrl + this.getAllRequestOfProceduresEndPoint)
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    AuthenticationService.prototype.getRequestsByUser = function (id) {
+        var url = (this.baseUrl + this.getProcedureRequestsByUserEndpoint) + "/" + id;
+        return this.http.get(url)
+            .map(this.extractData)
             .catch(this.handleError);
     };
     AuthenticationService.prototype.getAllEmployees = function () {

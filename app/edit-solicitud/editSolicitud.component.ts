@@ -34,7 +34,6 @@ export class EditSolicitud implements OnInit {
 
     }
 
-
     getInfoSolicitud(): void {
         this.authService.getSolicitudProfile(localStorage.getItem('idTramite')).suscribe(response => {
             localStorage.setItem('cedula_user', <string>response.cedula);

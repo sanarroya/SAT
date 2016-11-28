@@ -1,10 +1,10 @@
-﻿import { Component, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
-import { AuthenticationService } from '../services/authentication.service'
-import { User } from '../user';
+﻿import {Component, OnInit} from '@angular/core'
+import {Router} from '@angular/router'
+import {AuthenticationService} from '../services/authentication.service'
+import {User} from '../user';
 import {menu} from "../menu";
 import {MENU_ADM, MENU_CDN, MENU_FCN} from "../menu_mock";
-import { Solicitud } from '../solicitud';
+import {Tramite} from '../tramite';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 
 @Component({
@@ -17,7 +17,7 @@ import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 
 export class InboxSolicitudComponent implements OnInit {
 
-    public selectSolicitud: Solicitud[];
+    public selectSolicitud: Tramite[];
     public username;
     menus: menu[];
     user = false
@@ -63,31 +63,37 @@ export class InboxSolicitudComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        //alert("Bandeja Solicitud");
-        this.selectSolicitud = [
-            { descripcion: 'descripicion de solicitud 1', nombre: 'solicitud 1', id: 1 },
-            { descripcion: 'descripicion de solicitud 2', nombre: 'solicitud 2', id: 2 },
-            { descripcion: 'descripicion de solicitud 3', nombre: 'solicitud 3', id: 3 },
-            { descripcion: 'descripicion de solicitud 4', nombre: 'solicitud 4', id: 4 }
-        ];
-
-        this.username = "Administrador";
-        //this.getAllSolicitudes();
-
+        if(this.user) {
+            this.getRequestsOfUser()
+        } else {
+            this.getRequests()
+        }
     }
 
-    getAllSolicitudes() {
-        this.authService.getAllSolicitudes()
-            .subscribe(
+    getRequests() {
+        console.log("REQUESTS")
+        this.authService.getRequests().subscribe(
             response => {
-                this.selectSolicitud = response;
+                this.selectSolicitud = response
+                console.log(response)
             },
             error => {
-                this.toastr.error('hay un error', 'Alerta');
-                this.toastr.error(error.text(), 'Alerta');
-                console.log(error.text());
+                this.toastr.error(error.text(), 'Alerta')
             }
-            );
+        )
+    }
+
+    getRequestsOfUser() {
+        console.log("REQUESTS OF USER")
+        this.authService.getRequestsByUser(localStorage.getItem('cedula_user')).subscribe(
+            response => {
+                this.selectSolicitud = response
+                console.log(response)
+            },
+            error => {
+                this.toastr.error(error.text(), 'Alerta')
+            }
+        )
     }
 
     onSelect(hero: menu): void {
