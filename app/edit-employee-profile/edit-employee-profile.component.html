@@ -1,0 +1,65 @@
+<md-toolbar class="md-accent">
+    <i class="material-icons addgreenback icon-space" (click)="onBack()">arrow_back</i>
+    <img class="toolbar-logo" src="assets/satlogo.png" />
+    <h1 class="toolbar-title">SAT - Sistema de Automatizacion de Tramites</h1>
+    <span class="app-toolbar-filler"></span>
+</md-toolbar>
+<div>
+    <div class="container">
+        <form name="userForm1" (submit)="updateUser(ced.value,nickname.value,email.value,password.value,confirmpassword.value,phone.value);">
+            <div class="icon-sect">
+                <span md-prefix>
+                <i class="material-icons app-input-icon icon-space">chrome_reader_mode</i>
+            </span>
+                <md-input #ced type="number" placeholder="Cedula" class="auth-input" required ng-disabled="true" readonly="readonly" value="{{selectUser.cedula}}">
+                    <span *ngIf="selectUser" placeholder="Cedula">{{selectUser.cedula}}</span>
+                </md-input>
+            </div>
+            <div class="icon-sect">
+                <span md-prefix>
+                <i class="material-icons app-input-icon icon-space">assignment_ind</i>
+            </span>
+                <md-input #nickname type="text" placeholder="Nombre" class="auth-input" val required value="{{selectUser.nombre}}">
+                    <span *ngIf="selectUser" placeholder="Nombre">{{selectUser.nombre}}</span>
+                </md-input>
+            </div>
+            <div class="icon-sect">
+                <span md-prefix>
+                <i class="material-icons app-input-icon icon-space">email</i>
+            </span>
+                <md-input #email type="email" placeholder="Email" class="auth-input" required value="{{selectUser.email}}">
+                    <span *ngIf="selectUser" placeholder="Email">{{selectUser.email}}</span>
+                </md-input>
+            </div>
+            <div class="icon-sect">
+                <span md-prefix>
+                <i class="material-icons app-input-icon icon-space">vpn_key</i>
+            </span>
+                <md-input #password type="password" placeholder="Contraseña" class="auth-input" required value="{{selectUser.password}}">
+                    <span *ngIf="selectUser" placeholder="Contraseña">{{selectUser.password}}</span>
+                </md-input>
+            </div>
+            <div class="icon-sect">
+                <span md-prefix>
+                <i class="material-icons app-input-icon icon-space">vpn_key</i>
+            </span>
+                <md-input #confirmpassword type="password" placeholder="Confirmar contraseña" class="auth-input" value="{{selectUser.confirmPassword}}">
+                    <span *ngIf="selectUser" placeholder="Confirmar contraseña">{{selectUser.confirmPassword}}</span>
+                </md-input>
+            </div>
+            <div class="icon-sect">
+                <span md-prefix>
+                <i class="material-icons app-input-icon icon-space">phone</i>
+            </span>
+                <md-input #phone type="phone" placeholder="Telefono" class="auth-input" required value="{{selectUser.telefono}}">
+                    <span *ngIf="selectUser" placeholder="Telefono">{{selectUser.telefono}}</span>
+                </md-input>
+            </div>
+            <div>
+                <button md-raised-button disableRipple="false" class="auth-button" type="submit">ACTUALIZAR
+                        PERFIL
+                    </button>
+            </div>
+        </form>
+    </div>
+</div>
