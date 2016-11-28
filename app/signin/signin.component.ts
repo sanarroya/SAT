@@ -29,6 +29,7 @@ export class SignInComponent {
                 localStorage.setItem('id_token', response.token);
                 localStorage.setItem('name', response.usuario.nombre);
                 localStorage.setItem('type_user', response.usuario.tipo);
+                console.log("tipo usuario "+response.usuario.tipo);
                 this.router.navigate(['/inboxTramite']);
             }, error => {
                 let jsonObject = JSON.parse(error.text());

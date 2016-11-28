@@ -18,14 +18,21 @@ var EditSolicitud = (function () {
         this.router = router;
         this.authService = authService;
         this.toastr = toastr;
-        this.menus = localStorage.getItem("type_user") === '1' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
+        if (localStorage.getItem("type_user") === '1') {
+            this.menus = menu_mock_1.MENU_CDN;
+        }
+        else if (localStorage.getItem("type_user") === '2') {
+            this.menus = menu_mock_1.MENU_FCN;
+        }
+        else {
+            this.menus = menu_mock_1.MENU_ADM;
+        }
     }
     EditSolicitud.prototype.getInfoSolicitud = function () {
         var _this = this;
         this.authService.getSolicitudProfile(localStorage.getItem('idTramite')).suscribe(function (response) {
             localStorage.setItem('cedula_user', response.cedula);
             localStorage.setItem('name', response.nombre);
-            localStorage.setItem('type_user', response.tipo);
             _this.selectSolicitud = response;
         }, function (error) {
             var jsonObject = JSON.parse(error.text());

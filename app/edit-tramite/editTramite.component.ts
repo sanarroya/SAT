@@ -32,7 +32,6 @@ export class EditTramite implements OnInit {
         this.authService.getTramiteProfile(localStorage.getItem('idTramite')).subscribe(response => {
             localStorage.setItem('cedula_user', <string>response.cedula);
             localStorage.setItem('name', response.nombre);
-            localStorage.setItem('type_user', response.tipo);
             this.selectTramite = response;
         }, error => {
             let jsonObject = JSON.parse(error.text());

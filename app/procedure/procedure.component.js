@@ -23,7 +23,15 @@ var ProcedureComponent = (function () {
         this.camposSelected = [];
         this.tramiteSelected = new tramites_1.tramites();
         this.num = 1;
-        this.menus = localStorage.getItem("type_user") == '1' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
+        if (localStorage.getItem("type_user") === '1') {
+            this.menus = menu_mock_1.MENU_CDN;
+        }
+        else if (localStorage.getItem("type_user") === '2') {
+            this.menus = menu_mock_1.MENU_FCN;
+        }
+        else {
+            this.menus = menu_mock_1.MENU_ADM;
+        }
         var index = localStorage.getItem("editcampoStoredId");
         if (index > 0 && localStorage.getItem("fieldCamp") === "false") {
             this.getTramite(index.toString());

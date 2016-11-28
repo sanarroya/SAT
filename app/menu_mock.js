@@ -6,6 +6,12 @@ exports.MENU_ADM = [
     { id: '/editProfile', name: 'Editar Perfil' },
     { id: '/signin', name: 'Cerrar Sesion' }
 ];
+exports.MENU_FCN = [
+    { id: '/inboxTramite', name: 'Tramites' },
+    { id: '/inboxSolicitud', name: 'Solicitudes' },
+    { id: '/editProfile', name: 'Editar Perfil' },
+    { id: '/signin', name: 'Cerrar Sesion' }
+];
 exports.MENU_CDN = [
     { id: '/inboxTramite', name: 'Tramites' },
     { id: '/inboxSolicitud', name: 'Mis Solicitudes' },

@@ -3,7 +3,7 @@ import {Router} from '@angular/router'
 import {AuthenticationService} from '../services/authentication.service'
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 import {menu} from "../menu";
-import {MENU_ADM, MENU_CDN} from "../menu_mock";
+import {MENU_ADM, MENU_CDN, MENU_FCN} from "../menu_mock";
 import {User} from '../user'
 import {Solicitud} from '../solicitud'
 
@@ -24,7 +24,14 @@ export class EditSolicitud implements OnInit {
     menus: menu[];
 
     constructor(private router: Router, private authService: AuthenticationService, private toastr: ToastsManager) {
-        this.menus = localStorage.getItem("type_user") === '1' ? MENU_CDN : MENU_ADM;
+        if (localStorage.getItem("type_user") === '1') {
+            this.menus = MENU_CDN;
+        } else if (localStorage.getItem("type_user") === '2') {
+            this.menus = MENU_FCN;
+        } else {
+            this.menus = MENU_ADM;
+        }
+
     }
 
 
@@ -32,7 +39,6 @@ export class EditSolicitud implements OnInit {
         this.authService.getSolicitudProfile(localStorage.getItem('idTramite')).suscribe(response => {
             localStorage.setItem('cedula_user', <string>response.cedula);
             localStorage.setItem('name', response.nombre);
-            localStorage.setItem('type_user', response.tipo);
             this.selectSolicitud = response;
         }, error => {
             let jsonObject = JSON.parse(error.text());

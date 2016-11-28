@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { AuthenticationService } from '../services/authentication.service'
 import { menu } from "../menu";
-import { MENU_ADM, MENU_CDN } from "../menu_mock";
+import {MENU_ADM, MENU_CDN, MENU_FCN} from "../menu_mock";
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Survey } from '../create-procedure/survey.component'
 import { FieldModel } from '../create-procedure/field-model'
@@ -29,7 +29,14 @@ export class CreateProcedureComponent implements OnInit {
 
     fieldModel = new FieldModel()
     constructor(private router: Router, private authService: AuthenticationService) {
-        this.menus = localStorage.getItem("type_user") === '1' ? MENU_CDN : MENU_ADM
+        if (localStorage.getItem("type_user") === '1') {
+            this.menus = MENU_CDN;
+        } else if (localStorage.getItem("type_user") === '2') {
+            this.menus = MENU_FCN;
+        } else {
+            this.menus = MENU_ADM;
+        }
+
     }
 
     ngOnInit(): void {

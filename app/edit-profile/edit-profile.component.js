@@ -20,14 +20,21 @@ var EditProfileComponent = (function () {
         this.authService = authService;
         this.toastr = toastr;
         this.selectUser = new user_1.User();
-        this.menus = localStorage.getItem("type_user") === '1' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
+        if (localStorage.getItem("type_user") === '1') {
+            this.menus = menu_mock_1.MENU_CDN;
+        }
+        else if (localStorage.getItem("type_user") === '2') {
+            this.menus = menu_mock_1.MENU_FCN;
+        }
+        else {
+            this.menus = menu_mock_1.MENU_ADM;
+        }
     }
     EditProfileComponent.prototype.getUser = function () {
         var _this = this;
         this.authService.getUserProfile(localStorage.getItem('cedula_user')).subscribe(function (response) {
             localStorage.setItem('cedula_user', response.cedula);
             localStorage.setItem('name', response.nombre);
-            localStorage.setItem('type_user', response.tipo);
             _this.selectUser = response;
         }, function (error) {
             var jsonObject = JSON.parse(error.text());

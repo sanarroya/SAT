@@ -5,7 +5,7 @@ import {User} from '../user'
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 import {ValidatorService} from '../validator/validator.service'
 import {menu} from "../menu";
-import {MENU_ADM, MENU_CDN} from "../menu_mock";
+import {MENU_ADM, MENU_CDN, MENU_FCN} from "../menu_mock";
 
 @Component({
     selector: 'sign-up',
@@ -20,7 +20,13 @@ export class SignUpEmployeeComponent {
                 private authService: AuthenticationService,
                 private toastr: ToastsManager,
                 private validator: ValidatorService) {
-        this.menus = localStorage.getItem("type_user") === '1' ? MENU_CDN : MENU_ADM;
+        if (localStorage.getItem("type_user") === '1') {
+            this.menus = MENU_CDN;
+        } else if (localStorage.getItem("type_user") === '2') {
+            this.menus = MENU_FCN;
+        } else {
+            this.menus = MENU_ADM;
+        }
     }
 
 

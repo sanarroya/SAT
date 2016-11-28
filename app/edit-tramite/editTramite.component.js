@@ -25,7 +25,6 @@ var EditTramite = (function () {
         this.authService.getTramiteProfile(localStorage.getItem('idTramite')).subscribe(function (response) {
             localStorage.setItem('cedula_user', response.cedula);
             localStorage.setItem('name', response.nombre);
-            localStorage.setItem('type_user', response.tipo);
             _this.selectTramite = response;
         }, function (error) {
             var jsonObject = JSON.parse(error.text());

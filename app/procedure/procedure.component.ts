@@ -2,7 +2,7 @@ import {Component, OnInit, Input} from '@angular/core'
 import {Router} from '@angular/router'
 import {AuthenticationService} from '../services/authentication.service'
 import {menu} from "../menu";
-import {MENU_ADM, MENU_CDN, CAMPO_MOCK} from "../menu_mock";
+import {MENU_ADM, MENU_CDN, MENU_FCN} from "../menu_mock";
 import {tramites} from "../tramites";
 import {campo} from "../campo";
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
@@ -26,7 +26,14 @@ export class ProcedureComponent implements OnInit {
 
 
     constructor(private router: Router, private authService: AuthenticationService, private toastr: ToastsManager) {
-        this.menus = localStorage.getItem("type_user") == '1' ? MENU_CDN : MENU_ADM;
+        if (localStorage.getItem("type_user") === '1') {
+            this.menus = MENU_CDN;
+        } else if (localStorage.getItem("type_user") === '2') {
+            this.menus = MENU_FCN;
+        } else {
+            this.menus = MENU_ADM;
+        }
+
 
         let index: number = localStorage.getItem("editcampoStoredId");
         if (index > 0 && localStorage.getItem("fieldCamp") === "false") {
@@ -60,10 +67,6 @@ export class ProcedureComponent implements OnInit {
                             console.log("id campo 3 "+x.nombre);
                         });
 
-
-                       /* index = index - 1;
-                        this.camposSelected[index].nombre = localStorage.getItem("campo");
-                        this.camposSelected[index].tipo = localStorage.getItem("type");*/
                     }
                 } else {
                     let camp = new campo();
