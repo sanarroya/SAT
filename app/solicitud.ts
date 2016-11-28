@@ -1,5 +1,10 @@
+import {camposolicitud} from "./camposSolicitud";
 export class Solicitud {
     id: number
     nombre: string
-    descripcion: string
+    estado: string
+    nombrefuncionario: string
+    documentofuncionario: string
+    fechacreacion: string
+    campos: camposolicitud[]
 }
