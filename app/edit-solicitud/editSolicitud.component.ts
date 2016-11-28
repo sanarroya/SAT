@@ -17,7 +17,7 @@ import {Solicitud} from '../solicitud'
 
 export class EditSolicitud implements OnInit {
 
-    @Input idSolicitud: any;
+    @Input() idSolicitud: any;
 
     public selectSolicitud: any[];
     public param: any;
@@ -29,7 +29,7 @@ export class EditSolicitud implements OnInit {
 
 
     getInfoSolicitud(): void {
-        this.authService.getSolicitudProfile(localStorage.getItem('idTramite')).subscribe(response => {
+        this.authService.getSolicitudProfile(localStorage.getItem('idTramite')).suscribe(response => {
             localStorage.setItem('cedula_user', <string>response.cedula);
             localStorage.setItem('name', response.nombre);
             localStorage.setItem('type_user', response.tipo);

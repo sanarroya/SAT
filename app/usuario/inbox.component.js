@@ -13,52 +13,47 @@ var router_1 = require('@angular/router');
 var authentication_service_1 = require('../services/authentication.service');
 var menu_mock_1 = require("../menu_mock");
 var ng2_toastr_1 = require('ng2-toastr/ng2-toastr');
+var edit_employee_service_1 = require('../edit-employee-profile/edit-employee-service');
 var InboxUsuarioComponent = (function () {
-    function InboxUsuarioComponent(router, authService, toastr) {
+    function InboxUsuarioComponent(router, authService, editEmployeeService, toastr) {
         this.router = router;
         this.authService = authService;
+        this.editEmployeeService = editEmployeeService;
         this.toastr = toastr;
         this.sortByWordLength = function (a) {
             return a.name.length;
         };
         this.menus = localStorage.getItem("type_user") === '1' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
     }
-    InboxUsuarioComponent.prototype.removeItem = function (item) {
-        this.toastr.info("Eliminar: " + item.id, 'Alerta');
-        console.log("Remove: ", item.id);
+    InboxUsuarioComponent.prototype.deleteEmployee = function (employee) {
+        var _this = this;
+        this.authService.deleteEmployee(employee)
+            .subscribe(function (response) {
+            _this.toastr.info('Empleado eliminado', 'Alerta');
+            var index = _this.employees.indexOf(employee);
+            _this.employees.splice(index, 1);
+        }, function (error) {
+            _this.toastr.info('Empleado no eliminado', 'Alerta');
+        });
     };
-    InboxUsuarioComponent.prototype.editItem = function (item) {
-        this.toastr.info("Editar: " + item.id, 'Alerta');
-        var link = ['/editProfile', item.cedula];
-        this.router.navigate(link);
-        console.log("Edit: ", item.id);
+    InboxUsuarioComponent.prototype.editEmployee = function (employee) {
+        this.editEmployeeService.employee = employee;
+        this.router.navigate(['/editEmployee', employee.cedula]);
     };
-    InboxUsuarioComponent.prototype.newItem = function () {
-        this.toastr.info("Nuevo Usuario", 'Alerta');
-        var link = ['/newuserin'];
-        this.router.navigate(link);
-        console.log("Nuevo Uusuario");
+    InboxUsuarioComponent.prototype.addEmployee = function () {
+        this.router.navigate(['/signUpEmployee']);
     };
     InboxUsuarioComponent.prototype.ngOnInit = function () {
-        //noinspection TypeScriptValidateTypes
-        this.selectUsuario = [
-            { nombre: 'Maria Antonia Ochoa Perez', cedula: 1234, email: 'mochoa@correo.com', tipo: '1', telefono: '', confirmPassword: '', password: '' },
-            { nombre: 'Juan Carlos Marin Lopez', cedula: 2345, email: 'jlopez@correo.com', tipo: '1', telefono: '', confirmPassword: '', password: '' },
-            { nombre: 'Johana Patricia Rojas Pinto', cedula: 3456, email: 'jpinto@correo.com', tipo: '1', telefono: '', confirmPassword: '', password: '' },
-            { nombre: 'Rosa Cecilia Sanchez Gil', cedula: 4567, email: 'rsanchez@correo.com', tipo: '1', telefono: '', confirmPassword: '', password: '' }
-        ];
-        this.username = "Administrador";
-        //this.getAllUsuarios();
+        this.getAllEmployees();
     };
-    InboxUsuarioComponent.prototype.getAllUsuarios = function () {
+    InboxUsuarioComponent.prototype.getAllEmployees = function () {
         var _this = this;
-        this.authService.getAllUsuarios()
+        this.authService.getAllEmployees()
             .subscribe(function (response) {
-            _this.selectUsuario = response;
+            _this.employees = response;
+            console.log(_this.employees);
         }, function (error) {
-            _this.toastr.error('hay un error', 'Alerta');
-            _this.toastr.error(error.text(), 'Alerta');
-            console.log(error.text());
+            console.log(error);
         });
     };
     InboxUsuarioComponent.prototype.onSelect = function (hero) {
@@ -71,7 +66,7 @@ var InboxUsuarioComponent = (function () {
             styleUrls: ['./app/signin/signin.component.css', './app/usuario/inbox.component.css', './app/usuario/button-floating.css'],
             providers: [authentication_service_1.AuthenticationService]
         }), 
-        __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService, ng2_toastr_1.ToastsManager])
+        __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService, edit_employee_service_1.EditEmployeeService, ng2_toastr_1.ToastsManager])
     ], InboxUsuarioComponent);
     return InboxUsuarioComponent;
 }());

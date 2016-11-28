@@ -36,7 +36,7 @@ var SignUpEmployeeComponent = (function () {
         user.password = password;
         user.confirmPassword = confirmPassword;
         user.telefono = telefono;
-        user.tipo = "2";
+        user.tipo = '2';
         if (!this.validator.isDocumentValid(user.cedula)) {
             this.toastr.error("Por favor ingrese un documento valido", "Alerta");
         }
@@ -57,10 +57,10 @@ var SignUpEmployeeComponent = (function () {
             this.toastr.error("Por favor ingrese un teléfono valido", "Alerta");
         }
         else {
-            this.authService.signUpFuncionario(user)
+            this.authService.signUp(user)
                 .subscribe(function (response) {
-                _this.toastr.info("Usuario Creado", 'Alerta');
-                _this.router.navigate(['/signin']);
+                _this.toastr.info("Empleado creado correctamente", 'Alerta');
+                _this.onBack();
             }, function (error) {
                 var jsonObject = JSON.parse(error.text());
                 _this.toastr.error(jsonObject.message, 'Alerta');
@@ -68,10 +68,13 @@ var SignUpEmployeeComponent = (function () {
             });
         }
     };
+    SignUpEmployeeComponent.prototype.onBack = function () {
+        this.router.navigate(['/inboxUsuario']);
+    };
     SignUpEmployeeComponent = __decorate([
         core_1.Component({
             selector: 'sign-up',
-            templateUrl: '/app/signupemployee/signup.component.html',
+            templateUrl: '/app/signup-employee/signup-employee.component.html',
             styleUrls: ['./app/signin/signin.component.css', './app/edit-profile/edit-profile.component.css'],
         }), 
         __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService, ng2_toastr_1.ToastsManager, validator_service_1.ValidatorService])
@@ -79,4 +82,4 @@ var SignUpEmployeeComponent = (function () {
     return SignUpEmployeeComponent;
 }());
 exports.SignUpEmployeeComponent = SignUpEmployeeComponent;
-//# sourceMappingURL=signup.component.js.map
+//# sourceMappingURL=signup-employee.component.js.map

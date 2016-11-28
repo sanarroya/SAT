@@ -1,4 +1,4 @@
-import { Component, Injectable } from '@angular/core'
+import {Component, Injectable} from '@angular/core'
 
 @Injectable()
 export class ValidatorService {
@@ -26,10 +26,8 @@ export class ValidatorService {
 
     passwordsMatch(password: string, confirmPassword: string): boolean {
         if (password == confirmPassword) {
-            console.log("TRUE")
             return true
         } else {
-            console.log("False")
             return false
         }
     }

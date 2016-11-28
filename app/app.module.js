@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+//Angular 2 imports
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
@@ -20,28 +21,33 @@ var toolbar_1 = require('@angular2-material/toolbar');
 var sidenav_1 = require('@angular2-material/sidenav');
 var angular2_select_1 = require('angular2-select');
 var ng2_toastr_1 = require('ng2-toastr/ng2-toastr');
+//SAT - Components
 var app_component_1 = require('./app.component');
-var hero_detail_component_1 = require('./hero-detail.component');
-var heroes_component_1 = require('./heroes.component');
-var dashboard_component_1 = require('./dashboard.component');
-var hero_service_1 = require('./hero.service');
+var app_routing_1 = require('./app.routing');
+//Authentication
 var signin_component_1 = require('./signin/signin.component');
 var signup_component_1 = require('./signup/signup.component');
-var edit_profile_component_1 = require('./edit-profile/edit-profile.component');
 var recover_password_component_1 = require('./recover-password/recover-password.component');
-var procedure_component_1 = require('./procedure/procedure.component');
-var field_detail_component_1 = require('./field-detail/field-detail.component');
+//Edit profile
+var edit_profile_component_1 = require('./edit-profile/edit-profile.component');
+//Procedures
 var inbox_component_1 = require('./tramite/inbox.component');
+var procedure_component_1 = require('./procedure/procedure.component');
 var editTramite_component_1 = require('./edit-tramite/editTramite.component');
+var field_detail_component_1 = require('./field-detail/field-detail.component');
+//Procedure request
 var inbox_component_2 = require('./solicitud/inbox.component');
 var editSolicitud_component_1 = require('./edit-solicitud/editSolicitud.component');
-var inbox_component_3 = require('./usuario/inbox.component');
 var create_procedure_component_1 = require('./create-procedure/create-procedure.component');
-var signup_component_2 = require('./signupemployee/signup.component');
 var survey_component_1 = require('./create-procedure/survey.component');
+//Employee management
+var inbox_component_3 = require('./usuario/inbox.component');
+var signup_employee_component_1 = require('./signup-employee/signup-employee.component');
+var edit_employee_profile_component_1 = require('./edit-employee-profile/edit-employee-profile.component');
+//SAT - Services
 var authentication_service_1 = require('./services/authentication.service');
-var app_routing_1 = require('./app.routing');
 var validator_service_1 = require('./validator/validator.service');
+var edit_employee_service_1 = require('./edit-employee-profile/edit-employee-service');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -64,8 +70,6 @@ var AppModule = (function () {
             ],
             declarations: [
                 app_component_1.AppComponent,
-                hero_detail_component_1.HeroDetailComponent,
-                heroes_component_1.HeroesComponent,
                 signin_component_1.SignInComponent,
                 signup_component_1.SignUpComponent,
                 edit_profile_component_1.EditProfileComponent,
@@ -79,13 +83,13 @@ var AppModule = (function () {
                 inbox_component_3.InboxUsuarioComponent,
                 create_procedure_component_1.CreateProcedureComponent,
                 survey_component_1.Survey,
-                dashboard_component_1.DashboardComponent,
-                signup_component_2.SignUpEmployeeComponent
+                signup_employee_component_1.SignUpEmployeeComponent,
+                edit_employee_profile_component_1.EditEmployeeProfileComponent
             ],
             providers: [
-                hero_service_1.HeroService,
                 authentication_service_1.AuthenticationService,
-                validator_service_1.ValidatorService
+                validator_service_1.ValidatorService,
+                edit_employee_service_1.EditEmployeeService
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

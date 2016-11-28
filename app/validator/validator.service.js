@@ -33,11 +33,9 @@ var ValidatorService = (function () {
     };
     ValidatorService.prototype.passwordsMatch = function (password, confirmPassword) {
         if (password == confirmPassword) {
-            console.log("TRUE");
             return true;
         }
         else {
-            console.log("False");
             return false;
         }
     };

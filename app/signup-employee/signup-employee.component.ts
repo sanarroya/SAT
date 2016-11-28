@@ -6,11 +6,10 @@ import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 import {ValidatorService} from '../validator/validator.service'
 import {menu} from "../menu";
 import {MENU_ADM, MENU_CDN} from "../menu_mock";
-import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 
 @Component({
     selector: 'sign-up',
-    templateUrl: '/app/signupemployee/signup.component.html',
+    templateUrl: '/app/signup-employee/signup-employee.component.html',
     styleUrls: ['./app/signin/signin.component.css', './app/edit-profile/edit-profile.component.css'],
 })
 
@@ -38,7 +37,7 @@ export class SignUpEmployeeComponent {
         user.password = password
         user.confirmPassword = confirmPassword
         user.telefono = telefono
-        user.tipo = "2"
+        user.tipo = '2'
 
         if(!this.validator.isDocumentValid(user.cedula)) {
             this.toastr.error("Por favor ingrese un documento valido", "Alerta")
@@ -54,10 +53,10 @@ export class SignUpEmployeeComponent {
         } else if(!this.validator.isPhoneValid(user.telefono)) {
             this.toastr.error("Por favor ingrese un teléfono valido", "Alerta")
         } else {
-            this.authService.signUpFuncionario(user)
+            this.authService.signUp(user)
                 .subscribe(response => {
-                    this.toastr.info("Usuario Creado", 'Alerta');
-                    this.router.navigate(['/signin']);
+                    this.toastr.info("Empleado creado correctamente", 'Alerta');
+                    this.onBack()
                 }, error => {
                     let jsonObject = JSON.parse(error.text());
                     this.toastr.error(jsonObject.message, 'Alerta');
@@ -66,5 +65,7 @@ export class SignUpEmployeeComponent {
             }
     }
 
-
+    onBack() {
+        this.router.navigate(['/inboxUsuario'])
+    }
 }

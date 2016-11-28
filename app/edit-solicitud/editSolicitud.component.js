@@ -22,7 +22,7 @@ var EditSolicitud = (function () {
     }
     EditSolicitud.prototype.getInfoSolicitud = function () {
         var _this = this;
-        this.authService.getSolicitudProfile(localStorage.getItem('idTramite')).subscribe(function (response) {
+        this.authService.getSolicitudProfile(localStorage.getItem('idTramite')).suscribe(function (response) {
             localStorage.setItem('cedula_user', response.cedula);
             localStorage.setItem('name', response.nombre);
             localStorage.setItem('type_user', response.tipo);
@@ -52,7 +52,7 @@ var EditSolicitud = (function () {
         this.router.navigate([hero.id]);
     };
     __decorate([
-        core_1.Input, 
+        core_1.Input(), 
         __metadata('design:type', Object)
     ], EditSolicitud.prototype, "idSolicitud", void 0);
     EditSolicitud = __decorate([

@@ -8,7 +8,7 @@ import {ValidatorService} from '../validator/validator.service'
 @Component({
     selector: 'sign-up',
     templateUrl: '/app/signup/signup.component.html',
-    styleUrls: ['./app/signup/signup.component.css', './app/signup/signup.component.css']
+    styleUrls: ['./app/signin/signin.component.css', './app/signup/signup.component.css']
 })
 
 export class SignUpComponent {
@@ -17,6 +17,10 @@ export class SignUpComponent {
                 private authService: AuthenticationService, 
                 private toastr: ToastsManager,
                 private validator: ValidatorService) {
+    }
+
+    onSignIn() {
+        this.router.navigate(['/signin'])
     }
 
     onSignUp(cedula, nombre, email, password, confirmPassword, telefono) {
