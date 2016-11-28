@@ -14,10 +14,12 @@ var authentication_service_1 = require('../services/authentication.service');
 var ng2_toastr_1 = require('ng2-toastr/ng2-toastr');
 var menu_mock_1 = require("../menu_mock");
 var deleteProcedure_1 = require("../deleteProcedure");
+var create_procedure_service_1 = require('../create-procedure/create-procedure.service');
 var InboxTramiteComponent = (function () {
-    function InboxTramiteComponent(router, authService, toastr) {
+    function InboxTramiteComponent(router, authService, createProcedureService, toastr) {
         this.router = router;
         this.authService = authService;
+        this.createProcedureService = createProcedureService;
         this.toastr = toastr;
         this.selectTramite = [];
         this.admin = false;
@@ -68,6 +70,7 @@ var InboxTramiteComponent = (function () {
     };
     InboxTramiteComponent.prototype.onNewProcedure = function (item) {
         if (!this.admin) {
+            this.createProcedureService.procedure = item;
             this.router.navigate(['/createProcedure']);
         }
     };
@@ -88,6 +91,15 @@ var InboxTramiteComponent = (function () {
             console.log(error.text());
         });
     };
+    InboxTramiteComponent.prototype.getProcedure = function (id) {
+        var _this = this;
+        this.authService.getDetalleTramite(id).subscribe(function (response) {
+        }, function (error) {
+            _this.toastr.error('hay un error', 'Alerta');
+            _this.toastr.error(error.text(), 'Alerta');
+            console.log(error.text());
+        });
+    };
     InboxTramiteComponent.prototype.onSelect = function (hero) {
         this.router.navigate([hero.id]);
     };
@@ -98,7 +110,7 @@ var InboxTramiteComponent = (function () {
             styleUrls: ['./app/signin/signin.component.css', './app/tramite/inbox.component.css', './app/tramite/button-floating.css'],
             providers: [authentication_service_1.AuthenticationService]
         }), 
-        __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService, ng2_toastr_1.ToastsManager])
+        __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService, create_procedure_service_1.CreateProcedureService, ng2_toastr_1.ToastsManager])
     ], InboxTramiteComponent);
     return InboxTramiteComponent;
 }());

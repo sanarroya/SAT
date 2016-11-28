@@ -41,11 +41,8 @@ var EditSolicitud = (function () {
             ;
         });
     };
-    EditSolicitud.prototype.returnInboxSolicitud = function () {
-        alert("Regresar");
-        var link = ['/inboxSolicitud'];
-        this.router.navigate(link);
-        console.log("Regresar bandeja solicitud");
+    EditSolicitud.prototype.onBack = function () {
+        this.router.navigate(['/inboxSolicitud']);
     };
     EditSolicitud.prototype.ngOnInit = function () {
         this.param = this.router.url.split('/');

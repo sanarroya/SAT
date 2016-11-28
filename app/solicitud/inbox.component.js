@@ -18,17 +18,21 @@ var InboxSolicitudComponent = (function () {
         this.router = router;
         this.authService = authService;
         this.toastr = toastr;
+        this.user = false;
         this.sortByWordLength = function (a) {
             return a.name.length;
         };
         if (localStorage.getItem("type_user") === '1') {
             this.menus = menu_mock_1.MENU_CDN;
+            this.user = true;
         }
         else if (localStorage.getItem("type_user") === '2') {
             this.menus = menu_mock_1.MENU_FCN;
+            this.user = false;
         }
         else {
             this.menus = menu_mock_1.MENU_ADM;
+            this.user = false;
         }
     }
     InboxSolicitudComponent.prototype.removeItem = function (item) {
@@ -48,25 +52,31 @@ var InboxSolicitudComponent = (function () {
         console.log("Nueva Solicitud");
     };
     InboxSolicitudComponent.prototype.ngOnInit = function () {
-        //alert("Bandeja Solicitud");
-        this.selectSolicitud = [
-            { descripcion: 'descripicion de solicitud 1', nombre: 'solicitud 1', id: 1 },
-            { descripcion: 'descripicion de solicitud 2', nombre: 'solicitud 2', id: 2 },
-            { descripcion: 'descripicion de solicitud 3', nombre: 'solicitud 3', id: 3 },
-            { descripcion: 'descripicion de solicitud 4', nombre: 'solicitud 4', id: 4 }
-        ];
-        this.username = "Administrador";
-        //this.getAllSolicitudes();
+        if (this.user) {
+            this.getRequestsOfUser();
+        }
+        else {
+            this.getRequests();
+        }
     };
-    InboxSolicitudComponent.prototype.getAllSolicitudes = function () {
+    InboxSolicitudComponent.prototype.getRequests = function () {
         var _this = this;
-        this.authService.getAllSolicitudes()
-            .subscribe(function (response) {
+        console.log("REQUESTS");
+        this.authService.getRequests().subscribe(function (response) {
             _this.selectSolicitud = response;
+            console.log(response);
         }, function (error) {
-            _this.toastr.error('hay un error', 'Alerta');
             _this.toastr.error(error.text(), 'Alerta');
-            console.log(error.text());
+        });
+    };
+    InboxSolicitudComponent.prototype.getRequestsOfUser = function () {
+        var _this = this;
+        console.log("REQUESTS OF USER");
+        this.authService.getRequestsByUser(localStorage.getItem('cedula_user')).subscribe(function (response) {
+            _this.selectSolicitud = response;
+            console.log(response);
+        }, function (error) {
+            _this.toastr.error(error.text(), 'Alerta');
         });
     };
     InboxSolicitudComponent.prototype.onSelect = function (hero) {

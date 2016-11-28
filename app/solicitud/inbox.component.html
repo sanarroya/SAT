@@ -45,10 +45,10 @@
             </td>
             <td style="width:5%;">
                 <div style="display: flex; ">
-                    <a (click)="editItem(solicitud)" title="Editar">
+                    <a *ngIf="!user" (click)="editItem(solicitud)" title="Editar">
                         <i class="material-icons campogreen1">mode_edit</i>
                     </a>
-                    <a (click)="removeItem(solicitud)" title="Eliminar">
+                    <a *ngIf="user" (click)="removeItem(solicitud)" title="Eliminar">
                         <i class="material-icons campored1">clear</i>
                     </a>
                 </div>
@@ -58,7 +58,7 @@
                   
     </table>
 
-    <button md-fab class="float-action1" disableRipple="true">
+    <button md-fab *ngIf="user" class="float-action1" disableRipple="true">
         <i class="material-icons float-action-icon1" (click)="newItem()">add</i>
     </button>
            

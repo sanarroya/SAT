@@ -34,7 +34,6 @@ export class EditSolicitud implements OnInit {
 
     }
 
-
     getInfoSolicitud(): void {
         this.authService.getSolicitudProfile(localStorage.getItem('idTramite')).suscribe(response => {
             localStorage.setItem('cedula_user', <string>response.cedula);
@@ -49,11 +48,8 @@ export class EditSolicitud implements OnInit {
     }
 
 
-    public returnInboxSolicitud() {
-        alert("Regresar");
-        let link = ['/inboxSolicitud'];
-        this.router.navigate(link);
-        console.log("Regresar bandeja solicitud");
+    onBack() {
+        this.router.navigate(['/inboxSolicitud']);
     }
 
     ngOnInit(): void {

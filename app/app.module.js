@@ -48,6 +48,7 @@ var edit_employee_profile_component_1 = require('./edit-employee-profile/edit-em
 var authentication_service_1 = require('./services/authentication.service');
 var validator_service_1 = require('./validator/validator.service');
 var edit_employee_service_1 = require('./edit-employee-profile/edit-employee-service');
+var create_procedure_service_1 = require('./create-procedure/create-procedure.service');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -89,7 +90,8 @@ var AppModule = (function () {
             providers: [
                 authentication_service_1.AuthenticationService,
                 validator_service_1.ValidatorService,
-                edit_employee_service_1.EditEmployeeService
+                edit_employee_service_1.EditEmployeeService,
+                create_procedure_service_1.CreateProcedureService
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 
