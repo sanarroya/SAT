@@ -58,7 +58,7 @@
                   
     </table>
 
-    <button md-fab class="float-action1" disableRipple="true">
+    <button md-fab *ngIf="user" class="float-action1" disableRipple="true">
         <i class="material-icons float-action-icon1" (click)="newItem()">add</i>
     </button>
            

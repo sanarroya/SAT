@@ -18,17 +18,21 @@ var InboxSolicitudComponent = (function () {
         this.router = router;
         this.authService = authService;
         this.toastr = toastr;
+        this.user = false;
         this.sortByWordLength = function (a) {
             return a.name.length;
         };
         if (localStorage.getItem("type_user") === '1') {
             this.menus = menu_mock_1.MENU_CDN;
+            this.user = true;
         }
         else if (localStorage.getItem("type_user") === '2') {
             this.menus = menu_mock_1.MENU_FCN;
+            this.user = false;
         }
         else {
             this.menus = menu_mock_1.MENU_ADM;
+            this.user = false;
         }
     }
     InboxSolicitudComponent.prototype.removeItem = function (item) {

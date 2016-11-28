@@ -49,11 +49,8 @@ export class EditSolicitud implements OnInit {
     }
 
 
-    public returnInboxSolicitud() {
-        alert("Regresar");
-        let link = ['/inboxSolicitud'];
-        this.router.navigate(link);
-        console.log("Regresar bandeja solicitud");
+    onBack() {
+        this.router.navigate(['/inboxSolicitud']);
     }
 
     ngOnInit(): void {

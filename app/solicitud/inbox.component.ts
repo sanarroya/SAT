@@ -20,6 +20,7 @@ export class InboxSolicitudComponent implements OnInit {
     public selectSolicitud: Solicitud[];
     public username;
     menus: menu[];
+    user = false
 
     constructor(
         private router: Router,
@@ -27,11 +28,14 @@ export class InboxSolicitudComponent implements OnInit {
         private toastr: ToastsManager
     ) {
         if (localStorage.getItem("type_user") === '1') {
-            this.menus = MENU_CDN;
+            this.menus = MENU_CDN
+            this.user = true
         } else if (localStorage.getItem("type_user") === '2') {
-            this.menus = MENU_FCN;
+            this.menus = MENU_FCN
+            this.user = false
         } else {
-            this.menus = MENU_ADM;
+            this.menus = MENU_ADM
+            this.user = false
         }
     }
 
