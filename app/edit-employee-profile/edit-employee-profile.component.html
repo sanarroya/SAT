@@ -5,7 +5,7 @@
     <span class="app-toolbar-filler"></span>
 </md-toolbar>
 <div>
-    <div class="container" (click)="start.close()">
+    <div class="container">
         <form name="userForm1" (submit)="updateUser(ced.value,nickname.value,email.value,password.value,confirmpassword.value,phone.value);">
             <div class="icon-sect">
                 <span md-prefix>
@@ -35,7 +35,7 @@
                 <span md-prefix>
                 <i class="material-icons app-input-icon icon-space">vpn_key</i>
             </span>
-                <md-input #password type="password" placeholder="Contraseña" class="auth-input" value="{{selectUser.password}}">
+                <md-input #password type="password" placeholder="Contraseña" class="auth-input" required value="{{selectUser.password}}">
                     <span *ngIf="selectUser" placeholder="Contraseña">{{selectUser.password}}</span>
                 </md-input>
             </div>
@@ -43,7 +43,7 @@
                 <span md-prefix>
                 <i class="material-icons app-input-icon icon-space">vpn_key</i>
             </span>
-                <md-input #confirmpassword type="password" placeholder="Confirmar contraseña" class="auth-input" required value="{{selectUser.confirmPassword}}">
+                <md-input #confirmpassword type="password" placeholder="Confirmar contraseña" class="auth-input" value="{{selectUser.confirmPassword}}">
                     <span *ngIf="selectUser" placeholder="Confirmar contraseña">{{selectUser.confirmPassword}}</span>
                 </md-input>
             </div>

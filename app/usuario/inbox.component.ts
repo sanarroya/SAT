@@ -14,10 +14,8 @@ import {EditEmployeeService} from '../edit-employee-profile/edit-employee-servic
     providers: [AuthenticationService]
 })
 
-
 export class InboxUsuarioComponent implements OnInit {
 
-   // selectUsuario: [User]
     private employees: User[]
     username
     menus: menu[]
@@ -34,17 +32,22 @@ export class InboxUsuarioComponent implements OnInit {
         return a.name.length;
     }
 
-    deleteEmployee(item: any) {
-        this.toastr.info("Eliminar: " + item.id, 'Alerta');
-        console.log("Remove: ", item.id);
+    deleteEmployee(employee: User) {
+        this.authService.deleteEmployee(employee)
+            .subscribe(
+                response => {
+                    this.toastr.info('Empleado eliminado', 'Alerta')
+                    let index = this.employees.indexOf(employee)
+                    this.employees.splice(index, 1)
+                }, error => {
+                    this.toastr.info('Empleado no eliminado', 'Alerta')
+                }
+            )
     }
 
-    editEmployee(item: any) {
-        this.editEmployeeService.employee = <User>item
-        this.toastr.info("Editar: " + item.id, 'Alerta');
-        let link = ['/editEmployee', item.cedula];
-        this.router.navigate(link);
-        console.log("Edit: ", item.id);
+    editEmployee(employee: User) {
+        this.editEmployeeService.employee = employee
+        this.router.navigate(['/editEmployee', employee.cedula]);
     }
 
     addEmployee() {
@@ -52,7 +55,10 @@ export class InboxUsuarioComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        //noinspection TypeScriptValidateTypes
+        this.getAllEmployees()
+    }
+
+    getAllEmployees() {
         this.authService.getAllEmployees()
             .subscribe(
                 response => {
@@ -63,22 +69,6 @@ export class InboxUsuarioComponent implements OnInit {
                     console.log(error)
                 }
             )
-        
-
-    }
-
-    getAllUsuarios() {
-        this.authService.getAllUsuarios()
-            .subscribe(
-            response => {
-                this.selectUsuario = response;
-            },
-            error => {
-                this.toastr.error('hay un error', 'Alerta');
-                this.toastr.error(error.text(), 'Alerta');
-                console.log(error.text());
-            }
-            );
     }
 
     onSelect(hero: menu): void {

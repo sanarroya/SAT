@@ -25,40 +25,35 @@ var InboxUsuarioComponent = (function () {
         };
         this.menus = localStorage.getItem("type_user") === '1' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
     }
-    InboxUsuarioComponent.prototype.deleteEmployee = function (item) {
-        this.toastr.info("Eliminar: " + item.id, 'Alerta');
-        console.log("Remove: ", item.id);
+    InboxUsuarioComponent.prototype.deleteEmployee = function (employee) {
+        var _this = this;
+        this.authService.deleteEmployee(employee)
+            .subscribe(function (response) {
+            _this.toastr.info('Empleado eliminado', 'Alerta');
+            var index = _this.employees.indexOf(employee);
+            _this.employees.splice(index, 1);
+        }, function (error) {
+            _this.toastr.info('Empleado no eliminado', 'Alerta');
+        });
     };
-    InboxUsuarioComponent.prototype.editEmployee = function (item) {
-        this.editEmployeeService.employee = item;
-        this.toastr.info("Editar: " + item.id, 'Alerta');
-        var link = ['/editEmployee', item.cedula];
-        this.router.navigate(link);
-        console.log("Edit: ", item.id);
+    InboxUsuarioComponent.prototype.editEmployee = function (employee) {
+        this.editEmployeeService.employee = employee;
+        this.router.navigate(['/editEmployee', employee.cedula]);
     };
     InboxUsuarioComponent.prototype.addEmployee = function () {
         this.router.navigate(['/signUpEmployee']);
     };
     InboxUsuarioComponent.prototype.ngOnInit = function () {
+        this.getAllEmployees();
+    };
+    InboxUsuarioComponent.prototype.getAllEmployees = function () {
         var _this = this;
-        //noinspection TypeScriptValidateTypes
         this.authService.getAllEmployees()
             .subscribe(function (response) {
             _this.employees = response;
             console.log(_this.employees);
         }, function (error) {
             console.log(error);
-        });
-    };
-    InboxUsuarioComponent.prototype.getAllUsuarios = function () {
-        var _this = this;
-        this.authService.getAllUsuarios()
-            .subscribe(function (response) {
-            _this.selectUsuario = response;
-        }, function (error) {
-            _this.toastr.error('hay un error', 'Alerta');
-            _this.toastr.error(error.text(), 'Alerta');
-            console.log(error.text());
         });
     };
     InboxUsuarioComponent.prototype.onSelect = function (hero) {

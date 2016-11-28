@@ -27,19 +27,18 @@
 
         <table align="center" style="margin-bottom: 30">
 
-            <tr *ngFor="let usuario of selectUsuario" class="li1">
+            <tr *ngFor="let employee of employees" class="li1">
                 <td style="width:95%;;margin-bottom: 20;">
                     <div>
-                        <strong>Documento: {{usuario.cedula}} | {{usuario.nombre}}</strong>
-                        <br/> {{usuario.tipo}}
+                        <strong>Documento: {{employee.cedula}} | {{employee.nombre}}</strong>
                     </div>
                 </td>
                 <td style="width:5%">
                     <div style="display: flex; ">
-                        <a (click)="editEmployee(usuario)" title="Editar">
+                        <a (click)="editEmployee(employee)" title="Editar">
                             <i class="material-icons campogreen1">mode_edit</i>
                         </a>
-                        <a (click)="deleteEmployee(usuario)" title="Eliminar">
+                        <a (click)="deleteEmployee(employee)" title="Eliminar">
                             <i class="material-icons campored1">clear</i>
                         </a>
                     </div>

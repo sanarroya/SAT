@@ -22,7 +22,9 @@ var AuthenticationService = (function () {
         this.recoverPasswordEndpoint = '/userResource/recoverPassword';
         this.userInfoEndpoint = '/userResource/getRegisteredUsers';
         this.updateUserEndpoint = '/userResource/updateUser';
+        //Employees Endpoints
         this.getEmployeesEndpoint = '/userResource/getRegisteredUsersByType/2';
+        this.deleteEmployeeEndpoint = '/userResource/deleteUser';
         //Procedures
         this.createProcedureEndpoint = '/procedureResource/createProcedure';
         this.getProcedureRequestsByUserEndpoint = '/procedureResource/getRequestProceduresByUser';
@@ -31,27 +33,19 @@ var AuthenticationService = (function () {
         this.solicitudEndpoint = '/procedureResource/getAllSolicitudes';
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
+    //User requests
     AuthenticationService.prototype.signIn = function (user) {
         return this.http.post(this.baseUrl + this.singInEndpoint, JSON.stringify(user), this.headers)
             .map(function (res) { return res.json(); });
     };
-    //TODO - Cambiar el tipo del observador
     AuthenticationService.prototype.signUp = function (user) {
         return this.http.post(this.baseUrl + this.singUpEndpoint, JSON.stringify(user), this.headers)
             .map(function (res) { return res.json(); });
     };
-    //Crear funcionario
-    AuthenticationService.prototype.signUpFuncionario = function (user) {
-        user.tipo = '2';
-        return this.http.post(this.baseUrl + this.singUpEndpoint, JSON.stringify(user), this.headers)
-            .map(function (res) { return res.json(); });
-    };
-    //TODO - Cambiar el tipo del observador
     AuthenticationService.prototype.recoverPassword = function (cedula) {
         return this.http.post(this.baseUrl + this.recoverPasswordEndpoint, JSON.stringify({ cedula: cedula }), this.headers)
             .map(function (res) { return res.json(); });
     };
-    //TODO - Cambiar el tipo del observador
     AuthenticationService.prototype.getUserProfile = function (cedula) {
         var url = (this.baseUrl + this.userInfoEndpoint) + "/" + cedula;
         return this.http.get(url)
@@ -65,7 +59,6 @@ var AuthenticationService = (function () {
         return this.http.post(this.baseUrl + this.createProcedureEndpoint, JSON.stringify(tramite), this.headers)
             .map(function (res) { return res.json(); });
     };
-    //Metodo para traer todos los tramites registrados
     AuthenticationService.prototype.getAllTramites = function () {
         var authHeader = new http_1.Headers();
         var headers = new http_1.Headers();
@@ -91,6 +84,10 @@ var AuthenticationService = (function () {
             .map(function (response) {
             return response.json().usuarios;
         });
+    };
+    AuthenticationService.prototype.deleteEmployee = function (employee) {
+        return this.http.post(this.baseUrl + this.deleteEmployeeEndpoint, JSON.stringify(employee), this.headers)
+            .map(function (res) { return res.json(); });
     };
     //Metodo to manipulate data
     AuthenticationService.prototype.extractData = function (res) {

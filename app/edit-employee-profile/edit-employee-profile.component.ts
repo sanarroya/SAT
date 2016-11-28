@@ -29,20 +29,12 @@ export class EditEmployeeProfileComponent implements OnInit {
 
     }
 
+    ngOnInit(): void {
+        this.getUser();
+    }
+
     getUser(): void {
         this.selectUser = this.editEmployeeService.employee
-        console.log(this.selectUser)
-        // this.authService.getUserProfile(localStorage.getItem('cedula_user')).subscribe(response => {
-        //     localStorage.setItem('cedula_user', <string>response.cedula);
-        //     localStorage.setItem('name', response.nombre);
-        //     localStorage.setItem('type_user', response.tipo);
-        //     this.selectUser = response;
-        // }, error => {
-        //     let jsonObject = JSON.parse(error.text());
-        //     this.toastr.error(jsonObject.message, 'Alerta');
-        //     console.log(error.text());
-
-        // });
     }
 
 
@@ -54,17 +46,15 @@ export class EditEmployeeProfileComponent implements OnInit {
         user.password = password
         user.confirmPassword = confirmPassword
         user.telefono = telefono
-        user.tipo = localStorage.getItem('type_user');
+        user.tipo = '2'
 
         this.authService.updateUser(user)
             .subscribe(response => {
                 this.toastr.info("Usuario actualizado", 'Alerta');
-                this.router.navigate(['/editProfile']);
+                this.onBack()
             }, error => {
                 let jsonObject = JSON.parse(error.text());
                 this.toastr.error(jsonObject.message, 'Alerta');
-                console.log(error.text());
-                this.router.navigate(['/editProfile']);
             })
     }
 
@@ -75,8 +65,5 @@ export class EditEmployeeProfileComponent implements OnInit {
     onBack() {
         this.editEmployeeService.employee = new User()
         this.router.navigate(['/inboxUsuario'])
-    }
-    ngOnInit(): void {
-        this.getUser();
     }
 }

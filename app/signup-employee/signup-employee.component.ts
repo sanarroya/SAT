@@ -37,7 +37,7 @@ export class SignUpEmployeeComponent {
         user.password = password
         user.confirmPassword = confirmPassword
         user.telefono = telefono
-        user.tipo = "2"
+        user.tipo = '2'
 
         if(!this.validator.isDocumentValid(user.cedula)) {
             this.toastr.error("Por favor ingrese un documento valido", "Alerta")
@@ -53,9 +53,9 @@ export class SignUpEmployeeComponent {
         } else if(!this.validator.isPhoneValid(user.telefono)) {
             this.toastr.error("Por favor ingrese un teléfono valido", "Alerta")
         } else {
-            this.authService.signUpFuncionario(user)
+            this.authService.signUp(user)
                 .subscribe(response => {
-                    this.toastr.info("Usuario Creado", 'Alerta');
+                    this.toastr.info("Empleado creado correctamente", 'Alerta');
                     this.onBack()
                 }, error => {
                     let jsonObject = JSON.parse(error.text());

@@ -24,19 +24,11 @@ var EditEmployeeProfileComponent = (function () {
         this.selectUser = new user_1.User();
         this.menus = localStorage.getItem("type_user") === '1' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
     }
+    EditEmployeeProfileComponent.prototype.ngOnInit = function () {
+        this.getUser();
+    };
     EditEmployeeProfileComponent.prototype.getUser = function () {
         this.selectUser = this.editEmployeeService.employee;
-        console.log(this.selectUser);
-        // this.authService.getUserProfile(localStorage.getItem('cedula_user')).subscribe(response => {
-        //     localStorage.setItem('cedula_user', <string>response.cedula);
-        //     localStorage.setItem('name', response.nombre);
-        //     localStorage.setItem('type_user', response.tipo);
-        //     this.selectUser = response;
-        // }, error => {
-        //     let jsonObject = JSON.parse(error.text());
-        //     this.toastr.error(jsonObject.message, 'Alerta');
-        //     console.log(error.text());
-        // });
     };
     EditEmployeeProfileComponent.prototype.updateUser = function (cedula, nombre, email, password, confirmPassword, telefono) {
         var _this = this;
@@ -47,16 +39,14 @@ var EditEmployeeProfileComponent = (function () {
         user.password = password;
         user.confirmPassword = confirmPassword;
         user.telefono = telefono;
-        user.tipo = localStorage.getItem('type_user');
+        user.tipo = '2';
         this.authService.updateUser(user)
             .subscribe(function (response) {
             _this.toastr.info("Usuario actualizado", 'Alerta');
-            _this.router.navigate(['/editProfile']);
+            _this.onBack();
         }, function (error) {
             var jsonObject = JSON.parse(error.text());
             _this.toastr.error(jsonObject.message, 'Alerta');
-            console.log(error.text());
-            _this.router.navigate(['/editProfile']);
         });
     };
     EditEmployeeProfileComponent.prototype.onSelect = function (hero) {
@@ -65,9 +55,6 @@ var EditEmployeeProfileComponent = (function () {
     EditEmployeeProfileComponent.prototype.onBack = function () {
         this.editEmployeeService.employee = new user_1.User();
         this.router.navigate(['/inboxUsuario']);
-    };
-    EditEmployeeProfileComponent.prototype.ngOnInit = function () {
-        this.getUser();
     };
     EditEmployeeProfileComponent = __decorate([
         core_1.Component({

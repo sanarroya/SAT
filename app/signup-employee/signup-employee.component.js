@@ -36,7 +36,7 @@ var SignUpEmployeeComponent = (function () {
         user.password = password;
         user.confirmPassword = confirmPassword;
         user.telefono = telefono;
-        user.tipo = "2";
+        user.tipo = '2';
         if (!this.validator.isDocumentValid(user.cedula)) {
             this.toastr.error("Por favor ingrese un documento valido", "Alerta");
         }
@@ -57,9 +57,9 @@ var SignUpEmployeeComponent = (function () {
             this.toastr.error("Por favor ingrese un teléfono valido", "Alerta");
         }
         else {
-            this.authService.signUpFuncionario(user)
+            this.authService.signUp(user)
                 .subscribe(function (response) {
-                _this.toastr.info("Usuario Creado", 'Alerta');
+                _this.toastr.info("Empleado creado correctamente", 'Alerta');
                 _this.onBack();
             }, function (error) {
                 var jsonObject = JSON.parse(error.text());
