@@ -3,7 +3,7 @@ import {Router} from '@angular/router'
 import {AuthenticationService} from '../services/authentication.service'
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 import {menu} from "../menu";
-import {MENU_ADM, MENU_CDN} from "../menu_mock";
+import {MENU_ADM, MENU_CDN,MENU_FCN} from "../menu_mock";
 import {Tramite} from "../tramite";
 import {DeleteTramite} from "../deleteProcedure";
 
@@ -22,7 +22,15 @@ export class InboxTramiteComponent implements OnInit {
     admin = false
 
     constructor(private router: Router, private authService: AuthenticationService, private toastr: ToastsManager) {
-        this.menus = localStorage.getItem("type_user") === '1' ? MENU_CDN : MENU_ADM;
+        if (localStorage.getItem("type_user") === '1') {
+            this.menus = MENU_CDN;
+        } else if (localStorage.getItem("type_user") === '2') {
+            this.menus = MENU_FCN;
+        } else {
+            this.menus = MENU_ADM;
+        }
+
+
         this.admin = localStorage.getItem("type_user") === '1' ? false : true;
 
     }

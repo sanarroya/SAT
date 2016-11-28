@@ -3,7 +3,7 @@ import { Router } from '@angular/router'
 import { AuthenticationService } from '../services/authentication.service'
 import { User } from '../user'
 import {menu} from "../menu";
-import {MENU_ADM, MENU_CDN} from "../menu_mock";
+import {MENU_ADM, MENU_CDN, MENU_FCN} from "../menu_mock";
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 import {EditEmployeeService} from '../edit-employee-profile/edit-employee-service'
 
@@ -24,8 +24,15 @@ export class InboxUsuarioComponent implements OnInit {
         private router: Router,
         private authService: AuthenticationService,
         private editEmployeeService: EditEmployeeService,
-        private toastr: ToastsManager) { 
-            this.menus = localStorage.getItem("type_user") === '1' ? MENU_CDN : MENU_ADM;
+        private toastr: ToastsManager) {
+        if (localStorage.getItem("type_user") === '1') {
+            this.menus = MENU_CDN;
+        } else if (localStorage.getItem("type_user") === '2') {
+            this.menus = MENU_FCN;
+        } else {
+            this.menus = MENU_ADM;
+        }
+
     }
 
     private sortByWordLength = (a: any) => {

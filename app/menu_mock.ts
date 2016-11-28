@@ -9,6 +9,15 @@ export const MENU_ADM: menu[] = [
 
 ];
 
+
+export const MENU_FCN: menu[] = [
+    {id: '/inboxTramite', name: 'Tramites'},
+    {id: '/inboxSolicitud', name: 'Solicitudes'},
+    {id: '/editProfile', name: 'Editar Perfil'},
+    {id: '/signin', name: 'Cerrar Sesion'}
+
+];
+
 export const MENU_CDN: menu[] = [
     {id: '/inboxTramite', name: 'Tramites'},
     {id: '/inboxSolicitud', name: 'Mis Solicitudes'},

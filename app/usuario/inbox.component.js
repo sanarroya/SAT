@@ -23,7 +23,15 @@ var InboxUsuarioComponent = (function () {
         this.sortByWordLength = function (a) {
             return a.name.length;
         };
-        this.menus = localStorage.getItem("type_user") === '1' ? menu_mock_1.MENU_CDN : menu_mock_1.MENU_ADM;
+        if (localStorage.getItem("type_user") === '1') {
+            this.menus = menu_mock_1.MENU_CDN;
+        }
+        else if (localStorage.getItem("type_user") === '2') {
+            this.menus = menu_mock_1.MENU_FCN;
+        }
+        else {
+            this.menus = menu_mock_1.MENU_ADM;
+        }
     }
     InboxUsuarioComponent.prototype.deleteEmployee = function (employee) {
         var _this = this;

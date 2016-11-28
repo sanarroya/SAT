@@ -27,11 +27,20 @@
      <table align="center" style="margin-bottom: 30">
           
         <tr *ngFor="let solicitud of selectSolicitud" class="li1">
-            <td style="width:95%;margin-bottom: 20;">
+            <td style=" padding-left: 20;">
                 <div>
-                    <strong>ID: {{solicitud.id}} | {{solicitud.nombre}}</strong>
-                    <br />
-                    {{solicitud.descripcion}}
+                    <strong> {{solicitud.id}}</strong>
+                </div>
+            </td>
+            <td >
+                <div>
+                    <strong>{{solicitud.nombre}}</strong>
+                </div>
+            </td>
+
+            <td >
+                <div>
+                    <strong>{{solicitud.descripcion}}</strong>
                 </div>
             </td>
             <td style="width:5%;">

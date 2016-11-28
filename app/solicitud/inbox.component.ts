@@ -3,7 +3,7 @@ import { Router } from '@angular/router'
 import { AuthenticationService } from '../services/authentication.service'
 import { User } from '../user';
 import {menu} from "../menu";
-import {MENU_ADM, MENU_CDN} from "../menu_mock";
+import {MENU_ADM, MENU_CDN, MENU_FCN} from "../menu_mock";
 import { Solicitud } from '../solicitud';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 
@@ -25,7 +25,15 @@ export class InboxSolicitudComponent implements OnInit {
         private router: Router,
         private authService: AuthenticationService,
         private toastr: ToastsManager
-    ) {this.menus = localStorage.getItem("type_user") === '1' ? MENU_CDN : MENU_ADM; }
+    ) {
+        if (localStorage.getItem("type_user") === '1') {
+            this.menus = MENU_CDN;
+        } else if (localStorage.getItem("type_user") === '2') {
+            this.menus = MENU_FCN;
+        } else {
+            this.menus = MENU_ADM;
+        }
+    }
 
     private sortByWordLength = (a: any) => {
         return a.name.length;
