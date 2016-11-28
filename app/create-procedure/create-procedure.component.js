@@ -12,14 +12,18 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var authentication_service_1 = require('../services/authentication.service');
 var menu_mock_1 = require("../menu_mock");
+var ng2_toastr_1 = require('ng2-toastr/ng2-toastr');
 var field_model_1 = require('../create-procedure/field-model');
 var textbox_field_1 = require('../create-procedure/textbox-field');
 var file_field_1 = require('../create-procedure/file-field');
 var tramites_1 = require("../tramites");
+var create_procedure_service_1 = require('../create-procedure/create-procedure.service');
 var CreateProcedureComponent = (function () {
-    function CreateProcedureComponent(router, authService) {
+    function CreateProcedureComponent(router, authService, createProcedureService, toastr) {
         this.router = router;
         this.authService = authService;
+        this.createProcedureService = createProcedureService;
+        this.toastr = toastr;
         this.tramiteSelected = new tramites_1.tramites();
         this.camposSelected = [];
         this.num = 0;
@@ -36,17 +40,18 @@ var CreateProcedureComponent = (function () {
     }
     CreateProcedureComponent.prototype.ngOnInit = function () {
         this.drawFields();
+        // this.getProcedure(this.createProcedureService.procedure.id.toString())
     };
     CreateProcedureComponent.prototype.onSelect = function (hero) {
         this.router.navigate([hero.id]);
     };
     CreateProcedureComponent.prototype.drawFields = function () {
         var _this = this;
-        var tramite = JSON.parse(localStorage.getItem("crearSolicitud"));
-        tramite.campos.forEach(function (campo) {
+        console.log(this.createProcedureService.procedure.campos);
+        this.createProcedureService.procedure.campos.forEach(function (campo) {
             if (campo.tipo === "texto") {
                 var field = new textbox_field_1.TextBoxField();
-                field.key = campo.nombre;
+                field.key = campo.idcampo;
                 field.text = campo.nombre;
                 field.required = true;
                 field.order = _this.num;
@@ -81,7 +86,7 @@ var CreateProcedureComponent = (function () {
             templateUrl: './app/create-procedure/create-procedure.component.html',
             styleUrls: ['./app/signin/signin.component.css', './app/edit-profile/edit-profile.component.css'],
         }), 
-        __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService])
+        __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService, create_procedure_service_1.CreateProcedureService, ng2_toastr_1.ToastsManager])
     ], CreateProcedureComponent);
     return CreateProcedureComponent;
 }());

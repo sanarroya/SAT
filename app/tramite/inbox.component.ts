@@ -4,8 +4,9 @@ import {AuthenticationService} from '../services/authentication.service'
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 import {menu} from "../menu";
 import {MENU_ADM, MENU_CDN,MENU_FCN} from "../menu_mock";
-import {Tramite} from "../tramite";
+import {tramites} from "../tramites";
 import {DeleteTramite} from "../deleteProcedure";
+import {CreateProcedureService} from '../create-procedure/create-procedure.service'
 
 @Component({
     selector: 'tramite',
@@ -17,11 +18,11 @@ import {DeleteTramite} from "../deleteProcedure";
 
 export class InboxTramiteComponent implements OnInit {
 
-    public selectTramite: Tramite[] = [];
+    public selectTramite: tramites[] = [];
     menus: menu[];
     admin = false
 
-    constructor(private router: Router, private authService: AuthenticationService, private toastr: ToastsManager) {
+    constructor(private router: Router, private authService: AuthenticationService, private createProcedureService: CreateProcedureService, private toastr: ToastsManager) {
         if (localStorage.getItem("type_user") === '1') {
             this.menus = MENU_CDN;
         } else if (localStorage.getItem("type_user") === '2') {
@@ -39,10 +40,10 @@ export class InboxTramiteComponent implements OnInit {
         return a.name.length;
     }
 
-    public removeItem(item: Tramite) {
+    public removeItem(item: tramites) {
         console.log("Remove: ", item.nombre);
         let tramitex = new DeleteTramite();
-        tramitex.id=item.id;
+        tramitex.id = item.id;
         console.log(JSON.stringify(tramitex));
         this.authService.deleteProcedure(tramitex)
             .subscribe(response => {
@@ -55,7 +56,7 @@ export class InboxTramiteComponent implements OnInit {
 
     }
 
-    public editItem(item: Tramite) {
+    public editItem(item: tramites) {
         this.toastr.info("Editar: " + item.nombre, 'Alerta');
         localStorage.setItem("editcampoStoredId", item.id.toString());
         localStorage.setItem("fieldCamp", "false");
@@ -73,9 +74,10 @@ export class InboxTramiteComponent implements OnInit {
         console.log("Nuevo Trámite: ");
     }
 
-    public onNewProcedure(item: Tramite) {
+    public onNewProcedure(item: tramites) {
         if (!this.admin) {
-            this.router.navigate(['/createProcedure'])
+            this.createProcedureService.procedure = item
+                    this.router.navigate(['/createProcedure'])
         }
     }
 
@@ -101,6 +103,19 @@ export class InboxTramiteComponent implements OnInit {
                     console.log(error.text());
                 }
             );
+    }
+
+     getProcedure(id:string) {
+        this.authService.getDetalleTramite(id).subscribe(
+                response => {
+                    
+                },
+                error => {
+                    this.toastr.error('hay un error', 'Alerta');
+                    this.toastr.error(error.text(), 'Alerta');
+                    console.log(error.text());
+                }
+        )
     }
 
     onSelect(hero: menu): void {

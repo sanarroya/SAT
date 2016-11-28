@@ -45,6 +45,7 @@ import {EditEmployeeProfileComponent} from './edit-employee-profile/edit-employe
 import {AuthenticationService} from './services/authentication.service'
 import {ValidatorService} from './validator/validator.service'
 import {EditEmployeeService} from './edit-employee-profile/edit-employee-service'
+import {CreateProcedureService} from './create-procedure/create-procedure.service'
 
 @NgModule({
     imports: [
@@ -83,7 +84,8 @@ import {EditEmployeeService} from './edit-employee-profile/edit-employee-service
     providers: [
         AuthenticationService,
         ValidatorService,
-        EditEmployeeService
+        EditEmployeeService,
+        CreateProcedureService
     ],
     bootstrap: [AppComponent]
     

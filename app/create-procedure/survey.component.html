@@ -1,13 +1,14 @@
 <div>
     <form (ngSubmit)="onSubmit()" [formGroup]="form">
         <div *ngFor="let field of model.fields">
+            <br/>
             <div [ngSwitch]="field.controlType">
                 <div *ngSwitchCase="'textbox'">
-                    <md-input required type="{{field.type}}" id="{{field.key}}" [formControlName]="field.key" placeholder="{{field.text}}" class="auth-input"></md-input>
+                    <md-input required type="{{field.type}}" id="{{field.key}}" formControlName="{{field.key}}" placeholder="{{field.text}}" class="auth-input" ngDefaultControl></md-input>
                 </div>
                 <div *ngSwitchCase="'file'">
                     <span>{{field.key}}*</span>
-                    <input required type="file" id="{{field.key}}" [formControlName]="field.key">
+                    <input required type="file" id="{{field.key}}" formControlName="{{field.key}}" ngDefaultControl>
                 </div>
             </div>
         </div>
