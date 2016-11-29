@@ -40,7 +40,7 @@ var InboxSolicitudComponent = (function () {
         console.log("Remove: ", item.id);
     };
     InboxSolicitudComponent.prototype.editItem = function (item) {
-        this.toastr.info("Editar" + item.id, 'Alerta');
+        localStorage.setItem("solicitud2", JSON.stringify(item));
         var link = ['/editSolicitud', item.id];
         this.router.navigate(link);
         console.log("Edit: ", item.id);

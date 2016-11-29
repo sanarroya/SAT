@@ -34,6 +34,8 @@ var AuthenticationService = (function () {
         this.deleteProcedureEndPoint = "/procedureResource/deleteProcedure";
         this.tramitesEndpoint = '/procedureResource/getAllProcedures';
         this.solicitudEndpoint = '/procedureResource/getAllSolicitudes';
+        this.updateFuncEndpoint = "/procedureResource/assignResponsableUR";
+        this.updateStateEndpoint = "/procedureResource/changeState";
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     //User requests
@@ -64,6 +66,14 @@ var AuthenticationService = (function () {
     };
     AuthenticationService.prototype.updateProcedure = function (tramite) {
         return this.http.post(this.baseUrl + this.updateProcedureEndpoint, JSON.stringify(tramite), this.headers)
+            .map(function (res) { return res.json(); });
+    };
+    AuthenticationService.prototype.updateFunction = function (tramite) {
+        return this.http.post(this.baseUrl + this.updateFuncEndpoint, JSON.stringify(tramite), this.headers)
+            .map(function (res) { return res.json(); });
+    };
+    AuthenticationService.prototype.updateState = function (tramite) {
+        return this.http.post(this.baseUrl + this.updateStateEndpoint, JSON.stringify(tramite), this.headers)
             .map(function (res) { return res.json(); });
     };
     AuthenticationService.prototype.deleteProcedure = function (tramite) {

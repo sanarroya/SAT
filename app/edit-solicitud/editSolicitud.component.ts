@@ -7,6 +7,8 @@ import {MENU_ADM, MENU_CDN, MENU_FCN} from "../menu_mock";
 import {User} from '../user'
 import {Solicitud} from '../solicitud'
 import {Item} from "../ObjectItem";
+import {udpateState} from "../requestState";
+import {udpateFunc} from "../requestFunc";
 
 @Component({
     selector: 'edit-solicitud',
@@ -21,6 +23,8 @@ export class EditSolicitud implements OnInit {
     @Input() idSolicitud: any;
 
 
+
+    solicitud:Solicitud;
     estado: string;
     funcionario: string;
     placeholder: string;
@@ -35,6 +39,9 @@ export class EditSolicitud implements OnInit {
     menus: menu[];
 
     constructor(private router: Router, private authService: AuthenticationService, private toastr: ToastsManager) {
+        this.solicitud = JSON.parse(localStorage.getItem("solicitud2"));
+        this.estado = this.solicitud.estado;
+        this.funcionario = this.solicitud.documentofuncionario;
         if (localStorage.getItem("type_user") === '1') {
             this.menus = MENU_CDN;
         } else if (localStorage.getItem("type_user") === '2') {
@@ -60,6 +67,8 @@ export class EditSolicitud implements OnInit {
         if (localStorage.getItem("type_user") === '0' || (localStorage.getItem("type_user") != '1' && localStorage.getItem("type_user") != '2')) {
             this.getAllEmployees();
             this.getStates();
+        }else if(localStorage.getItem("type_user") == '2'){
+            this.getStates();
         }
 
 
@@ -77,27 +86,38 @@ export class EditSolicitud implements OnInit {
         this.router.navigate([hero.id]);
     }
 
-    onSelectOpened() {
-        this.placeholder = "Selecciona Estado";
+    onUpdateState():void {
+        console.log(this.estado);
+        let tramitex= new udpateState();
+        tramitex.id=this.solicitud.id.toString();
+        tramitex.state=this.estado;
+        this.authService.updateState(tramitex)
+            .subscribe(response => {
+                this.toastr.info("Estado Actualizado", 'Alerta');
+            }, error => {
+                this.toastr.error("Error, por favor intente de nuevo", 'Alerta');
+                console.log(error.toString());
+            });
 
     }
 
-    onSelected(item) {
-        this.estado = item.value.toString();
-        console.log('Selected: ' + item.value + ', ' + item.label);
-        this.placeholder = "Selecciona Estado";
+    onUpdateFunc():void {
+        console.log(this.funcionario);
+        let tramitex= new udpateFunc();
+        tramitex.id=this.solicitud.id.toString();
+        tramitex.idfuncionario=this.funcionario;
+        console.log(JSON.stringify(tramitex));
+        this.authService.updateFunction(tramitex)
+            .subscribe(response => {
+                this.toastr.info("Funcionario Actualizado", 'Alerta');
+            }, error => {
+                this.toastr.error("Error, por favor intente de nuevo", 'Alerta');
+                console.log(error.toString());
+            });
+
     }
 
-    onSelectOpened1() {
-        this.placeholder1 = "Selecciona Funcionario";
 
-    }
-
-    onSelected1(item) {
-        this.funcionario = item.value.toString();
-        console.log('Selected: ' + item.value + ', ' + item.label);
-        this.placeholder1 = "Selecciona Estado";
-    }
 
     getAllEmployees() {
 

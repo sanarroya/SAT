@@ -8,19 +8,26 @@
     <div class="block-container" align="center">
         <div class="request-detail">
             <h1 class="request-header">Nombre del tramite</h1>
+            {{solicitud.nombre}}
             <h3 class="request-subtitle">ID Solicitud</h3>
+            {{solicitud.id}}
             <h5 class="request-subtitle5">Fecha de solicitud</h5>
+            {{solicitud.fechacreacion}}
         </div>
         <div class="request-detail second-div">
             <h1 class="request-header">Estado del tramite: {{estado}}</h1>
             <select *ngIf="options" [(ngModel)]="estado">
-                <option *ngFor="let option of options" [ngValue]="option.label">{{option.label}}</option>
+                <option *ngFor="let option of options" [ngValue]="option.value">{{option.label}}</option>
             </select>
+            <button *ngIf="options" md-raised-button disableRipple="false" class="auth-button" (click)="onUpdateState()">Actualizar Estado
+            </button>
 
             <h3 class="request-subtitle">Funcionario responsable: {{funcionario}}</h3>
             <select   *ngIf="employees"[(ngModel)]="funcionario">
-                <option *ngFor="let employ of employees" [ngValue]="employ.nombre">{{employ.nombre}}</option>
+                <option *ngFor="let employ of employees" [ngValue]="employ.cedula">{{employ.nombre}}</option>
             </select>
+            <button *ngIf="employees" md-raised-button disableRipple="false" class="auth-button" (click)="onUpdateFunc()">Asignar Funcionario
+            </button>
         </div>
     </div>
     <!--<div *ngFor="let field of request.fields">
