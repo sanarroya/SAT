@@ -17,6 +17,11 @@
             <h3 class="request-subtitle">Funcionario responsable</h3>
         </div>
     </div>
+    <div *ngFor="let field of request.fields">
+        <br/>
+        <div>field.key</div>
+        <div>field.value</div>
+    </div>
 </div>
 <div class="container">
 

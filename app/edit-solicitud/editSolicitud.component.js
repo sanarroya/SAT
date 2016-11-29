@@ -28,18 +28,7 @@ var EditSolicitud = (function () {
             this.menus = menu_mock_1.MENU_ADM;
         }
     }
-    EditSolicitud.prototype.getInfoSolicitud = function () {
-        var _this = this;
-        this.authService.getSolicitudProfile(localStorage.getItem('idTramite')).suscribe(function (response) {
-            localStorage.setItem('cedula_user', response.cedula);
-            localStorage.setItem('name', response.nombre);
-            _this.selectSolicitud = response;
-        }, function (error) {
-            var jsonObject = JSON.parse(error.text());
-            _this.toastr.error(jsonObject.message, 'Alerta');
-            console.log(error.text());
-            ;
-        });
+    EditSolicitud.prototype.getRequest = function () {
     };
     EditSolicitud.prototype.onBack = function () {
         this.router.navigate(['/inboxSolicitud']);

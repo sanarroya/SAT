@@ -52,16 +52,10 @@ var InboxSolicitudComponent = (function () {
         console.log("Nueva Solicitud");
     };
     InboxSolicitudComponent.prototype.ngOnInit = function () {
-        if (this.user) {
-            this.getRequestsOfUser();
-        }
-        else {
-            this.getRequests();
-        }
+        this.getRequestsOfUser();
     };
     InboxSolicitudComponent.prototype.getRequests = function () {
         var _this = this;
-        console.log("REQUESTS");
         this.authService.getRequests().subscribe(function (response) {
             _this.selectSolicitud = response;
             console.log(response);
@@ -71,7 +65,6 @@ var InboxSolicitudComponent = (function () {
     };
     InboxSolicitudComponent.prototype.getRequestsOfUser = function () {
         var _this = this;
-        console.log("REQUESTS OF USER");
         this.authService.getRequestsByUser(localStorage.getItem('cedula_user')).subscribe(function (response) {
             _this.selectSolicitud = response;
             console.log(response);

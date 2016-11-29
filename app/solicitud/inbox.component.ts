@@ -63,15 +63,10 @@ export class InboxSolicitudComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        if(this.user) {
-            this.getRequestsOfUser()
-        } else {
-            this.getRequests()
-        }
+        this.getRequestsOfUser()
     }
 
     getRequests() {
-        console.log("REQUESTS")
         this.authService.getRequests().subscribe(
             response => {
                 this.selectSolicitud = response
@@ -84,7 +79,6 @@ export class InboxSolicitudComponent implements OnInit {
     }
 
     getRequestsOfUser() {
-        console.log("REQUESTS OF USER")
         this.authService.getRequestsByUser(localStorage.getItem('cedula_user')).subscribe(
             response => {
                 this.selectSolicitud = response
