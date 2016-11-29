@@ -12,15 +12,17 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var authentication_service_1 = require('../services/authentication.service');
 var ng2_toastr_1 = require('ng2-toastr/ng2-toastr');
-var menu_mock_1 = require("../menu_mock");
-var requestState_1 = require("../requestState");
-var requestFunc_1 = require("../requestFunc");
+var menu_mock_1 = require('../menu_mock');
+var requestState_1 = require('../requestState');
+var requestFunc_1 = require('../requestFunc');
 var EditSolicitud = (function () {
     function EditSolicitud(router, authService, toastr) {
         this.router = router;
         this.authService = authService;
         this.toastr = toastr;
         this.solicitud = JSON.parse(localStorage.getItem("solicitud2"));
+        this.fields = this.solicitud.campos;
+        console.log(this.fields);
         this.estado = this.solicitud.estado;
         this.funcionario = this.solicitud.documentofuncionario;
         if (localStorage.getItem("type_user") === '1') {
@@ -46,12 +48,6 @@ var EditSolicitud = (function () {
         else if (localStorage.getItem("type_user") == '2') {
             this.getStates();
         }
-        //this.param = this.router.url.split('/');
-        /*if (this.param[2].length>0)
-         alert("Detalle Trámite: " + this.param[2]);
-         else
-         alert("Nuevo Trámite: " + this.param[2]);*/
-        //this.getInfoTramite();
     };
     EditSolicitud.prototype.onSelect = function (hero) {
         this.router.navigate([hero.id]);
@@ -67,31 +63,26 @@ var EditSolicitud = (function () {
             _this.toastr.info("Estado Actualizado", 'Alerta');
         }, function (error) {
             _this.toastr.error("Error, por favor intente de nuevo", 'Alerta');
-            console.log(error.toString());
         });
     };
     EditSolicitud.prototype.onUpdateFunc = function () {
         var _this = this;
-        console.log(this.funcionario);
         var tramitex = new requestFunc_1.udpateFunc();
         tramitex.id = this.solicitud.id.toString();
         tramitex.idfuncionario = this.funcionario;
-        console.log(JSON.stringify(tramitex));
         this.authService.updateFunction(tramitex)
             .subscribe(function (response) {
             _this.toastr.info("Funcionario Actualizado", 'Alerta');
         }, function (error) {
             _this.toastr.error("Error, por favor intente de nuevo", 'Alerta');
-            console.log(error.toString());
         });
     };
     EditSolicitud.prototype.getAllEmployees = function () {
         var _this = this;
-        this.authService.getAllEmployees()
-            .subscribe(function (response) {
+        this.authService.getAllEmployees().subscribe(function (response) {
             _this.employees = response;
         }, function (error) {
-            console.log(error);
+            _this.toastr.error("Error, por favor intente de nuevo", 'Alerta');
         });
     };
     EditSolicitud.prototype.getStates = function () {
