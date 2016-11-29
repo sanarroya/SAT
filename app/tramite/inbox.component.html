@@ -1,0 +1,56 @@
+﻿<md-sidenav-layout>
+    <md-sidenav #start class="app-sidenav" >
+        <div><img class="form-logo" src="assets/satlogo2.png"></div>
+        <ul>
+            <li class="menu" *ngFor="let hero of menus" (click)="onSelect(hero)">
+                <span>{{hero.name}}</span>
+            </li>
+        </ul>
+    </md-sidenav>
+    <md-toolbar class="md-accent">
+        <i class="material-icons app-input-icon icon-space" (click)="start.toggle()">menu</i>
+        <img class="toolbar-logo" src="assets/satlogo.png"/>
+        <h1 class="toolbar-title">SAT - Sistema de Automatizacion de Tramites</h1>
+        <span class="app-toolbar-filler"></span>
+    </md-toolbar>
+
+    <div class="container">
+
+        <div style="text-align:left; ">
+
+        </div>
+
+        <table align="center" style="align-items: center; margin-left: 80;margin-bottom: 30;">
+
+            <tr *ngFor="let tramite of selectTramite" class="lt" (click)= "onNewProcedure(tramite)">
+                <td style="width:95%; height:100;">
+                    <div>
+                        <strong style="margin-left: 10;margin-top: 15;margin-right:2;color: #05AFA8;">{{tramite.nombre}}</strong>
+
+                        <i *ngIf="admin" class="material-icons campored1" (click)="removeItem(tramite)">clear</i>
+                        <i *ngIf="admin" class="material-icons campogreen1" (click)="editItem(tramite)">mode_edit</i>
+
+                        <br/>
+                    </div>
+                    <div style="margin-top: 30;margin-left: 10;"><span> {{tramite.descripcion}}</span></div>
+                </td>
+            </tr>
+
+        </table>
+        <button md-raised-button disableRipple="false" class="left-button" type="submit"
+                                style="font-size:75%;" (click)="change()" >Change
+                        </button>
+        <button md-fab class="float-action1" disableRipple="true">
+            <i class="material-icons float-action-icon1" (click)="newItem()">add</i>
+        </button>
+
+
+    </div>
+</md-sidenav-layout>
+
+
+
+
+
+<br/>
+<br/>

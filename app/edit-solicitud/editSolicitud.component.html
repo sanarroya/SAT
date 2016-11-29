@@ -1,0 +1,32 @@
+﻿<md-toolbar class="md-accent">
+    <i class="material-icons addgreenback icon-space" (click)="onBack()">arrow_back</i>
+    <img class="toolbar-logo" src="assets/satlogo.png" />
+    <h1 class="toolbar-title">SAT - Sistema de Automatizacion de Tramites</h1>
+    <span class="app-toolbar-filler"></span>
+</md-toolbar>
+<div>
+    <div class="block-container" align="center">
+        <div class="request-detail">
+            <h1 class="request-header">Nombre del tramite</h1>
+            <h3 class="request-subtitle">ID Solicitud</h3>
+            <h5 class="request-subtitle5">Fecha de solicitud</h5>
+        </div>
+        <div class="request-detail second-div">
+            <h1 class="request-header">Estado del tramite: {{estado}}</h1>
+            <select *ngIf="options" [(ngModel)]="estado">
+                <option *ngFor="let option of options" [ngValue]="option.label">{{option.label}}</option>
+            </select>
+
+            <h3 class="request-subtitle">Funcionario responsable: {{funcionario}}</h3>
+            <select   *ngIf="employees"[(ngModel)]="funcionario">
+                <option *ngFor="let employ of employees" [ngValue]="employ.nombre">{{employ.nombre}}</option>
+            </select>
+        </div>
+    </div>
+    <!--<div *ngFor="let field of request.fields">
+        <br/>
+        <div>field.key</div>
+        <div>field.value</div>
+    </div>-->
+</div>
+
