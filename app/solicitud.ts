@@ -5,6 +5,8 @@ export class Solicitud {
     estado: string
     nombrefuncionario: string
     documentofuncionario: string
+    nombreciudadano: string
+    documentociudadano: string
     fechacreacion: string
     campos: camposolicitud[]
 }

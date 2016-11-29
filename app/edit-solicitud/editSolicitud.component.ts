@@ -10,7 +10,7 @@ import {Solicitud} from '../solicitud'
 @Component({
     selector: 'edit-tramite',
     templateUrl: './app/edit-solicitud/editSolicitud.component.html',
-    styleUrls: ['./app/signin/signin.component.css'],
+    styleUrls: ['./app/signin/signin.component.css', './app/edit-solicitud/editSolicitud.component.css'],
     providers: [AuthenticationService]
 })
 
@@ -19,8 +19,8 @@ export class EditSolicitud implements OnInit {
 
     @Input() idSolicitud: any;
 
-    public selectSolicitud: any[];
-    public param: any;
+    public request: Solicitud
+
     menus: menu[];
 
     constructor(private router: Router, private authService: AuthenticationService, private toastr: ToastsManager) {
@@ -34,17 +34,8 @@ export class EditSolicitud implements OnInit {
 
     }
 
-    getInfoSolicitud(): void {
-        this.authService.getSolicitudProfile(localStorage.getItem('idTramite')).suscribe(response => {
-            localStorage.setItem('cedula_user', <string>response.cedula);
-            localStorage.setItem('name', response.nombre);
-            this.selectSolicitud = response;
-        }, error => {
-            let jsonObject = JSON.parse(error.text());
-            this.toastr.error(jsonObject.message, 'Alerta');
-            console.log(error.text());
-            ;
-        });
+    getRequest(): void {
+        
     }
 
 
