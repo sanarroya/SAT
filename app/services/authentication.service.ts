@@ -10,6 +10,8 @@ import { tramites } from "../tramites"
 import { Tramite } from '../tramite'
 import { Solicitud } from '../solicitud'
 import { DeleteTramite } from "../deleteProcedure"
+import {udpateFunc} from "../requestFunc";
+import {udpateState} from "../requestState";
 
 @Injectable()
 export class AuthenticationService {
@@ -35,7 +37,8 @@ export class AuthenticationService {
     private deleteProcedureEndPoint = "/procedureResource/deleteProcedure"
     private tramitesEndpoint = '/procedureResource/getAllProcedures'
     private solicitudEndpoint = '/procedureResource/getAllSolicitudes'
-
+    private updateFuncEndpoint="/procedureResource/assignResponsableUR"
+    private updateStateEndpoint="/procedureResource/changeState"
 
     private headers = new Headers({ 'Content-Type': 'application/json' })
 
@@ -81,6 +84,15 @@ export class AuthenticationService {
             .map(res => res.json())
     }
 
+    updateFunction(tramite: udpateFunc): Observable<any> {
+        return this.http.post(this.baseUrl + this.updateFuncEndpoint, JSON.stringify(tramite), this.headers)
+            .map(res => res.json())
+    }
+
+    updateState(tramite: udpateState): Observable<any> {
+        return this.http.post(this.baseUrl + this.updateStateEndpoint, JSON.stringify(tramite), this.headers)
+            .map(res => res.json())
+    }
 
     deleteProcedure(tramite: DeleteTramite): Observable<any> {
         return this.http.post(this.baseUrl + this.deleteProcedureEndPoint, JSON.stringify(tramite), this.headers)

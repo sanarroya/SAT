@@ -6,6 +6,7 @@ import {menu} from "../menu";
 import {MENU_ADM, MENU_CDN, MENU_FCN} from "../menu_mock";
 import {Tramite} from '../tramite';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
+import {Solicitud} from "../solicitud";
 
 @Component({
     selector: 'tramite',
@@ -49,8 +50,8 @@ export class InboxSolicitudComponent implements OnInit {
         console.log("Remove: ", item.id);
     }
 
-    public editItem(item: any) {
-        this.toastr.info("Editar" + item.id, 'Alerta');
+    public editItem(item: Solicitud) {
+        localStorage.setItem("solicitud2", JSON.stringify(item));
         let link = ['/editSolicitud', item.id];
         this.router.navigate(link);
         console.log("Edit: ", item.id);
