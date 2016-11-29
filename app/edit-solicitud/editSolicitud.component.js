@@ -18,25 +18,6 @@ var EditSolicitud = (function () {
         this.router = router;
         this.authService = authService;
         this.toastr = toastr;
-        this.funcionarios = [];
-        this.options = [
-            {
-                value: '0',
-                label: 'Pendiente'
-            },
-            {
-                value: '1',
-                label: 'Progreso'
-            },
-            {
-                value: '2',
-                label: 'Finalizado'
-            },
-            {
-                value: '3',
-                label: 'Rechazado'
-            }
-        ];
         if (localStorage.getItem("type_user") === '1') {
             this.menus = menu_mock_1.MENU_CDN;
         }
@@ -46,11 +27,6 @@ var EditSolicitud = (function () {
         else {
             this.menus = menu_mock_1.MENU_ADM;
         }
-        this.placeholder1 = "Selecciona Funcionario";
-        this.placeholder = "Selecciona Estado";
-        if (localStorage.getItem("type_user") === '0' || (localStorage.getItem("type_user") != '1' && localStorage.getItem("type_user") != '2')) {
-            this.getAllEmployees();
-        }
     }
     EditSolicitud.prototype.getRequest = function () {
     };
@@ -58,6 +34,10 @@ var EditSolicitud = (function () {
         this.router.navigate(['/inboxSolicitud']);
     };
     EditSolicitud.prototype.ngOnInit = function () {
+        if (localStorage.getItem("type_user") === '0' || (localStorage.getItem("type_user") != '1' && localStorage.getItem("type_user") != '2')) {
+            this.getAllEmployees();
+            this.getStates();
+        }
         //this.param = this.router.url.split('/');
         /*if (this.param[2].length>0)
          alert("Detalle Trámite: " + this.param[2]);
@@ -89,18 +69,29 @@ var EditSolicitud = (function () {
         this.authService.getAllEmployees()
             .subscribe(function (response) {
             _this.employees = response;
-            console.log("" + _this.employees.length);
-            _this.employees.map(function (x) {
-                var item = {
-                    value: x.cedula,
-                    label: x.nombre
-                };
-                _this.funcionarios.push(item);
-            });
-            console.log(_this.funcionarios);
         }, function (error) {
             console.log(error);
         });
+    };
+    EditSolicitud.prototype.getStates = function () {
+        this.options = [
+            {
+                value: '0',
+                label: 'Pendiente'
+            },
+            {
+                value: '1',
+                label: 'Progreso'
+            },
+            {
+                value: '2',
+                label: 'Finalizado'
+            },
+            {
+                value: '3',
+                label: 'Rechazado'
+            }
+        ];
     };
     __decorate([
         core_1.Input(), 

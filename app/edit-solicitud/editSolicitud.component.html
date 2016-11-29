@@ -12,15 +12,15 @@
             <h5 class="request-subtitle5">Fecha de solicitud</h5>
         </div>
         <div class="request-detail second-div">
-            <h1 class="request-header">Estado del tramite</h1>
-            <ng-select style="high" select [(ngModel)]="estado" name="estado" [options]="options" placeholder={{placeholder}} [allowClear]="false"
-                       (selected)="onSelected($event)" (opened)="onSelectOpened()" required theme="default">
+            <h1 class="request-header">Estado del tramite: {{estado}}</h1>
+            <select *ngIf="options" [(ngModel)]="estado">
+                <option *ngFor="let option of options" [ngValue]="option.label">{{option.label}}</option>
+            </select>
 
-            </ng-select>
-            <h3 class="request-subtitle">Funcionario responsable</h3>
-            <ng-select style="high" select [(ngModel)]="funcionario" name="funcionario" [options]="funcionarios" placeholder={{placeholder1}} [allowClear]="false"
-                       (selected)="onSelected1($event)" (opened)="onSelectOpened1()" required theme="default">
-            </ng-select>
+            <h3 class="request-subtitle">Funcionario responsable: {{funcionario}}</h3>
+            <select   *ngIf="employees"[(ngModel)]="funcionario">
+                <option *ngFor="let employ of employees" [ngValue]="employ.nombre">{{employ.nombre}}</option>
+            </select>
         </div>
     </div>
     <!--<div *ngFor="let field of request.fields">

@@ -9,7 +9,7 @@
         <form name="userForm1" (submit)="createProcedure(nombre.value,descripcion.value)">
             <div>
                 <div style="float:left;width:70%;">
-                    <md-input #nombre type="text" placeholder="Nombre de Trámite" class="left-input" maxlength="10" [(ngModel)]="tramiteSelected.nombre"
+                    <md-input #nombre type="text" placeholder="Nombre de Trámite" class="left-input" maxlength="15" [(ngModel)]="tramiteSelected.nombre"
                         name="nombre" required>
                     </md-input>
                 </div>

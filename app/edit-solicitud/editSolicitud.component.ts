@@ -22,30 +22,12 @@ export class EditSolicitud implements OnInit {
 
 
     estado: string;
-    funcionario:string;
+    funcionario: string;
     placeholder: string;
     placeholder1: string;
     private employees: User[];
-    private funcionarios: any[]=[];
 
-    options = [
-        {
-            value: '0',
-            label: 'Pendiente'
-        },
-        {
-            value: '1',
-            label: 'Progreso'
-        },
-        {
-            value: '2',
-            label: 'Finalizado'
-        },
-        {
-            value: '3',
-            label: 'Rechazado'
-        }
-    ];
+    private options : any[];
 
 
     public request: Solicitud;
@@ -61,17 +43,10 @@ export class EditSolicitud implements OnInit {
             this.menus = MENU_ADM;
         }
 
-        this.placeholder1 = "Selecciona Funcionario";
-        this.placeholder = "Selecciona Estado";
-
-        if (localStorage.getItem("type_user") === '0' || (localStorage.getItem("type_user")!= '1' && localStorage.getItem("type_user")!= '2')) {
-            this.getAllEmployees();
-        }
-
     }
 
     getRequest(): void {
-        
+
     }
 
 
@@ -82,7 +57,10 @@ export class EditSolicitud implements OnInit {
     ngOnInit(): void {
 
 
-
+        if (localStorage.getItem("type_user") === '0' || (localStorage.getItem("type_user") != '1' && localStorage.getItem("type_user") != '2')) {
+            this.getAllEmployees();
+            this.getStates();
+        }
 
 
         //this.param = this.router.url.split('/');
@@ -122,26 +100,40 @@ export class EditSolicitud implements OnInit {
     }
 
     getAllEmployees() {
+
+
         this.authService.getAllEmployees()
             .subscribe(
                 response => {
-
                     this.employees = response;
-                    console.log("" + this.employees.length);
-                    this.employees.map(x=> {
-                        let item = {
-                            value: x.cedula,
-                            label: x.nombre
-                        };
-                        this.funcionarios.push(item);
-
-                    });
-                    console.log(this.funcionarios);
                 },
                 error => {
                     console.log(error)
                 }
             )
+    }
+
+
+    getStates() {
+
+        this.options = [
+            {
+                value: '0',
+                label: 'Pendiente'
+            },
+            {
+                value: '1',
+                label: 'Progreso'
+            },
+            {
+                value: '2',
+                label: 'Finalizado'
+            },
+            {
+                value: '3',
+                label: 'Rechazado'
+            }
+        ];
     }
 
 
