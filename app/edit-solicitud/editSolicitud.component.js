@@ -63,7 +63,7 @@ var EditSolicitud = (function () {
         core_1.Component({
             selector: 'edit-tramite',
             templateUrl: './app/edit-solicitud/editSolicitud.component.html',
-            styleUrls: ['./app/signin/signin.component.css'],
+            styleUrls: ['./app/signin/signin.component.css', './app/edit-solicitud/editSolicitud.component.css'],
             providers: [authentication_service_1.AuthenticationService]
         }), 
         __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService, ng2_toastr_1.ToastsManager])

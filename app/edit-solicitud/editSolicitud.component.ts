@@ -10,7 +10,7 @@ import {Solicitud} from '../solicitud'
 @Component({
     selector: 'edit-tramite',
     templateUrl: './app/edit-solicitud/editSolicitud.component.html',
-    styleUrls: ['./app/signin/signin.component.css'],
+    styleUrls: ['./app/signin/signin.component.css', './app/edit-solicitud/editSolicitud.component.css'],
     providers: [AuthenticationService]
 })
 
