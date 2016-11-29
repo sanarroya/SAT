@@ -25,7 +25,3 @@ export const MENU_CDN: menu[] = [
     {id: '/signin', name: 'Cerrar Sesion'}
 ];
 
-export const CAMPO_MOCK: campo[] = [
-    {id: '1', nombre: 'TEST 1', tipo: 'TEXT'},
-    {id: '2', nombre: 'TEST 2', tipo: 'Document'}
-];
