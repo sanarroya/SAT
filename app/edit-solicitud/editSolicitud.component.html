@@ -7,12 +7,11 @@
 <div>
     <div class="block-container" align="center">
         <div class="request-detail">
-            <h1 class="request-header">Nombre del tramite</h1>
-            {{solicitud.nombre}}
-            <h3 class="request-subtitle">ID Solicitud</h3>
-            {{solicitud.id}}
-            <h5 class="request-subtitle5">Fecha de solicitud</h5>
-            {{solicitud.fechacreacion}}
+            <h1 class="request-header">{{solicitud.nombre}}</h1>
+            
+            <h3 class="request-subtitle">ID: #{{solicitud.id}}</h3>
+            
+            <h5 class="request-subtitle5">Fecha de solicitud: {{solicitud.fechacreacion}}</h5>
         </div>
         <div class="request-detail second-div">
             <h1 class="request-header">Estado del tramite: {{estado}}</h1>
@@ -30,10 +29,19 @@
             </button>
         </div>
     </div>
-    <!--<div *ngFor="let field of request.fields">
-        <br/>
-        <div>field.key</div>
-        <div>field.value</div>
-    </div>-->
 </div>
-
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="fields-info">
+    <h2 class="request-fields">Requisitos de la solicitud</h2>
+    <div *ngFor="let field of fields">
+        <br/>
+        <span class="field-title">{{field.nombre}}</span>
+        <br/>
+        <span class="field-value">{{field.valor}}</span>
+    </div>
+</div>

@@ -103,7 +103,6 @@ var AuthenticationService = (function () {
     };
     AuthenticationService.prototype.getAllEmployees = function () {
         var url = this.baseUrl + this.getEmployeesEndpoint;
-        console.log(url);
         return this.http.get(url)
             .map(function (response) {
             return response.json().usuarios;

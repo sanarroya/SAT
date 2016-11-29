@@ -7,6 +7,7 @@
 .second-div {
     vertical-align:top;
 }
+
 h1.request-header {
     color: #05AFA8;
     font-family: Arial, Helvetica, sans-serif;
@@ -27,4 +28,24 @@ h1.request-header {
 .block-container {
     margin: 0 auto;
     display: block;
+}
+
+.fields-info {
+    margin-left: 160;
+}
+
+.request-fields {
+    color: #05AFA8;
+}
+
+.field-title {
+    color: #05AFA8;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20;
+    font-weight: bold;
+}
+
+.field-value {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16;
 }

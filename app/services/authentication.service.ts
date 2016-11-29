@@ -126,7 +126,6 @@ export class AuthenticationService {
 
     getAllEmployees(): Observable<User[]> {
         const url = this.baseUrl + this.getEmployeesEndpoint
-        console.log(url)
         return this.http.get(url)
             .map((response: Response) =>
                 response.json().usuarios as User[]
