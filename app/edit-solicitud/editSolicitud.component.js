@@ -28,18 +28,7 @@ var EditSolicitud = (function () {
             this.menus = menu_mock_1.MENU_ADM;
         }
     }
-    EditSolicitud.prototype.getInfoSolicitud = function () {
-        var _this = this;
-        this.authService.getSolicitudProfile(localStorage.getItem('idTramite')).suscribe(function (response) {
-            localStorage.setItem('cedula_user', response.cedula);
-            localStorage.setItem('name', response.nombre);
-            _this.selectSolicitud = response;
-        }, function (error) {
-            var jsonObject = JSON.parse(error.text());
-            _this.toastr.error(jsonObject.message, 'Alerta');
-            console.log(error.text());
-            ;
-        });
+    EditSolicitud.prototype.getRequest = function () {
     };
     EditSolicitud.prototype.onBack = function () {
         this.router.navigate(['/inboxSolicitud']);
@@ -63,7 +52,7 @@ var EditSolicitud = (function () {
         core_1.Component({
             selector: 'edit-tramite',
             templateUrl: './app/edit-solicitud/editSolicitud.component.html',
-            styleUrls: ['./app/signin/signin.component.css'],
+            styleUrls: ['./app/signin/signin.component.css', './app/edit-solicitud/editSolicitud.component.css'],
             providers: [authentication_service_1.AuthenticationService]
         }), 
         __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService, ng2_toastr_1.ToastsManager])
