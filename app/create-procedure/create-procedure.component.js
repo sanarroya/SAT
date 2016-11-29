@@ -59,7 +59,7 @@ var CreateProcedureComponent = (function () {
             }
             else {
                 var field = new file_field_1.FileField();
-                field.key = campo.nombre;
+                field.key = campo.idcampo;
                 field.text = campo.nombre;
                 field.required = true;
                 field.order = _this.num;

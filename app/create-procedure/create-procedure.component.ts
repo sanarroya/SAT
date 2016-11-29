@@ -59,7 +59,7 @@ export class CreateProcedureComponent implements OnInit {
                 this.fieldModel.fields.push(field)
             } else {
                 let field = new FileField()
-                field.key = campo.nombre
+                field.key = campo.idcampo
                 field.text = campo.nombre
                 field.required = true
                 field.order = this.num
