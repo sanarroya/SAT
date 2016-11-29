@@ -10,6 +10,7 @@ import {Item} from '../ObjectItem'
 import {camposolicitud} from '../camposSolicitud'
 import {udpateState} from '../requestState'
 import {udpateFunc} from '../requestFunc'
+import {State} from '../edit-solicitud/state'
 
 @Component({
     selector: 'edit-solicitud',
@@ -17,6 +18,7 @@ import {udpateFunc} from '../requestFunc'
     styleUrls: ['./app/signin/signin.component.css', './app/edit-solicitud/editSolicitud.component.css'],
     providers: [AuthenticationService]
 })
+
 
 
 export class EditSolicitud implements OnInit {
@@ -28,17 +30,33 @@ export class EditSolicitud implements OnInit {
     funcionario: string
     placeholder: string
     placeholder1: string
-    private employees: User[]
-    private options: any[]
-    private fields: camposolicitud[]
     menus: menu[];
+    private employees: User[]
+    private fields: camposolicitud[]
+    private options: State[] = [
+                                    {
+                                        value: '0',
+                                        label: 'Pendiente'
+                                    },
+                                    {
+                                        value: '1',
+                                        label: 'Progreso'
+                                    },
+                                    {
+                                        value: '2',
+                                        label: 'Finalizado'
+                                    },
+                                    {
+                                        value: '3',
+                                        label: 'Rechazado'
+                                    }
+                                ]
 
     constructor(private router: Router, private authService: AuthenticationService, private toastr: ToastsManager) {
         this.solicitud = JSON.parse(localStorage.getItem("solicitud2"));
         this.fields = this.solicitud.campos
-        console.log(this.fields)
-        this.estado = this.solicitud.estado;
         this.funcionario = this.solicitud.documentofuncionario;
+        this.estado = this.findStateNameWithValue(this.solicitud.estado)
         if (localStorage.getItem("type_user") === '1') {
             this.menus = MENU_CDN;
         } else if (localStorage.getItem("type_user") === '2') {
@@ -48,11 +66,6 @@ export class EditSolicitud implements OnInit {
         }
     }
 
-    getRequest(): void {
-
-    }
-
-
     onBack(): void {
         this.router.navigate(['/inboxSolicitud']);
     }
@@ -60,10 +73,7 @@ export class EditSolicitud implements OnInit {
     ngOnInit(): void {
         if (localStorage.getItem("type_user") === '0' || (localStorage.getItem("type_user") != '1' && localStorage.getItem("type_user") != '2')) {
             this.getAllEmployees();
-            this.getStates();
-        } else if (localStorage.getItem("type_user") == '2') {
-            this.getStates();
-        }
+        } 
     }
 
     onSelect(hero: menu): void {
@@ -95,10 +105,7 @@ export class EditSolicitud implements OnInit {
                 this.toastr.error("Error, por favor intente de nuevo", 'Alerta');
             }
         )
-
     }
-
-
 
     getAllEmployees() {
         this.authService.getAllEmployees().subscribe(
@@ -111,24 +118,12 @@ export class EditSolicitud implements OnInit {
         )
     }
 
-    getStates() {
-        this.options = [
-            {
-                value: '0',
-                label: 'Pendiente'
-            },
-            {
-                value: '1',
-                label: 'Progreso'
-            },
-            {
-                value: '2',
-                label: 'Finalizado'
-            },
-            {
-                value: '3',
-                label: 'Rechazado'
+    private findStateNameWithValue(value: string): string {
+        for(var i = 0; i < this.options.length; i++) {
+            let state = this.options[i] as State
+            if(state.value == value) {
+                return state.label
             }
-        ]
+        }
     }
 }

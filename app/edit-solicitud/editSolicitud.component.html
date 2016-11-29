@@ -9,9 +9,9 @@
         <div class="request-detail">
             <h1 class="request-header">{{solicitud.nombre}}</h1>
             
-            <h3 class="request-subtitle">ID {{solicitud.id}}</h3>
+            <h3 class="request-subtitle">ID: #{{solicitud.id}}</h3>
             
-            <h5 class="request-subtitle5">{{solicitud.fechacreacion}}</h5>
+            <h5 class="request-subtitle5">Fecha de solicitud: {{solicitud.fechacreacion}}</h5>
         </div>
         <div class="request-detail second-div">
             <h1 class="request-header">Estado del tramite: {{estado}}</h1>
@@ -29,10 +29,19 @@
             </button>
         </div>
     </div>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="fields-info">
+    <h2 class="request-fields">Requisitos de la solicitud</h2>
     <div *ngFor="let field of fields">
         <br/>
-        <div>{{field.nombre}}</div>
-        <div>{{field.valor}}</div>
+        <span class="field-title">{{field.nombre}}</span>
+        <br/>
+        <span class="field-value">{{field.valor}}</span>
     </div>
 </div>
-

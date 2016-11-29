@@ -20,11 +20,28 @@ var EditSolicitud = (function () {
         this.router = router;
         this.authService = authService;
         this.toastr = toastr;
+        this.options = [
+            {
+                value: '0',
+                label: 'Pendiente'
+            },
+            {
+                value: '1',
+                label: 'Progreso'
+            },
+            {
+                value: '2',
+                label: 'Finalizado'
+            },
+            {
+                value: '3',
+                label: 'Rechazado'
+            }
+        ];
         this.solicitud = JSON.parse(localStorage.getItem("solicitud2"));
         this.fields = this.solicitud.campos;
-        console.log(this.fields);
-        this.estado = this.solicitud.estado;
         this.funcionario = this.solicitud.documentofuncionario;
+        this.estado = this.findStateNameWithValue(this.solicitud.estado);
         if (localStorage.getItem("type_user") === '1') {
             this.menus = menu_mock_1.MENU_CDN;
         }
@@ -35,18 +52,12 @@ var EditSolicitud = (function () {
             this.menus = menu_mock_1.MENU_ADM;
         }
     }
-    EditSolicitud.prototype.getRequest = function () {
-    };
     EditSolicitud.prototype.onBack = function () {
         this.router.navigate(['/inboxSolicitud']);
     };
     EditSolicitud.prototype.ngOnInit = function () {
         if (localStorage.getItem("type_user") === '0' || (localStorage.getItem("type_user") != '1' && localStorage.getItem("type_user") != '2')) {
             this.getAllEmployees();
-            this.getStates();
-        }
-        else if (localStorage.getItem("type_user") == '2') {
-            this.getStates();
         }
     };
     EditSolicitud.prototype.onSelect = function (hero) {
@@ -85,25 +96,13 @@ var EditSolicitud = (function () {
             _this.toastr.error("Error, por favor intente de nuevo", 'Alerta');
         });
     };
-    EditSolicitud.prototype.getStates = function () {
-        this.options = [
-            {
-                value: '0',
-                label: 'Pendiente'
-            },
-            {
-                value: '1',
-                label: 'Progreso'
-            },
-            {
-                value: '2',
-                label: 'Finalizado'
-            },
-            {
-                value: '3',
-                label: 'Rechazado'
+    EditSolicitud.prototype.findStateNameWithValue = function (value) {
+        for (var i = 0; i < this.options.length; i++) {
+            var state = this.options[i];
+            if (state.value == value) {
+                return state.label;
             }
-        ];
+        }
     };
     __decorate([
         core_1.Input(), 
