@@ -22,6 +22,7 @@ export class InboxSolicitudComponent implements OnInit {
     menus: menu[];
     user = false
 
+
     constructor(
         private router: Router,
         private authService: AuthenticationService,
@@ -63,7 +64,12 @@ export class InboxSolicitudComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.getRequestsOfUser()
+        if(this.user) {
+            this.getRequestsOfUser()
+        } else {
+            this.getRequests()
+        }
+
     }
 
     getRequests() {
@@ -93,5 +99,7 @@ export class InboxSolicitudComponent implements OnInit {
     onSelect(hero: menu): void {
         this.router.navigate([hero.id]);
     }
+
+
 
 }

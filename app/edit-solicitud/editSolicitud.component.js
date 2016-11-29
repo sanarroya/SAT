@@ -34,7 +34,11 @@ var EditSolicitud = (function () {
         this.router.navigate(['/inboxSolicitud']);
     };
     EditSolicitud.prototype.ngOnInit = function () {
-        this.param = this.router.url.split('/');
+        if (localStorage.getItem("type_user") === '0' || (localStorage.getItem("type_user") != '1' && localStorage.getItem("type_user") != '2')) {
+            this.getAllEmployees();
+            this.getStates();
+        }
+        //this.param = this.router.url.split('/');
         /*if (this.param[2].length>0)
          alert("Detalle Trámite: " + this.param[2]);
          else
@@ -44,13 +48,58 @@ var EditSolicitud = (function () {
     EditSolicitud.prototype.onSelect = function (hero) {
         this.router.navigate([hero.id]);
     };
+    EditSolicitud.prototype.onSelectOpened = function () {
+        this.placeholder = "Selecciona Estado";
+    };
+    EditSolicitud.prototype.onSelected = function (item) {
+        this.estado = item.value.toString();
+        console.log('Selected: ' + item.value + ', ' + item.label);
+        this.placeholder = "Selecciona Estado";
+    };
+    EditSolicitud.prototype.onSelectOpened1 = function () {
+        this.placeholder1 = "Selecciona Funcionario";
+    };
+    EditSolicitud.prototype.onSelected1 = function (item) {
+        this.funcionario = item.value.toString();
+        console.log('Selected: ' + item.value + ', ' + item.label);
+        this.placeholder1 = "Selecciona Estado";
+    };
+    EditSolicitud.prototype.getAllEmployees = function () {
+        var _this = this;
+        this.authService.getAllEmployees()
+            .subscribe(function (response) {
+            _this.employees = response;
+        }, function (error) {
+            console.log(error);
+        });
+    };
+    EditSolicitud.prototype.getStates = function () {
+        this.options = [
+            {
+                value: '0',
+                label: 'Pendiente'
+            },
+            {
+                value: '1',
+                label: 'Progreso'
+            },
+            {
+                value: '2',
+                label: 'Finalizado'
+            },
+            {
+                value: '3',
+                label: 'Rechazado'
+            }
+        ];
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
     ], EditSolicitud.prototype, "idSolicitud", void 0);
     EditSolicitud = __decorate([
         core_1.Component({
-            selector: 'edit-tramite',
+            selector: 'edit-solicitud',
             templateUrl: './app/edit-solicitud/editSolicitud.component.html',
             styleUrls: ['./app/signin/signin.component.css', './app/edit-solicitud/editSolicitud.component.css'],
             providers: [authentication_service_1.AuthenticationService]

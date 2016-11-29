@@ -1,89 +1,32 @@
 ﻿<md-toolbar class="md-accent">
     <i class="material-icons addgreenback icon-space" (click)="onBack()">arrow_back</i>
-    <img class="toolbar-logo" src="assets/satlogo.png"/>
+    <img class="toolbar-logo" src="assets/satlogo.png" />
     <h1 class="toolbar-title">SAT - Sistema de Automatizacion de Tramites</h1>
     <span class="app-toolbar-filler"></span>
 </md-toolbar>
-
 <div>
-    <div class="block-container">
+    <div class="block-container" align="center">
         <div class="request-detail">
             <h1 class="request-header">Nombre del tramite</h1>
             <h3 class="request-subtitle">ID Solicitud</h3>
             <h5 class="request-subtitle5">Fecha de solicitud</h5>
         </div>
         <div class="request-detail second-div">
-            <h1 class="request-header">Estado del tramite</h1>
-            <h3 class="request-subtitle">Funcionario responsable</h3>
+            <h1 class="request-header">Estado del tramite: {{estado}}</h1>
+            <select *ngIf="options" [(ngModel)]="estado">
+                <option *ngFor="let option of options" [ngValue]="option.label">{{option.label}}</option>
+            </select>
+
+            <h3 class="request-subtitle">Funcionario responsable: {{funcionario}}</h3>
+            <select   *ngIf="employees"[(ngModel)]="funcionario">
+                <option *ngFor="let employ of employees" [ngValue]="employ.nombre">{{employ.nombre}}</option>
+            </select>
         </div>
     </div>
-    <div *ngFor="let field of request.fields">
+    <!--<div *ngFor="let field of request.fields">
         <br/>
         <div>field.key</div>
         <div>field.value</div>
-    </div>
+    </div>-->
 </div>
-<div class="container">
 
-    <table>
-        <tr>
-            <td style="text-align:justify;">
-                <table style="width:100%">
-                    <tr>
-                        <td style="width:40%" class="Title">
-                            <strong> Nombre del Trámite</strong>
-                        </td>
-                        <td style="width:40%" class="Title">
-                            <strong> Estado del Trámite</strong>
-                        </td>
-                        <td style="width:20%">
-                            <div style="grid-column-align:center">
-                                <button md-raised-button disableripple="true" class="auth-button" (click)="returnInboxSolicitud()">ACTUALIZAR ESTADO</button>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-
-
-                <table style="width:100%">
-                    <tr>
-                        <td class="subTitle" style="width:40%">
-                            #ID Solicitud
-                        </td>
-                        <td class="subTitle" style="width:40%">
-                            Funcionario Responsable del trámite
-                        </td>
-                        <td style="width:20%">
-                            <div style="grid-column-align:center">
-                                <button md-raised-button disableripple="true" class="auth-button" (click)="returnInboxSolicitud()">CAMBIAR RESPONSABLE</button>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-
-
-
-                <table style="width:100%">
-                    <tr>
-                        <td class="subTitle" style="width:40%">
-                            Fecha Solicitud<br />
-                        </td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </table>
-
-
-                <table style="width:100%">
-                    <tr>
-                        <td colspan="3" style="text-align:justify; width:100%">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </td>
-                    </tr>
-                </table>
-
-
-            </td>
-        </tr>
-    </table>
-</div>

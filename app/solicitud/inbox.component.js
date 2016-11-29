@@ -52,7 +52,12 @@ var InboxSolicitudComponent = (function () {
         console.log("Nueva Solicitud");
     };
     InboxSolicitudComponent.prototype.ngOnInit = function () {
-        this.getRequestsOfUser();
+        if (this.user) {
+            this.getRequestsOfUser();
+        }
+        else {
+            this.getRequests();
+        }
     };
     InboxSolicitudComponent.prototype.getRequests = function () {
         var _this = this;
