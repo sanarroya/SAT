@@ -26,7 +26,7 @@ var FileService = (function () {
                 }
             }
         };
-        xhr.open('POST', 'http://localhost:44111/fileResource/uploadFileServlet', true);
+        xhr.open('POST', 'http://192.168.11.128/fileResource/uploadFileServlet', true);
         var formData = new FormData();
         for (var i = 0; i < file.length; i++) {
             formData.append(file[i].idarchivo, file[i].archivo, "archivo_" + file[i].nombre);

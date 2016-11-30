@@ -15,7 +15,7 @@ import {udpateState} from "../requestState";
 
 @Injectable()
 export class AuthenticationService {
-    private baseUrl = 'http://localhost:44111'
+    private baseUrl = 'http://192.168.11.128'
 
     //User Endpoints
     private singInEndpoint = '/userResource/login'

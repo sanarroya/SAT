@@ -45,11 +45,8 @@
             </td>
             <td style="width:5%;">
                 <div style="display: flex; ">
-                    <a *ngIf="!user" (click)="editItem(solicitud)" title="Editar">
+                    <a (click)="editItem(solicitud)" title="Editar">
                         <i class="material-icons campogreen1">mode_edit</i>
-                    </a>
-                    <a *ngIf="user" (click)="removeItem(solicitud)" title="Eliminar">
-                        <i class="material-icons campored1">clear</i>
                     </a>
                 </div>
             </td>

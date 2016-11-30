@@ -15,10 +15,10 @@
         </div>
         <div class="request-detail second-div">
             <h1 class="request-header">Estado del tramite: {{estado}}</h1>
-            <select *ngIf="options" [(ngModel)]="estado">
+            <select *ngIf="admin" [(ngModel)]="estado">
                 <option *ngFor="let option of options" [ngValue]="option.value">{{option.label}}</option>
             </select>
-            <button *ngIf="options" md-raised-button disableRipple="false" class="auth-button" (click)="onUpdateState()">Actualizar Estado
+            <button *ngIf="admin" md-raised-button disableRipple="false" class="auth-button" (click)="onUpdateState()">Actualizar Estado
             </button>
 
             <h3 class="request-subtitle">Funcionario responsable: {{funcionario}}</h3>
@@ -42,6 +42,9 @@
         <br/>
         <span class="field-title">{{field.nombre}}</span>
         <br/>
-        <span class="field-value">{{field.valor}}</span>
+        <span *ngIf="field.tipo=='texto'" class="field-value">{{field.valor}}</span>
+        <span *ngIf="field.tipo=='archivo'" class="field-value">
+            <a href="{{field.valor}}">Descargar Archivo</a>
+        </span>
     </div>
 </div>

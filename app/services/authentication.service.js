@@ -15,7 +15,7 @@ require('rxjs/add/operator/map');
 var AuthenticationService = (function () {
     function AuthenticationService(http) {
         this.http = http;
-        this.baseUrl = 'http://localhost:44111';
+        this.baseUrl = 'http://192.168.11.128';
         //User Endpoints
         this.singInEndpoint = '/userResource/login';
         this.singUpEndpoint = '/userResource/registerCitizen';

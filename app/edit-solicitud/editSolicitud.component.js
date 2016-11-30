@@ -20,6 +20,7 @@ var EditSolicitud = (function () {
         this.router = router;
         this.authService = authService;
         this.toastr = toastr;
+        this.admin = false;
         this.options = [
             {
                 value: '0',
@@ -41,15 +42,20 @@ var EditSolicitud = (function () {
         this.solicitud = JSON.parse(localStorage.getItem("solicitud2"));
         this.fields = this.solicitud.campos;
         this.funcionario = this.solicitud.documentofuncionario;
-        this.estado = this.findStateNameWithValue(this.solicitud.estado);
+        var state = this.findStateNameWithValue(this.solicitud.estado);
+        this.valueEstado = state.value;
+        this.estado = state.label;
         if (localStorage.getItem("type_user") === '1') {
             this.menus = menu_mock_1.MENU_CDN;
+            this.admin = false;
         }
         else if (localStorage.getItem("type_user") === '2') {
             this.menus = menu_mock_1.MENU_FCN;
+            this.admin = true;
         }
         else {
             this.menus = menu_mock_1.MENU_ADM;
+            this.admin = true;
         }
     }
     EditSolicitud.prototype.onBack = function () {
@@ -100,7 +106,7 @@ var EditSolicitud = (function () {
         for (var i = 0; i < this.options.length; i++) {
             var state = this.options[i];
             if (state.value == value) {
-                return state.label;
+                return state;
             }
         }
     };

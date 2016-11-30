@@ -27,10 +27,12 @@ export class EditSolicitud implements OnInit {
 
     solicitud: Solicitud
     estado: string
+    valueEstado: string
     funcionario: string
     placeholder: string
     placeholder1: string
     menus: menu[];
+    private admin = false
     private employees: User[]
     private fields: camposolicitud[]
     private options: State[] = [
@@ -56,13 +58,18 @@ export class EditSolicitud implements OnInit {
         this.solicitud = JSON.parse(localStorage.getItem("solicitud2"));
         this.fields = this.solicitud.campos
         this.funcionario = this.solicitud.documentofuncionario;
-        this.estado = this.findStateNameWithValue(this.solicitud.estado)
+        let state: State = this.findStateNameWithValue(this.solicitud.estado)
+        this.valueEstado = state.value
+        this.estado = state.label
         if (localStorage.getItem("type_user") === '1') {
-            this.menus = MENU_CDN;
+            this.menus = MENU_CDN
+            this.admin = false
         } else if (localStorage.getItem("type_user") === '2') {
-            this.menus = MENU_FCN;
+            this.menus = MENU_FCN
+            this.admin = true
         } else {
             this.menus = MENU_ADM;
+            this.admin = true
         }
     }
 
@@ -118,11 +125,11 @@ export class EditSolicitud implements OnInit {
         )
     }
 
-    private findStateNameWithValue(value: string): string {
+    private findStateNameWithValue(value: string): State {
         for(var i = 0; i < this.options.length; i++) {
             let state = this.options[i] as State
             if(state.value == value) {
-                return state.label
+                return state
             }
         }
     }
