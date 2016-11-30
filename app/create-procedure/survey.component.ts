@@ -6,7 +6,7 @@ import { TextBoxField } from '../create-procedure/textbox-field'
 import {FileSAT} from "./FileSAT";
 import {FileService} from "./file.service";
 import {CreateProcedureService} from "./create-procedure.service";
-
+import {Router} from '@angular/router'
 @Component({
     selector: 'survey',
     templateUrl: './app/create-procedure/survey.component.html',
@@ -24,7 +24,7 @@ export class Survey implements OnInit {
     filesToUpload: Array<FileSAT>;
 
 
-    constructor(private fileService: FileService, private createProcedureService: CreateProcedureService) {
+    constructor(private fileService: FileService, private createProcedureService: CreateProcedureService, private router: Router) {
         // alert(this.createProcedureService.procedure.id)
     }
 
@@ -38,6 +38,7 @@ export class Survey implements OnInit {
         console.log(this.payload)
         let body = JSON.stringify({idtramite:this.createProcedureService.procedure.id, idusuario: localStorage.getItem("cedula_user"), campos: this.payload});
         this.fileService.upload_file(this.filesToUpload, body);
+        this.router.navigate(['/inboxSolicitud'])
     }
 
     //Metodo encargado de cuando se carga el archivo lo guarde en la varibale myfile

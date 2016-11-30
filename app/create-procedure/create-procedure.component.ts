@@ -68,35 +68,9 @@ export class CreateProcedureComponent implements OnInit {
             
             this.num++
         })
-
-        //field = new TextBoxField()
-        //field.key = 'firstName'
-        //field.text = 'First name'
-        //field.required = true
-        //field.order = 1
-       // this.fieldModel.fields.push(field)
-
-       // field = new FileField()
-       // field.key = 'extractoBancario'
-       // field.text = 'Extracto Bancario'
-       // field.required = true
-       // field.order = 2
-       // this.fieldModel.fields.push(field)
     }
 
-    // getProcedure(id:string) {
-    //     this.authService.getDetalleTramite(id).subscribe(
-    //             data => {
-    //                 this.tramiteSelected = data
-    //                 console.log(data)
-    //                 this.camposSelected = this.tramiteSelected.campos
-    //                 this.drawFields(data.campos)
-    //             },
-    //             error => {
-    //                 this.toastr.error('hay un error', 'Alerta');
-    //                 this.toastr.error(error.text(), 'Alerta');
-    //                 console.log(error.text());
-    //             }
-    //     )
-    // }
+    onBack(): void {
+        this.router.navigate(["/inboxTramite"]);
+    }
 }

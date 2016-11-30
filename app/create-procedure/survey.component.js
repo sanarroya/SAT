@@ -12,10 +12,12 @@ var core_1 = require('@angular/core');
 var FileSAT_1 = require("./FileSAT");
 var file_service_1 = require("./file.service");
 var create_procedure_service_1 = require("./create-procedure.service");
+var router_1 = require('@angular/router');
 var Survey = (function () {
-    function Survey(fileService, createProcedureService) {
+    function Survey(fileService, createProcedureService, router) {
         this.fileService = fileService;
         this.createProcedureService = createProcedureService;
+        this.router = router;
         this.payload = null;
         // alert(this.createProcedureService.procedure.id)
     }
@@ -28,6 +30,7 @@ var Survey = (function () {
         console.log(this.payload);
         var body = JSON.stringify({ idtramite: this.createProcedureService.procedure.id, idusuario: localStorage.getItem("cedula_user"), campos: this.payload });
         this.fileService.upload_file(this.filesToUpload, body);
+        this.router.navigate(['/inboxSolicitud']);
     };
     //Metodo encargado de cuando se carga el archivo lo guarde en la varibale myfile
     Survey.prototype.fileChangeEvent = function (fileInput, algo) {
@@ -63,7 +66,7 @@ var Survey = (function () {
             styleUrls: ['./app/signin/signin.component.css', './app/edit-profile/edit-profile.component.css'],
             providers: [file_service_1.FileService]
         }), 
-        __metadata('design:paramtypes', [file_service_1.FileService, create_procedure_service_1.CreateProcedureService])
+        __metadata('design:paramtypes', [file_service_1.FileService, create_procedure_service_1.CreateProcedureService, router_1.Router])
     ], Survey);
     return Survey;
 }());

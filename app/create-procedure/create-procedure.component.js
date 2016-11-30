@@ -67,18 +67,9 @@ var CreateProcedureComponent = (function () {
             }
             _this.num++;
         });
-        //field = new TextBoxField()
-        //field.key = 'firstName'
-        //field.text = 'First name'
-        //field.required = true
-        //field.order = 1
-        // this.fieldModel.fields.push(field)
-        // field = new FileField()
-        // field.key = 'extractoBancario'
-        // field.text = 'Extracto Bancario'
-        // field.required = true
-        // field.order = 2
-        // this.fieldModel.fields.push(field)
+    };
+    CreateProcedureComponent.prototype.onBack = function () {
+        this.router.navigate(["/inboxTramite"]);
     };
     CreateProcedureComponent = __decorate([
         core_1.Component({
