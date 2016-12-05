@@ -1,7 +1,160 @@
 div.container {
+    padding-top: 100;
+    position: relative;
+    margin: auto;
+    display: block;
+    width: 400;
+}
+
+.auth-input {
+    width: 400;
+}
+
+.left-input {
+    width: 450;
+}
+
+.auth-button {
+    margin-top: 20;
+    width: 400;
+    background-color: #05AFA8;
+    color: #fff;
+}
+
+.left-button {
+    margin-top: 20;
+    width: 150;
+    margin-left: 50;
+    background-color: #05AFA8;
+    color: #fff;
+}
+
+.toolbar-title {
+    position: relative;
+    margin: auto;
+    font-size: x-large;
+    display: block;
+}
+
+.toolbar-logo {
+    width: 100;
+    margin-top: -5;
+}
+
+.toolbar-menu {
+    margin-right: 15;
+}
+
+.form-logo {
+    width: 400;
+    margin-bottom: 100;
+}
+
+.separtor-container {
+    display: inline-block;
+    width: 400;
+}
+
+.icon-sect {
+    display: flex;
+    flex-basis: 100%;
+    align-items: center;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.icon-space {
+    margin-right: 15px;
+}
+
+.hr-sect {
+    display: flex;
+    flex-basis: 100%;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.35);
+    font-size: 12px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+
+.hr-sect::before,
+.hr-sect::after {
+    content: "";
+    flex-grow: 1;
+    background: rgba(0, 0, 0, 0.35);
+    height: 1px;
+    font-size: 0px;
+    line-height: 0px;
+    margin: 0px 2px;
+}
+
+.separator {
+    width: 100;
+}
+
+.md-accent {
+    height: 74;
+    align-items: left;
+    align-content: left;
     text-align: center;
 }
 
-div.form-element {
-    display: inline-block;
+md-sidenav {
+    background-color: #05AFA8;
+    align-items: left;
+    align-content: left;
+    text-align: center;
+
 }
+
+.forgot-button {
+    float: right;
+    color: #05AFA8;
+}
+
+.menu {
+    margin: 0 0 2em 0;
+    list-style-type: none;
+    padding: 0;
+    width: 15em;
+    color: white;
+    z-index: 10;
+    display: block;
+
+}
+
+.aParent div {
+    float: left;
+    clear: none;
+}
+
+.campored1 {
+    color: red;
+    float: right;
+
+}
+
+.campogreen1 {
+    color: #05AFA8;
+    float: right;
+    margin-right: 6;
+    margin-left: 90;
+}
+
+.float-action1 {
+    margin-top: 100;
+    background: #05AFA8;
+    float: right;
+}
+
+.float-action-icon1 {
+    color: white;
+}
+
+.float-back-button {
+    float: left;
+    margin-left: 5;
+    margin-top: 5;
+    background: #05AFA8;
+}
+

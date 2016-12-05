@@ -1,0 +1,50 @@
+﻿<md-toolbar class="md-accent">
+    <i class="material-icons addgreenback icon-space" (click)="onBack()">arrow_back</i>
+    <img class="toolbar-logo" src="assets/satlogo.png" />
+    <h1 class="toolbar-title">SAT - Sistema de Automatizacion de Tramites</h1>
+    <span class="app-toolbar-filler"></span>
+</md-toolbar>
+<div>
+    <div class="block-container" align="center">
+        <div class="request-detail">
+            <h1 class="request-header">{{solicitud.nombre}}</h1>
+            
+            <h3 class="request-subtitle">ID: #{{solicitud.id}}</h3>
+            
+            <h5 class="request-subtitle5">Fecha de solicitud: {{solicitud.fechacreacion}}</h5>
+        </div>
+        <div class="request-detail second-div">
+            <h1 class="request-header">Estado del tramite: {{estado}}</h1>
+            <select *ngIf="admin" [(ngModel)]="estado">
+                <option *ngFor="let option of options" [ngValue]="option.value">{{option.label}}</option>
+            </select>
+            <button *ngIf="admin" md-raised-button disableRipple="false" class="auth-button" (click)="onUpdateState()">Actualizar Estado
+            </button>
+
+            <h3 class="request-subtitle">Funcionario responsable: {{funcionario}}</h3>
+            <select   *ngIf="employees"[(ngModel)]="funcionario">
+                <option *ngFor="let employ of employees" [ngValue]="employ.cedula">{{employ.nombre}}</option>
+            </select>
+            <button *ngIf="employees" md-raised-button disableRipple="false" class="auth-button" (click)="onUpdateFunc()">Asignar Funcionario
+            </button>
+        </div>
+    </div>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="fields-info">
+    <h2 class="request-fields">Requisitos de la solicitud</h2>
+    <div *ngFor="let field of fields">
+        <br/>
+        <span class="field-title">{{field.nombre}}</span>
+        <br/>
+        <span *ngIf="field.tipo=='texto'" class="field-value">{{field.valor}}</span>
+        <span *ngIf="field.tipo=='archivo'" class="field-value">
+            <a href="{{field.valor}}">Descargar Archivo</a>
+        </span>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+.request-detail {
+    display: inline-block;
+    width:40%;
+    height:200px;
+}
+
+.second-div {
+    vertical-align:top;
+}
+
+h1.request-header {
+    color: #05AFA8;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.request-subtitle {
+    color: #05AFA8;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 1em; 
+}
+
+.request-subtitle5 {
+    color: #05AFA8;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 1.5em; 
+}
+
+.block-container {
+    margin: 0 auto;
+    display: block;
+}
+
+.fields-info {
+    margin-left: 160;
+}
+
+.request-fields {
+    color: #05AFA8;
+}
+
+.field-title {
+    color: #05AFA8;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20;
+    font-weight: bold;
+}
+
+.field-value {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16;
+}

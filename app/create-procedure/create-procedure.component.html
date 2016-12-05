@@ -1,0 +1,9 @@
+<md-toolbar class="md-accent">
+    <i class="material-icons addgreenback icon-space" (click)="onBack()">arrow_back</i>
+    <img class="toolbar-logo" src="assets/satlogo.png" />
+    <h1 class="toolbar-title">SAT - Sistema de Automatizacion de Tramites</h1>
+    <span class="app-toolbar-filler"></span>
+</md-toolbar>
+<div class="container">
+    <survey [model]="fieldModel" [tramite]="tramiteSelected"></survey>
+</div>
